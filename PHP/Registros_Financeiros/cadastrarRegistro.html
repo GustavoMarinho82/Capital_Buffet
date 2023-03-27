@@ -1,0 +1,29 @@
+<HTML>
+    <HEAD>
+        <meta charset="utf-8">
+        <TITLE>Registrar Valor</TITLE>
+    </HEAD>
+
+    <BODY>
+        <h2>Registrar Valor</h2>
+            <form method="POST" action="cadastrarRegistro.php">
+
+                Período: <br/>
+                <input type="date" name="periodo" min="2000-01-01" max="2099-12-31" />
+                    <br/><br/>
+
+                Valor: <br/>
+                <input type="text" size="10" name="valor" />
+                    <br/><br/>
+                
+                Descrição: <br/>
+                <input type="text" size="10" name="descricao" />
+                    <br/><br/>
+
+
+                <input type="submit" value="Registrar valor" />
+            </form>
+            
+            <a href="../index.html">Voltar</a>
+    </BODY>
+</HTML>
