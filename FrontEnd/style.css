@@ -384,7 +384,8 @@ img {
   display: flex;
   flex-direction: column;
 }
-.vertical-tabs a {
+.vertical-tabs l {
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 0.75em 1em;
@@ -395,11 +396,11 @@ img {
   color: var(--c-text-action);
   transition: 0.15s ease;
 }
-.vertical-tabs a:hover, .vertical-tabs a:focus, .vertical-tabs a.active {
+.vertical-tabs l:hover, .vertical-tabs l:focus, .vertical-tabs l.active {
   background-color: var(--c-background-tertiary);
   color: var(--c-accent-primary);
 }
-.vertical-tabs a + * {
+.vertical-tabs l + * {
   margin-top: 0.25rem;
 }
 

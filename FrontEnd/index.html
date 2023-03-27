@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="icon" type="image/x-icon" href="logo.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <meta charset="UTF-8">
   <title>Capital Buffet</title>
-  <link rel="icon" type="image/x-icon" href="logo.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="./style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -94,10 +93,10 @@
 			<div class="content-panel">
 				<div class="vertical-tabs">
 					<h2>Order By:</h2>
-					<a href="#" data-Order="!" class="active">Any</a>
-					<a href="#" data-Order="!">Price (higher)</a>
-					<a href="#" data-Order="!">Price (lower)</a>
-					<a href="#" data-Order="!">Rating</a>
+					<l data-Order="!" class="active">Any</l>
+					<l data-Order="!">Price (higher)</l>
+					<l data-Order="!">Price (lower)</l>
+					<l data-Order="!">Rating</l>
 				</div>
 			</div>
 			<div class="content-main">
@@ -136,9 +135,9 @@
 						</div>
 						<div class="card-footer">
 							<a href="#">Quantity:</a><hr>
-							<span id="_1" class="material-symbols-outlined plus _1 gray">add_circle</span>
-							<number id="n_1">0</number>
 							<span id="_1" class="material-symbols-outlined minus _1 gray">do_not_disturb_on</span>
+							<number data-limit="10" id="n_1">0</number>
+							<span id="_1" class="material-symbols-outlined plus _1 gray">add_circle</span>
 						</div>
 					</article>
 					
