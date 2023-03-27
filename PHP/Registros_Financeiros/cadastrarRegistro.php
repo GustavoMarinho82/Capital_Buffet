@@ -12,8 +12,8 @@
             $valor = str_replace(",", ".", $_POST['valor']);
             $descricao = $_POST['descricao'];
 
-            if(strlen($periodo) == 0 || strlen($valor) == 0 || strlen($descricao) == 0) {
-                echo "Preencha todos os campos!";
+            if(strlen($periodo) == 0 || strlen($valor) == 0) {
+                echo "Preencha todos os campos obrigatórios!";
             
             } else {
 

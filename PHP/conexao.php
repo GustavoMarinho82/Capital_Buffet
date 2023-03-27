@@ -3,7 +3,7 @@
 	$servidor = "localhost";
 	$usuario = "root";
 	$senha = "";
-	$banco = "stockficiency";
+	$banco = "capital_buffet";
 
 
 	$mysqli = new mysqli($servidor,$usuario, $senha, $banco);
