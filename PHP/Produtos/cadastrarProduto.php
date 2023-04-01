@@ -1,7 +1,7 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Registrar Valor</TITLE>
+        <TITLE>Cadastrar Produto</TITLE>
     </HEAD>
 
     <BODY>
@@ -13,17 +13,11 @@
             $estoque = $_POST['estoque'];
             $descricao = $_POST['descricao'];
 
-            if(strlen($nome) == 0 || strlen($preco) == 0 || strlen($estoque) == 0) {
-                echo "Preencha todos os campos obrigatórios!";
-            
-            } else {
 
-                $sql = "INSERT INTO produtos (nome_produto, preco_produto, estoque_produto, descricao_produto) VALUES ('$nome', $preco, $estoque, '$descricao')";
-                    mysqli_query($mysqli, $sql);
+            $sql = "INSERT INTO produtos (nome_produto, preco_produto, estoque_produto, descricao_produto) VALUES ('$nome', $preco, $estoque, '$descricao')";
+                mysqli_query($mysqli, $sql);
                 
-                
-                echo "Produto registrado com sucesso!";
-            }
+            echo "Produto cadastrado com sucesso!";
         ?>
 
         <p><a href="../index.html">Voltar</a>

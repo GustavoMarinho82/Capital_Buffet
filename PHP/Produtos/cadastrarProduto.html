@@ -1,23 +1,23 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Registrar Produto</TITLE>
+        <TITLE>Cadastrar Produto</TITLE>
     </HEAD>
 
     <BODY>
-        <h2>Registrar Produto</h2>
+        <h2>Cadastrar Produto</h2>
             <form method="POST" action="cadastrarProduto.php">
 
                 Nome: <br/>
-                <input type="text" size="15" name="nome" />
+                <input type="text" size="15" name="nome" required/>
                     <br/><br/>
 
                 Preço: <br/>
-                <input type="text" size="15" name="preco" />
+                <input type="text" size="15" name="preco" required/>
                     <br/><br/>
                 
                 Quantidade em estoque: <br/>
-                <input type="text" size="15" name="estoque" />
+                <input type="text" size="15" name="estoque" required/>
                     <br/><br/>
                 
                 Descrição (opcional): <br/>
@@ -25,7 +25,7 @@
                     <br/><br/>
 
 
-                <input type="submit" value="Registrar produto" />
+                <input type="submit" value="Cadastrar produto" />
             </form>
             
             <a href="../index.html">Voltar</a>

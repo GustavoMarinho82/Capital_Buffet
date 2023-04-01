@@ -13,30 +13,25 @@
             $valor = str_replace(",", ".", $_POST['valor']);
             $descricao = $_POST['descricao'];
            
-            if(strlen($id_registro) == 0) {
-                echo "Preencha o campo obrigatório!";
+
+            $sql = "SELECT * FROM registros_financeiros WHERE id_registro=$id_registro";
+                $consulta = mysqli_query($mysqli, $sql);
+
+            if (mysqli_num_rows($consulta) == 0) {
+                echo "Registro não encontrado!";
             
             } else {
 
-                $sql = "SELECT * FROM registros_financeiros WHERE id_registro=$id_registro";
-                    $consulta = mysqli_query($mysqli, $sql);
+                $coluna = mysqli_fetch_array($consulta);
+                    if(strlen($periodo) == 0)   { $periodo = $coluna["periodo"]; }
+                    if(strlen($valor) == 0)     { $valor = $coluna["valor"]; }
+                    if(strlen($descricao) == 0) { $descricao = $coluna["descricao"]; }
 
-                if (mysqli_num_rows($consulta) == 0) {
-                    echo "Registro não encontrado!";
-                
-                } else {
-                    
-                    $coluna = mysqli_fetch_array($consulta);
 
-                        if(strlen($periodo) == 0)   { $periodo = $coluna["periodo"]; }
-                        if(strlen($valor) == 0)     { $valor = $coluna["valor"]; }
-                        if(strlen($descricao) == 0) { $descricao = $coluna["descricao"]; }
+                $sql = "UPDATE registros_financeiros SET periodo='$periodo', valor=$valor, descricao='$descricao' WHERE id_registro=$id_registro";
+                    mysqli_query($mysqli, $sql);
 
-                    $sql = "UPDATE registros_financeiros SET periodo='$periodo', valor=$valor, descricao='$descricao' WHERE id_registro=$id_registro";
-                        mysqli_query($mysqli, $sql);
-
-                    echo "Registro alterado com sucesso!";
-                }
+                echo "Registro alterado com sucesso!";
             }
         ?>
         

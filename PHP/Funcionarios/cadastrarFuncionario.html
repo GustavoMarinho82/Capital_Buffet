@@ -1,7 +1,7 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Registrar Funcionário</TITLE>
+        <TITLE>Cadastrar Funcionário</TITLE>
 
         <script src="../../dependencias/jquery-1.2.6.pack.js" type="text/javascript"></script>
         <script src="../../dependencias/jquery.maskedinput-1.1.4.pack.js" type="text/javascript"></script>
@@ -17,34 +17,34 @@
     </HEAD>
 
     <BODY>
-        <h2>Registrar Funcionário</h2>
+        <h2>Cadastrar Funcionário</h2>
             <form method="POST" action="cadastrarFuncionario.php">
 
                 Nome: <br/>
-                <input type="text" size="15" name="nome" />
+                <input type="text" size="15" name="nome" required/>
                     <br/><br/>
 
                 CPF: <br/>
-                <input type="text" size="15" name="cpf" id="cpf" />
+                <input type="text" size="15" name="cpf" id="cpf" required/>
                     <br/><br/>
                 
                 Cargo: <br/>
-                <input type="text" size="15" name="cargo" />
+                <input type="text" size="15" name="cargo" required/>
                     <br/><br/>
                 
                 Salário: <br/>
-                <input type="text" size="15" name="salario" />
+                <input type="text" size="15" name="salario" required/>
                     <br/><br/>
 
                 Email: <br/>
-                <input type="email" size="15" name="email" />
+                <input type="email" size="15" name="email" required/>
                     <br/><br/>
 
                 Telefone: <br/>
-                <input type="text" size="15" name="telefone" id="telefone" />
+                <input type="text" size="15" name="telefone" id="telefone" required/>
                     <br/><br/>
                 
-                <input type="submit" value="Registrar funcionário" />
+                <input type="submit" value="Cadastrar funcionário" />
             </form>
             
             <a href="../index.html">Voltar</a>
