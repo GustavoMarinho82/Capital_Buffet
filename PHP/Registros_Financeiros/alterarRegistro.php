@@ -23,9 +23,9 @@
             } else {
 
                 $coluna = mysqli_fetch_array($consulta);
-                    if(strlen($periodo) == 0)   { $periodo = $coluna["periodo"]; }
-                    if(strlen($valor) == 0)     { $valor = $coluna["valor"]; }
-                    if(strlen($descricao) == 0) { $descricao = $coluna["descricao"]; }
+                    if(empty($periodo))   { $periodo = $coluna["periodo"]; }
+                    if(empty($valor))     { $valor = $coluna["valor"]; }
+                    if(empty($descricao)) { $descricao = $coluna["descricao"]; }
 
 
                 $sql = "UPDATE registros_financeiros SET periodo='$periodo', valor=$valor, descricao='$descricao' WHERE id_registro=$id_registro";

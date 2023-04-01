@@ -15,8 +15,12 @@
             $categoria = $_POST['categoria'];
             $descricao = $_POST['descricao'];
             
-            if (isset($_POST['tipo'])) { $tipo = $_POST['tipo']; } 
-                else { $tipo = ""; }
+            if (empty($_POST['tipo'])) { 
+                $tipo = ""; 
+
+            } else { 
+                $tipo = $_POST['tipo']; 
+            }
 
 
             $sql = "SELECT * FROM comidas WHERE id_comida=$id_comida";
@@ -28,12 +32,12 @@
             } else {
                     
                 $coluna = mysqli_fetch_array($consulta);
-                    if(strlen($nome) == 0)      { $nome = $coluna["nome_comida"]; }
-                    if(strlen($preco) == 0)     { $preco = $coluna["preco_comida"]; }
+                    if(empty($nome))      { $nome = $coluna["nome_comida"]; }
+                    if(empty($preco))     { $preco = $coluna["preco_comida"]; }
+                    if(empty($tipo))      { $tipo = $coluna["tipo"]; }
+                    if(empty($categoria)) { $categoria = $coluna["categoria"]; }
+                    if(empty($descricao)) { $descricao = $coluna["descricao_comida"]; }
                     if(strlen($estoque) == 0)   { $estoque = $coluna["estoque_comida"]; }
-                    if(strlen($tipo) == 0)      { $tipo = $coluna["tipo"]; }
-                    if(strlen($categoria) == 0) { $categoria = $coluna["categoria"]; }
-                    if(strlen($descricao) == 0) { $descricao = $coluna["descricao_comida"]; }
 
                     
                 $sql = "UPDATE comidas SET nome_comida='$nome', preco_comida=$preco, estoque_comida=$estoque, tipo='$tipo', categoria='$categoria', descricao_comida='$descricao' WHERE id_comida='$id_comida'";

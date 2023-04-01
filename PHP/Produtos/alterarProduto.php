@@ -24,10 +24,10 @@
             } else {
                     
                 $coluna = mysqli_fetch_array($consulta);
-                    if(strlen($nome) == 0)      { $nome = $coluna["nome_produto"]; }
-                    if(strlen($preco) == 0)     { $preco = $coluna["preco_produto"]; }
+                    if(empty($nome))      { $nome = $coluna["nome_produto"]; }
+                    if(empty($preco))     { $preco = $coluna["preco_produto"]; }
+                    if(empty($descricao)) { $descricao = $coluna["descricao_produto"]; }
                     if(strlen($estoque) == 0)   { $estoque = $coluna["estoque_produto"]; }
-                    if(strlen($descricao) == 0) { $descricao = $coluna["descricao_produto"]; }
 
                     
                 $sql = "UPDATE produtos SET nome_produto='$nome', preco_produto=$preco, estoque_produto=$estoque, descricao_produto='$descricao' WHERE id_produto=$id_produto";

@@ -25,11 +25,11 @@
             } else {
                     
                 $coluna = mysqli_fetch_array($consulta);
-                    if(strlen($nome) == 0)      { $nome = $coluna["nome_funcionario"]; }
-                    if(strlen($cargo) == 0)     { $cargo = $coluna["cargo"]; }
-                    if(strlen($salario) == 0)   { $salario = $coluna["salario"]; }
-                    if(strlen($email) == 0)     { $email = $coluna["email_funcionario"]; }
-                    if(strlen($telefone) == 0)  { $telefone = $coluna["telefone_funcionario"]; }
+                    if(empty($nome))      { $nome = $coluna["nome_funcionario"]; }
+                    if(empty($cargo))     { $cargo = $coluna["cargo"]; }
+                    if(empty($salario))   { $salario = $coluna["salario"]; }
+                    if(empty($email))     { $email = $coluna["email_funcionario"]; }
+                    if(empty($telefone))  { $telefone = $coluna["telefone_funcionario"]; }
 
                     
                 $sql = "UPDATE funcionarios SET nome_funcionario='$nome', cargo='$cargo', salario=$salario, email_funcionario='$email', telefone_funcionario='$telefone' WHERE cpf_funcionario='$cpf'";
