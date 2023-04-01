@@ -6,7 +6,6 @@ CREATE TABLE usuarios (
 	cep CHAR(9) NOT NULL,
 	email_usuario VARCHAR(50) NOT NULL UNIQUE,
 	telefone_usuario CHAR(12) NOT NULL, #2199988-7766
-	funcionario CHAR(1) NOT NULL, #S ou N
 		PRIMARY KEY (id_usuario)
 );
 
@@ -14,7 +13,7 @@ CREATE TABLE registros_financeiros (
 	id_registro INT UNSIGNED AUTO_INCREMENT,
 	periodo DATE NOT NULL, #'AAAA-MM-DD'
 	valor DECIMAL(11, 2) NOT NULL, #123456789.10
-	descricao TEXT,
+	descricao TEXT NOT NULL,
 		PRIMARY KEY (id_registro)
 );
 

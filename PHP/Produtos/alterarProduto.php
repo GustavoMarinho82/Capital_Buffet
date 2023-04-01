@@ -34,7 +34,7 @@
                         if(strlen($estoque) == 0)   { $estoque = $coluna["estoque_produto"]; }
                         if(strlen($descricao) == 0) { $descricao = $coluna["descricao_produto"]; }
 
-                    $sql = "UPDATE produtos SET nome='$nome_produto', preco=$preco_produto, estoque=$estoque_produto, descricao='$descricao' WHERE id_produto=$id_produto";
+                    $sql = "UPDATE produtos SET nome_produto='$nome', preco_produto=$preco, estoque_produto=$estoque, descricao_produto='$descricao' WHERE id_produto=$id_produto";
                         mysqli_query($mysqli, $sql);
 
                     echo "Produto alterado com sucesso!";
