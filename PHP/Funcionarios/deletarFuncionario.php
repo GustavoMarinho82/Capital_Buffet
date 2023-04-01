@@ -1,40 +1,40 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Deletar Produto</TITLE>
+        <TITLE>Deletar Funcionário</TITLE>
     </HEAD>
 
     <BODY>
         <?php
         include('../conexao.php');
 
-            $id_produto = $_POST['id_produto'];
+            $cpf = $_POST['cpf'];
 
-            if(strlen($id_produto) == 0) {
+            if(strlen($cpf) == 0) {
                 echo "Preencha todos os campos!";
             
             } else {
 
-                $sql = "SELECT * FROM produtos WHERE id_produto=$id_produto";
+                $sql = "SELECT * FROM funcionarios WHERE cpf_funcionario='$cpf'";
                     $consulta = mysqli_query($mysqli, $sql);
 
                 if (mysqli_num_rows($consulta) == 0) {
-                    echo "Produto não encontrado!";
+                    echo "Funcionário não encontrado!";
                 
                 } else {
 
-                    $sql = "SELECT * FROM pedido_produtos WHERE produto_id=$id_produto";
+                    $sql = "SELECT * FROM pedido_funcionarios WHERE funcionario_cpf='$cpf'";
                         $consulta = mysqli_query($mysqli, $sql);
 
                     if (mysqli_num_rows($consulta) != 0) {
-                        echo "Não é possível deletar o produto, porque ele faz parte de um pedido!";
+                        echo "Não é possível deletar o funcionário, porque ele faz parte de um pedido!";
 
                     } else {
 
-                        $sql = "DELETE FROM produtos WHERE id_produto=$id_produto";
+                        $sql = "DELETE FROM funcionarios WHERE cpf_funcionario='$cpf'";
                             mysqli_query($mysqli, $sql);
 
-                        echo "Produto deletado com sucesso!";
+                        echo "Funcionário deletado com sucesso!";
                     }
                 }
             }

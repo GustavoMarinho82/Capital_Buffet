@@ -1,32 +1,33 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Listar Produtos</TITLE>
+        <TITLE>Listar Funcionários</TITLE>
     </HEAD>
 
     <BODY>
-        <h2>Listar Produtos</h2>
+        <h2>Listar Funcionários</h2>
         
         <?php
         include "../conexao.php";
-            $sql = "SELECT * FROM produtos";
+            $sql = "SELECT * FROM funcionarios";
             $consulta = mysqli_query($mysqli, $sql);
         ?>
 
-        <table border="1" width="750" cellspacing="0"> <!-- 750= 150*5 -->
+        <table border="1" width="900" cellspacing="0"> <!-- 900= 150*6 -->
         <tr bgcolor="#BBBBBB">
-        <th>ID</th><th>Nome</th><th>Preço</th><th>Qtd em Estoque</th><th>Descrição</th>
+        <th>CPF</th><th>Nome</th><th>Cargo</th><th>Salário</th><th>Email</th><th>Telefone</th>
         </tr>
 
         <?php
             $x = 0;
             
             while ($linha = mysqli_fetch_array($consulta)) {
-                $i= $linha["id_produto"];
-                $n= $linha["nome_produto"];
-                $p= $linha["preco_produto"];
-                $q= $linha["estoque_produto"];
-                $d= $linha["descricao_produto"];
+                $cpf= $linha["cpf_funcionario"];
+                $n= $linha["nome_funcionario"];
+                $car= $linha["cargo"];
+                $s= $linha["salario"];
+                $e= $linha["email_funcionario"];
+                $t= $linha["telefone_funcionario"];
 
 
                 if($x % 2 == 0){
@@ -36,11 +37,12 @@
                 }
         ?>
         <tr bgcolor="<?php echo $cor; ?>">
-            <td><?php echo $i; ?></td>
+            <td><?php echo $cpf; ?></td>
             <td><?php echo $n; ?></td>
-            <td><?php echo $p; ?></td>
-            <td><?php echo $q; ?></td>
-            <td><?php echo $d; ?></td>
+            <td><?php echo $car; ?></td>
+            <td><?php echo $s; ?></td>
+            <td><?php echo $e; ?></td>
+            <td><?php echo $t; ?></td>
         </tr>
         
         <?php

@@ -13,7 +13,7 @@
             $consulta = mysqli_query($mysqli, $sql);
         ?>
 
-        <table border="1" width="500" cellspacing="0">
+        <table border="1" width="600" cellspacing="0"> <!-- 600= 150*4 -->
         <tr bgcolor="#BBBBBB">
         <th>ID</th><th>Período</th><th>Valor</th><th>Descrição</th>
         </tr>

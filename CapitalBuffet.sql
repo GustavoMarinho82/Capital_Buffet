@@ -31,12 +31,12 @@ CREATE TABLE pedidos (
 );
 
 CREATE TABLE funcionarios (
-	cpf_funcionario CHAR(14),
+	cpf_funcionario CHAR(14),	#999.999.999-99
 	nome_funcionario VARCHAR(100) NOT NULL,
 	cargo TINYTEXT NOT NULL,
 	salario DECIMAL(11, 2) NOT NULL,	#123456789.10
-	telefone_funcionario CHAR(12) NOT NULL,	#2199988-7766
-	email_funcionario VARCHAR(50) NOT NULL UNIQUE,
+	email_funcionario VARCHAR(50) NOT NULL,
+	telefone_funcionario CHAR(15) NOT NULL,	#(99) 99999-9999
 		PRIMARY KEY (cpf_funcionario)
 );
 
