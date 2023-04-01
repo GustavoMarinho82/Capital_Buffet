@@ -69,8 +69,9 @@ CREATE TABLE comidas (
 	nome_comida VARCHAR(100) NOT NULL,
 	preco_comida DECIMAL(11, 2) NOT NULL, #123456789.10
 	estoque_comida INT UNSIGNED NOT NULL,
-	tipo TINYTEXT NOT NULL,
-  	periodo TINYTEXT NOT NULL,
+	tipo VARCHAR(9) NOT NULL, #Entrada, Principal, Sobremesa ou Bebida
+  	categoria TINYTEXT NOT NULL,
+	descricao_comida TEXT,
 		PRIMARY KEY (id_comida)
 );
 

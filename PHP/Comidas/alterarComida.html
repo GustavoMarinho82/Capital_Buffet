@@ -1,0 +1,58 @@
+<HTML>
+    <HEAD>
+        <meta charset="utf-8">
+        <TITLE>Alterar Comida</TITLE>
+    </HEAD>
+
+    <BODY>
+        <h2>Alterar Comida</h2>
+            <form method="POST" action="alterarComida.php">
+
+                ID da comida que será alterada: <br/>
+                <input type="text" size="15" name="id_comida" required/>
+                    <br/><br/>
+
+                Novo Nome*: <br/>
+                <input type="text" size="15" name="nome"/>
+                    <br/><br/>
+
+                Novo Preço*: <br/>
+                <input type="text" size="15" name="preco"/>
+                    <br/><br/>
+                
+                Nova Qtd em Estoque*: <br/>
+                <input type="text" size="15" name="estoque"/>
+                    <br/><br/>
+
+                Nova Categoria*: <br/>
+                <input type="text" size="15" name="categoria"/>
+                    <br/><br/>
+                
+                Novo tipo*: <br/>
+                    <input type="radio" name="tipo" value="Entrada"/>
+                        <label>Entrada</label><br>
+
+                    <input type="radio" name="tipo" value="Principal"/>
+                        <label>Principal</label><br>
+
+                    <input type="radio" name="tipo" value="Sobremesa"/>
+                        <label>Sobremesa</label><br>
+
+                    <input type="radio" name="tipo" value="Bebida"/>
+                        <label >Bebida</label>
+                        
+                <br/><br/>
+
+                Nova Descrição*: <br/>
+                <textarea name="descricao"></textarea>
+                    <br/>
+                    
+
+                <h5>* - Deixe em branco para não alterar</h5>
+
+                <input type="submit" value="Alterar comida" />
+            </form>
+            
+            <a href="../index.html">Voltar</a>
+    </BODY>
+</HTML>

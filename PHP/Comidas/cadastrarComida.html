@@ -1,0 +1,52 @@
+<HTML>
+    <HEAD>
+        <meta charset="utf-8">
+        <TITLE>Cadastrar Comida</TITLE>
+    </HEAD>
+
+    <BODY>
+        <h2>Cadastrar Comida</h2>
+            <form method="POST" action="cadastrarComida.php">
+
+                Nome: <br/>
+                <input type="text" size="15" name="nome" required/>
+                    <br/><br/>
+
+                Preço: <br/>
+                <input type="text" size="15" name="preco" required/>
+                    <br/><br/>
+                
+                Quantidade em estoque: <br/>
+                <input type="text" size="15" name="estoque" required/>
+                    <br/><br/>
+
+                Categoria: <br/>
+                <input type="text" size="15" name="categoria" required/>
+                    <br/><br/>
+                
+                Tipo: <br/>
+                    <input type="radio" name="tipo" value="Entrada" required/>
+                        <label>Entrada</label><br>
+
+                    <input type="radio" name="tipo" value="Principal" required/>
+                        <label>Principal</label><br>
+
+                    <input type="radio" name="tipo" value="Sobremesa" required/>
+                        <label>Sobremesa</label><br>
+
+                    <input type="radio" name="tipo" value="Bebida" required/>
+                        <label >Bebida</label>
+                        
+                <br/><br/>
+
+                Descrição: <br/>
+                <textarea name="descricao" required></textarea>
+                    <br/><br/>
+
+
+                <input type="submit" value="Cadastrar comida" />
+            </form>
+            
+            <a href="../index.html">Voltar</a>
+    </BODY>
+</HTML>
