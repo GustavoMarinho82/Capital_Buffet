@@ -513,7 +513,14 @@ img {
   box-shadow: 0 0 0 4px var(--c-background-tertiary);
 }
 
-
+.price{
+  color: var(--c-text-action);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.775rem;
+  margin-top:-15px;
+  padding-left: 1.25rem;
+}
 .card-footer {
   margin-top: auto;
   padding: 1rem 1.25rem;
