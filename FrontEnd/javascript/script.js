@@ -1,6 +1,7 @@
 var order = "<!order!>any<!order!>";
 let type = "<!food!>all<!food!>";
-
+var communication = {};
+communication.price = 0
 const a = document.querySelectorAll('a');
 
 a.forEach(one => {
@@ -45,16 +46,28 @@ action.forEach(MP => {
         MP.addEventListener("click", function (){
             var number = document.getElementById("n"+this.id);
             var counter = parseInt(number.innerHTML);
+            var name = document.getElementById(this.id+"-name").innerHTML
+            var price = parseFloat(document.getElementById(this.id+"price").getAttribute("data-price"))
             if( document.getElementById("c"+this.id).checked && parseInt(number.getAttribute("data-limit")) > counter){
                 number.innerHTML = counter + 1;
+                communication[name] = counter + 1;
+                communication.price += price
+                console.log(JSON.stringify(communication))
+                console.log(JSON.parse(JSON.stringify(communication)))
             }
         });
     } else if(MP.classList.contains("minus")){
         MP.addEventListener("click", function (){
             var number = document.getElementById("n"+this.id);
             var counter = parseInt(number.innerHTML);
+            var price = parseFloat(document.getElementById(this.id+"price").getAttribute("data-price"))
+            var name = document.getElementById(this.id+"-name").innerHTML
             if(counter >= 1 && document.getElementById("c"+this.id).checked ){
                 number.innerHTML = counter - 1;
+                communication[name] = counter - 1;
+                communication.price -= price
+                console.log(JSON.stringify(communication))
+                console.log(JSON.parse(JSON.stringify(communication)))
             }
         });
     }
@@ -71,6 +84,10 @@ toggle.forEach( toggler => {
         } else {
             document.querySelectorAll("."+this.getAttribute("data-Toggle")).forEach( act => { act.classList.add("gray")} )
             document.getElementById("n"+this.getAttribute("data-Toggle")).innerHTML = "0";
+            var name = document.getElementById(this.getAttribute("data-Toggle")+"-name").innerHTML
+            communication[name] = 0;
+            console.log(JSON.stringify(communication))
+            console.log(JSON.parse(JSON.stringify(communication)))
         }
         })
     }
