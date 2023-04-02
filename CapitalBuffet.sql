@@ -23,8 +23,9 @@ CREATE TABLE pedidos (
 	tipo_evento TINYTEXT NOT NULL,
 	data_pedido DATE NOT NULL, #'AAAA-MM-DD'
 	data_evento DATE NOT NULL, #'AAAA-MM-DD'
-	endereco TEXT NOT NULL,
 	qtd_convidados SMALLINT UNSIGNED NOT NULL,
+	endereco TINYTEXT NOT NULL,
+	observacoes TEXT,
 		PRIMARY KEY (id_pedido),
   
 	usuario_id INT UNSIGNED NOT NULL,
@@ -60,7 +61,7 @@ CREATE TABLE produtos (
 CREATE TABLE pedido_produtos (
 	pedido_id INT UNSIGNED NOT NULL,
 	produto_id INT UNSIGNED NOT NULL,
-	quantidade_p SMALLINT UNSIGNED NOT NULL,
+	qtd_produtos SMALLINT UNSIGNED NOT NULL,
 		FOREIGN KEY (pedido_id) REFERENCES pedidos (id_pedido),
 		FOREIGN KEY (produto_id) REFERENCES produtos (id_produto)
 );
@@ -79,7 +80,7 @@ CREATE TABLE comidas (
 CREATE TABLE pedido_comidas (
 	pedido_id INT UNSIGNED NOT NULL,
 	comida_id INT UNSIGNED NOT NULL,
-	quantidade_c SMALLINT UNSIGNED NOT NULL,
+	qtd_comidas SMALLINT UNSIGNED NOT NULL,
 		FOREIGN KEY (pedido_id) REFERENCES pedidos (id_pedido),
 		FOREIGN KEY (comida_id) REFERENCES comidas (id_comida)
 );
