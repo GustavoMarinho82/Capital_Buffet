@@ -1,7 +1,7 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Alterar Funcionário</TITLE>
+        <TITLE>Alterar Conta</TITLE>
 
         <script src="../../dependencias/jquery-1.2.6.pack.js" type="text/javascript"></script>
         <script src="../../dependencias/jquery.maskedinput-1.1.4.pack.js" type="text/javascript"></script>
@@ -17,23 +17,23 @@
     </HEAD>
 
     <BODY>
-        <h2>Alterar Funcionário</h2>
-            <form method="POST" action="alterarFuncionario.php">
+        <h2>Alterar Conta</h2>
+            <form method="POST" action="alterarConta.php">
 
-                CPF do funcionário que será alterado: <br/>
-                <input type="text" size="15" name="cpf" id="cpf" required/>
+                ID da conta que será alterada: <br/>
+                <input type="text" size="15" name="id_usuario" required/>
                     <br/><br/>
 
                 Novo Nome*: <br/>
                 <input type="text" size="15" name="nome" />
                     <br/><br/>
-                
-                Novo Cargo*: <br/>
-                <input type="text" size="15" name="cargo" />
+
+                Nova Senha*: <br/>
+                <input type="text" size="15" name="senha" />
                     <br/><br/>
                 
-                Novo Salário*: <br/>
-                <input type="text" size="15" name="salario" />
+                Novo CEP*: <br/>
+                <input type="text" size="15" name="cep" id="cep" />
                     <br/><br/>
 
                 Novo Email*: <br/>
@@ -47,7 +47,7 @@
 
                 <h5>* - Deixe em branco para não alterar</h5>
 
-                <input type="submit" value="Alterar funcionario" />
+                <input type="submit" value="Alterar conta" />
             </form>
             
             <a href="../index.html">Voltar</a>

@@ -1,11 +1,12 @@
 CREATE TABLE usuarios (
 	id_usuario INT UNSIGNED AUTO_INCREMENT,
 	nome_usuario VARCHAR(100) NOT NULL,
-	cpf CHAR(14) UNIQUE,
-	cnpj CHAR(18) UNIQUE,
-	cep CHAR(9) NOT NULL,
+	senha VARCHAR(100) NOT NULL,
+	cpf CHAR(14) UNIQUE,	#999.999.999-99
+	cnpj CHAR(18) UNIQUE,	#99.999.999/9999-99 
+	cep CHAR(9) NOT NULL,	#99999-999
 	email_usuario VARCHAR(50) NOT NULL UNIQUE,
-	telefone_usuario CHAR(12) NOT NULL, #2199988-7766
+	telefone_usuario CHAR(15) NOT NULL, #(99) 99999-9999
 		PRIMARY KEY (id_usuario)
 );
 
