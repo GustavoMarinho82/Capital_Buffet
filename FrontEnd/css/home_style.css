@@ -1,7 +1,6 @@
 * {
   margin: 0px;
   box-sizing: border-box;
-  font-family: "segoe ui";
   padding: 0;
 }
 .btn-primary {
@@ -20,6 +19,33 @@
 	background: black;
 	cursor: pointer;
 }
+/*navbar*/
+.navbar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.5);
+  justify-content: space-around;
+}
+
+.nav-title{
+  display: flex;
+  
+}
+.nav-title h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-top: 25px;
+  font-family: 'Dancing Script', cursive;
+  
+}
+.nav-title img{
+  width: 90px;
+}
+
+/*showcase*/
 .showcase{
   height: 100vh;
 	display: flex;
@@ -38,13 +64,17 @@
 }
 
 .showcase .showcase-container h2 {
-	font-size: 50px;
-  margin: 15px 0;
+	font-size: 70px;
+  margin: 10px 0;
+  font-family: 'Alkatra', cursive;
+  letter-spacing: 3px;
 }
 
 .showcase .showcase-container p {
-	margin: 15px 0;
+	margin-bottom: 30px;
 	font-size: 1.5rem;
+  
+  font-family: 'PT Serif', serif;
 }
 
 .hamburgerMenu {
@@ -58,6 +88,7 @@
 .links a {
   color: #fff;
   text-decoration: none;
+  font-family: "PT Sans", sans-serif;
   padding: 13px 10px 13px 10px;
 }
 
@@ -125,3 +156,6 @@
   }
 }
 
+.to-top:hover{
+  cursor: pointer;
+}
