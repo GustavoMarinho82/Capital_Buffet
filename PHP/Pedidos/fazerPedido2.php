@@ -3,10 +3,14 @@
     
     session_start();
         $_SESSION['tipo_evento'] = $_POST['tipo_evento'];
-        $_SESSION['data_evento'] = $_POST['data_evento'];
+        $_SESSION['inicio_evento'] = $_POST['inicio_evento'];
+        $_SESSION['duracao'] = $_POST['duracao'];
         $_SESSION['qtd_convidados'] = $_POST['qtd_convidados'];
         $_SESSION['endereco'] = $_POST['endereco'];
         $_SESSION['observacoes'] = $_POST['observacoes'];
+
+        $fim_e = strtotime($_POST['inicio_evento']) + 3600*(2+$_POST['duracao']);
+            $_SESSION['fim_evento'] = gmdate("Y-m-d\TH:i", $fim_e);
 ?>
 
 <HTML>
@@ -25,7 +29,7 @@
             
         <h1>Escolher os componentes do Buffet</h1>
 
-            <form method="POST" action=".php">
+            <form method="POST" action="fazerPedido3.php">
 
             <!--COMIDAS -->
             <h2>Comidas</h2>
@@ -47,7 +51,7 @@
                             Categoria: <b><?php echo $linha['categoria']; ?></b> <br>
                             Descrição: <b><?php echo $linha['descricao_comida']; ?></b> <br>
                             
-                            Quantidade desejada: <input type="number" min="0" max="<?php echo $linha['estoque_comida']; ?>" 
+                            Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_comida']; ?>" 
                                 name="qtd_comidas[<?php $linha['id_comida'] ?>]">
 
                         <hr>
@@ -72,7 +76,7 @@
                             Qtd em Estoque: <b><?php echo $linha['estoque_produto'] ?></b> <br>
                             Descrição: <b><?php echo $linha['descricao_produto']; ?></b> <br>
                             
-                            Quantidade desejada: <input type="number" min="0" max="<?php echo $linha['estoque_produto']; ?>" 
+                            Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_produto']; ?>" 
                                 name="qtd_produtos[<?php $linha['id_produto'] ?>]">
 
                         <hr>
@@ -101,16 +105,18 @@
 
                         <hr>
 
-                            Chefes de cozinha: <input type="number" min="0" max="<?php echo $max_chefe ?>" name="qtd_chefe"> <br>
-                            Copeiros: <input type="number" min="0" max="<?php echo $max_copeiro ?>" name="qtd_copeiro"> <br>
-                            Garçons: <input type="number" min="0" max="<?php echo $max_garcom ?>" name="qtd_garcom"> <br>
-                            Barmans: <input type="number" min="0" max="<?php echo $max_barman ?>" name="qtd_barman"> <br>
-                            Ajudantes de cozinha: <input type="number" min="0" max="<?php echo $max_ajudante ?>" name="qtd_ajudante"> <br>
+                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_chefe ?>" name="qtd_chefe"> <br>
+                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_copeiro ?>" name="qtd_copeiro"> <br>
+                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_garcom ?>" name="qtd_garcom"> <br>
+                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_barman ?>" name="qtd_barman"> <br>
+                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_ajudante ?>" name="qtd_ajudante"> <br>
 
                         <hr>
 
 
-                <input type="submit" value="Finalizar pedido" />
+                <input type="hidden" value="">
+
+                <input type="submit" value="Ver o orçamento do pedido" />
             </form>
             
             <a href="fazerPedido.php">Voltar</a>

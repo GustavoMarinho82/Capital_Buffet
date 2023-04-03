@@ -1,8 +1,8 @@
 <?php 
     //date() -> consegue a data atual;
-    //strtotime -> foi usado para não ser possível fazer um pedido que vai acontecer em menos de 7 dias e em mais de 2 anos
-    $min_p = date('Y-m-d', strtotime('+7 day'));
-    $max_p = date('Y-m-d', strtotime('+2 year'));
+    //strtotime -> foi usado para não ser possível fazer um pedido que vai acontecer em menos de 7 dias e em mais de 1 anos
+    $min_p = date('Y-m-d h:i', strtotime('+7 day'));
+    $max_p = date('Y-m-d h:i', strtotime('+1 year'));
 ?>
 
 <HTML>
@@ -19,8 +19,12 @@
                 <input type="text" size="15" name="tipo_evento" required/>
                     <br/><br/>
 
-                Data do evento: <br/>
-                <input type="date" name="data_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
+                Início evento: <br/>
+                <input type="datetime-local" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
+                    <br/><br/>
+
+                Duração do evento (em horas): <br/>
+                <input type="number" name="duracao" min="0" max="12" required/>
                     <br/><br/>
 
                 Quantidade de convidados: <br/>

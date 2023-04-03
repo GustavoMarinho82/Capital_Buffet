@@ -21,8 +21,10 @@ CREATE TABLE registros_financeiros (
 CREATE TABLE pedidos (
 	id_pedido INT UNSIGNED AUTO_INCREMENT,
 	tipo_evento TINYTEXT NOT NULL,
+	orcamento DECIMAL(11, 2) NOT NULL, #123456789.10
 	data_pedido DATE NOT NULL, #'AAAA-MM-DD'
-	data_evento DATE NOT NULL, #'AAAA-MM-DD'
+	inicio_evento DATETIME NOT NULL,	#'AAAA-MM-DD HH:MM:SS'
+	fim_evento DATETIME NOT NULL,		#'AAAA-MM-DD HH:MM:SS'
 	qtd_convidados SMALLINT UNSIGNED NOT NULL,
 	endereco TINYTEXT NOT NULL,
 	observacoes TEXT,
@@ -61,7 +63,7 @@ CREATE TABLE produtos (
 CREATE TABLE pedido_produtos (
 	pedido_id INT UNSIGNED NOT NULL,
 	produto_id INT UNSIGNED NOT NULL,
-	qtd_produtos SMALLINT UNSIGNED NOT NULL,
+	qtd_produto SMALLINT UNSIGNED NOT NULL,
 		FOREIGN KEY (pedido_id) REFERENCES pedidos (id_pedido),
 		FOREIGN KEY (produto_id) REFERENCES produtos (id_produto)
 );
@@ -80,7 +82,7 @@ CREATE TABLE comidas (
 CREATE TABLE pedido_comidas (
 	pedido_id INT UNSIGNED NOT NULL,
 	comida_id INT UNSIGNED NOT NULL,
-	qtd_comidas SMALLINT UNSIGNED NOT NULL,
+	qtd_comida SMALLINT UNSIGNED NOT NULL,
 		FOREIGN KEY (pedido_id) REFERENCES pedidos (id_pedido),
 		FOREIGN KEY (comida_id) REFERENCES comidas (id_comida)
 );

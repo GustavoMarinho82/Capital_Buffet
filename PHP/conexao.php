@@ -6,7 +6,7 @@
 	$banco = "capital_buffet";
 
 
-	$mysqli = new mysqli($servidor,$usuario, $senha, $banco);
+	$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
 
 	$mysqli->set_charset("utf8");
 
