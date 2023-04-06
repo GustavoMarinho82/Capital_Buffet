@@ -35,6 +35,28 @@
             <h2>Comidas</h2>
 
                 <?php 
+
+/*   TESTANDO ESSA SOLUÇÃO 
+                    $sql = "SELECT * FROM comidas WHERE id_comida=?";
+                        $stmt = mysqli_prepare($mysqli, $sql);
+                            mysqli_stmt_bind_param($stmt, "i", $x);
+
+                    $x = 0;
+                    while ($y<mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM comidas"))) {
+
+
+                        $resultado = mysqli_stmt_get_result($stmt);
+                        if (mysqli_num_rows($resultado) = 1) {
+                            //código html
+                            $y++
+
+                        } else {
+                            
+                        }
+
+                        $x++
+                    } */
+
                     $sql = "SELECT * FROM comidas WHERE estoque_comida>0";
                         $consulta = mysqli_query($mysqli, $sql);
 
@@ -87,29 +109,34 @@
             <br><h2>Funcionários</h2>
 
                 <?php
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Chefe de cozinha'";
-                        $max_chefe = mysqli_num_rows(mysqli_query($mysqli, $sql));
+                    $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+                    
+                    $sql = "SELECT * FROM funcionarios WHERE cargo=?";
+                        $stmt = mysqli_prepare($mysqli, $sql);
+                            mysqli_stmt_bind_param($stmt, "s", $cargo);
 
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Copeiro'";
-                        $max_copeiro = mysqli_num_rows(mysqli_query($mysqli, $sql));
+                            
+                    for($x = 0; $x < count($cargos); $x++) {
+                        $cargo = $cargos[$x];
+                        
+                        $consulta = mysqli_stmt_execute($stmt); //Essa consulta foi utilizada para evitar um erro de sincronização
+                        $resultado = mysqli_stmt_get_result($stmt);
+                            $max_cargo[$x] = mysqli_num_rows($resultado);
+                    }
 
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Garçom'";
-                        $max_garcom = mysqli_num_rows(mysqli_query($mysqli, $sql));
-
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Barman'";
-                        $max_barman = mysqli_num_rows(mysqli_query($mysqli, $sql));
-
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Ajudante de cozinha'";
-                        $max_ajudante = mysqli_num_rows(mysqli_query($mysqli, $sql));
+                    $_SESSION['cargos'] = $cargos;
                 ?>
 
                         <hr>
 
-                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_chefe ?>" name="qtd_chefe"> <br>
-                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_copeiro ?>" name="qtd_copeiro"> <br>
-                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_garcom ?>" name="qtd_garcom"> <br>
-                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_barman ?>" name="qtd_barman"> <br>
-                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_ajudante ?>" name="qtd_ajudante"> <br>
+                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[0] ?>" name="qtd_cargos[0]"> <br>
+                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[1] ?>" name="qtd_cargos[1]"> <br>
+                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[2] ?>" name="qtd_cargos[2]"> <br>
+                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[3] ?>" name="qtd_cargos[3]"> <br>
+                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[4] ?>" name="qtd_cargos[4]"> <br>
+                            Recepcionistas: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[5] ?>" name="qtd_cargos[5]"> <br>
+                            Seguranças: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[6] ?>" name="qtd_cargos[6]"> <br>
+                            Faxineiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[7]"> <br>
 
                         <hr>
 
