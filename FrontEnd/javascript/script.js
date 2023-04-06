@@ -92,3 +92,53 @@ toggle.forEach( toggler => {
         })
     }
 });
+
+function createFood(name, price, stock, type, category, desc){
+    axios.get("../..//PHP/Comidas/cadastrarComida.php", { 
+        params:{
+        name:name,
+        price:price,
+        stock:stock,
+        type:type,
+        category:category,
+        desc:desc
+    }}).then( e => {
+        console.log(e)
+    }).catch();
+}
+
+function listFood(name, price, stock, type, category, desc){
+    axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{}}
+    ).then( e => {
+        var data =e.data.split("|")
+        data.map( dat => {
+            if (dat != "|" && dat != ""){
+                console.log(JSON.parse(dat))
+            }
+        })
+    }).catch();
+}
+
+function delFood(id){
+    axios.get("../..//PHP/Comidas/deletarComida.php", { params:{
+            id:id
+        }
+    }).then(e => {
+        console.log(e)
+    }).catch()
+}
+
+function modFood(id, name, price, stock, type, category, desc){
+    axios.get("../..//PHP/Comidas/alterarComida.php", { 
+        params:{
+        id:id,
+        name:name,
+        price:price,
+        stock:stock,
+        type:type,
+        category:category,
+        desc:desc
+    }}).then( e => {
+        console.log(e)
+    }).catch();
+}
