@@ -1,25 +1,22 @@
-var order = "<!order!>any<!order!>";
-let type = "<!food!>all<!food!>";
+var order = "0";
+let type = "";
 var communication = {};
 communication.price = 0
-const a = document.querySelectorAll('a');
 
-a.forEach(one => {
+document.querySelectorAll('a').forEach(one => {
     if(one.getAttribute("data-Type")){
 
         one.addEventListener('click', function (){
 
             const foodTypes = document.querySelectorAll('a');
-            foodTypes.forEach( type =>{
-        
-                if(type.getAttribute("data-Type")){
-                    type.classList.remove("active");
-                }
-        });
-            this.setAttribute("data-Type", this.innerHTML);
-            this.classList.toggle("active");
-            type = "<!food!>"+this.getAttribute("data-Type")+"<!food!>";
-            console.log(type+ order );
+            foodTypes.forEach( type =>{type.classList.remove("active");});
+            this.classList.add("active");
+            type = this.getAttribute("data-Type");
+            if(type == "0"){
+                type = "";
+            }
+            listFood();
+            //console.log(type+ order );
         });
     }
 });
@@ -31,10 +28,10 @@ document.querySelectorAll("l").forEach( one => {
                 toggle.classList.remove("active");
         });
 
-        this.setAttribute("data-Type", this.innerHTML);
         this.classList.toggle("active");
-        order = "<!order!>"+this.getAttribute("data-Type")+"<!order!>";
-        console.log(type+order);
+        order = this.getAttribute("data-order");
+        //console.log(type+order);
+        listFood();
 
     });
 })
@@ -107,8 +104,13 @@ function createFood(name, price, stock, type, category, desc){
     }).catch();
 }
 
-function listFood(name, price, stock, type, category, desc){
-    axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{}}
+function listFood(name, category){
+    axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{
+        nome: name || "",
+        ordem: order,
+        tipo: category || "",
+        categoria: type
+    }}
     ).then( e => {
         console.log(e.data)
     }).catch();
