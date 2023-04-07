@@ -3,7 +3,7 @@
 
     session_start();
         $_SESSION['qtd_comidas'] = $_POST['qtd_comidas'];
-        $_SESSION['qtd_produtos'] = $_POST['qtd_produtos'];
+        $_SESSION['qtd_utilitarios'] = $_POST['qtd_utilitarios'];
         
         $qtd_cargos = $_POST['qtd_cargos'];
             $_SESSION['qtd_cargos'] = $qtd_cargos;
@@ -62,28 +62,28 @@
             <h2>Utilitários</h2>
 
                 <?php    
-                    $sql = "SELECT * FROM produtos WHERE estoque_produto>0";
+                    $sql = "SELECT * FROM utilitarios WHERE estoque_utilitario>0";
                         $consulta = mysqli_query($mysqli, $sql);
 
-                    $qtd_produtos = $_POST['qtd_produtos'];
-                    $custo_produtos = 0;
+                    $qtd_utilitarios = $_POST['qtd_utilitarios'];
+                    $custo_utilitarios = 0;
                     
 
                     while ($linha = mysqli_fetch_array($consulta)) {
 
-                        $qtd_produto = $qtd_produtos[$linha['id_produto']];
-                        $preco_total_produto = ($qtd_produto*$linha['preco_produto']);
+                        $qtd_utilitario = $qtd_utilitarios[$linha['id_utilitario']];
+                        $preco_total_utilitario = ($qtd_utilitario*$linha['preco_utilitario']);
 
-                        if ($qtd_produto > 0) {
+                        if ($qtd_utilitario > 0) {
 
-                            $custo_produtos+= $preco_total_produto;
+                            $custo_utilitarios+= $preco_total_utilitario;
 
                 ?><!--Início do HTML-->
 
-                            Nome: <?php echo $linha['nome_produto']?> <br>
-                            Quantidade solicitada: <?php echo $qtd_produto?> <br>
-                            Preço por unidade: R$ <?php echo $linha['preco_produto']?> <br>
-                            Preço total: R$ <?php echo $preco_total_produto?> <br><br>
+                            Nome: <?php echo $linha['nome_utilitario']?> <br>
+                            Quantidade solicitada: <?php echo $qtd_utilitario?> <br>
+                            Preço por unidade: R$ <?php echo $linha['preco_utilitario']?> <br>
+                            Preço total: R$ <?php echo $preco_total_utilitario?> <br><br>
                 
                 <!--Fim do HTML--><?php
 
@@ -111,12 +111,12 @@
                         $custo_funcionarios = (($qtd_cargos[0]*50*$d) + ($qtd_cargos[1]*35*$d) + ($qtd_cargos[2]*15*$d) + ($qtd_cargos[3]*25*$d) + 
                             ($qtd_cargos[4]*35*$d) + ($qtd_cargos[5]*30*$d) + ($qtd_cargos[6]*45*$d) + ($qtd_cargos[7]*20*$d));
 
-                        $custo_total = ($custo_comidas + $custo_produtos + $custo_funcionarios + 500);
+                        $custo_total = ($custo_comidas + $custo_utilitarios + $custo_funcionarios + 500);
                             $_SESSION['custo_total'] = $custo_total;           
                     ?>
 
                     Custo das Comidas: R$ <?php echo $custo_comidas ?> <br>
-                    Custo dos Utilitários: R$ <?php echo $custo_produtos ?> <br>
+                    Custo dos Utilitários: R$ <?php echo $custo_utilitarios ?> <br>
                     Custo dos Funcionários: R$ <?php echo $custo_funcionarios ?> <br>
                     Custo Total: R$ <?php echo $custo_total ?> <br>
 

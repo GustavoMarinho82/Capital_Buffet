@@ -1,7 +1,7 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Cadastrar Produto</TITLE>
+        <TITLE>Cadastrar Utilitário</TITLE>
     </HEAD>
 
     <BODY>
@@ -14,10 +14,10 @@
             $descricao = $_POST['descricao'];
 
 
-            $sql = "INSERT INTO produtos (nome_produto, preco_produto, estoque_produto, descricao_produto) VALUES ('$nome', $preco, $estoque, '$descricao')";
+            $sql = "INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario) VALUES ('$nome', $preco, $estoque, '$descricao')";
                 mysqli_query($mysqli, $sql);
                 
-            echo "Produto cadastrado com sucesso!";
+            echo "Utilitário cadastrado com sucesso!";
         ?>
 
         <p><a href="../index.html">Voltar</a>

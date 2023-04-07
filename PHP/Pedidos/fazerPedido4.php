@@ -11,7 +11,7 @@
         $observacoes = $_SESSION['observacoes'];
 
         $qtd_comidas = $_SESSION['qtd_comidas'];
-        $qtd_produtos = $_SESSION['qtd_produtos'];
+        $qtd_utilitarios = $_SESSION['qtd_utilitarios'];
 
         $cargos = $_SESSION['cargos'];
         $qtd_cargos = $_SESSION['qtd_cargos'];
@@ -42,15 +42,15 @@
 
 
     //PEDIDOS_PRODUTOS
-    $id_produto = 0; 
+    $id_utilitario = 0; 
 
-        foreach($qtd_produtos as $qtd_produto) {
+        foreach($qtd_utilitarios as $qtd_utilitario) {
 
-            if ($qtd_produto > 0) {
-                $sql = "INSERT INTO pedido_produtos (pedido_id, produto_id, qtd_produto) VALUES ($ultimo_id, $id_produto, $qtd_produto)";
+            if ($qtd_utilitario > 0) {
+                $sql = "INSERT INTO pedido_utilitarios (pedido_id, utilitario_id, qtd_utilitario) VALUES ($ultimo_id, $id_utilitario, $qtd_utilitario)";
                     mysqli_query($mysqli, $sql);
             }
-            $id_produto++;
+            $id_utilitario++;
         }
 
 

@@ -52,21 +52,21 @@ CREATE TABLE pedido_funcionarios (
 		FOREIGN KEY (funcionario_cpf) REFERENCES funcionarios (cpf_funcionario)
 );
 
-CREATE TABLE produtos (
-	id_produto INT UNSIGNED AUTO_INCREMENT,
-	nome_produto VARCHAR(100) NOT NULL,
-	preco_produto DECIMAL(11, 2) NOT NULL, #123456789.10
-	estoque_produto INT UNSIGNED NOT NULL,
-	descricao_produto TEXT,
-		PRIMARY KEY (id_produto)
+CREATE TABLE utilitarios (
+	id_utilitario INT UNSIGNED AUTO_INCREMENT,
+	nome_utilitario VARCHAR(100) NOT NULL,
+	preco_utilitario DECIMAL(11, 2) NOT NULL, #123456789.10
+	estoque_utilitario INT UNSIGNED NOT NULL,
+	descricao_utilitario TEXT,
+		PRIMARY KEY (id_utilitario)
 );
 
-CREATE TABLE pedido_produtos (
+CREATE TABLE pedido_utilitarios (
 	pedido_id INT UNSIGNED NOT NULL,
-	produto_id INT UNSIGNED NOT NULL,
-	qtd_produto SMALLINT UNSIGNED NOT NULL,
+	utilitario_id INT UNSIGNED NOT NULL,
+	qtd_utilitario SMALLINT UNSIGNED NOT NULL,
 		FOREIGN KEY (pedido_id) REFERENCES pedidos (id_pedido),
-		FOREIGN KEY (produto_id) REFERENCES produtos (id_produto)
+		FOREIGN KEY (utilitario_id) REFERENCES utilitarios (id_utilitario)
 );
 
 CREATE TABLE comidas (

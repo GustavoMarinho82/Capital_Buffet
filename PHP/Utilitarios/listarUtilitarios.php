@@ -1,15 +1,15 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Listar Produtos</TITLE>
+        <TITLE>Listar Utilitários</TITLE>
     </HEAD>
 
     <BODY>
-        <h2>Listar Produtos</h2>
+        <h2>Listar Utilitários</h2>
         
         <?php
         include "../conexao.php";
-            $sql = "SELECT * FROM produtos";
+            $sql = "SELECT * FROM utilitarios";
             $consulta = mysqli_query($mysqli, $sql);
         ?>
 
@@ -22,11 +22,11 @@
             $x = 0;
             
             while ($linha = mysqli_fetch_array($consulta)) {
-                $i= $linha["id_produto"];
-                $n= $linha["nome_produto"];
-                $p= $linha["preco_produto"];
-                $q= $linha["estoque_produto"];
-                $d= $linha["descricao_produto"];
+                $i= $linha["id_utilitario"];
+                $n= $linha["nome_utilitario"];
+                $p= $linha["preco_utilitario"];
+                $q= $linha["estoque_utilitario"];
+                $d= $linha["descricao_utilitario"];
 
 
                 if($x % 2 == 0){

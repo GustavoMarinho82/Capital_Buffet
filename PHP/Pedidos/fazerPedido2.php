@@ -74,16 +74,16 @@
             <br><h2>Utilitários</h2>
 
                 <?php
-                    $sql = "SELECT * FROM produtos WHERE estoque_produto>0";
+                    $sql = "SELECT * FROM utilitarios WHERE estoque_utilitario>0";
                         $consulta = mysqli_query($mysqli, $sql);
 
                     $id_esperado = 0;
 
                     while ($linha = mysqli_fetch_array($consulta)) {
 
-                        while ($linha['id_produto'] != $id_esperado) {
+                        while ($linha['id_utilitario'] != $id_esperado) {
                             
-                            ?><input type="hidden" value ="0" name="qtd_produtos[<?php echo $id_esperado ?>]"><?php
+                            ?><input type="hidden" value ="0" name="qtd_utilitarios[<?php echo $id_esperado ?>]"><?php
                                 $id_esperado++;
                         }    
 
@@ -92,18 +92,18 @@
                         <hr>
                             <img src="https://media.istockphoto.com/id/491520707/photo/sample-red-grunge-round-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=FW80kR5ilPkiJtXZEauGTghNBOgQviVPxAbhLWwnKZk=" class="mostruario"> <br>
 
-                            Nome: <b><?php echo $linha['nome_produto'] ?></b> <br>
-                            Preço: <b>R$ <?php echo $linha['preco_produto'] ?></b> <br>
-                            Qtd em Estoque: <b><?php echo $linha['estoque_produto'] ?></b> <br>
-                            Descrição: <b><?php echo $linha['descricao_produto']; ?></b> <br>
+                            Nome: <b><?php echo $linha['nome_utilitario'] ?></b> <br>
+                            Preço: <b>R$ <?php echo $linha['preco_utilitario'] ?></b> <br>
+                            Qtd em Estoque: <b><?php echo $linha['estoque_utilitario'] ?></b> <br>
+                            Descrição: <b><?php echo $linha['descricao_utilitario']; ?></b> <br>
                                 
-                            Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_produto']; ?>" 
-                                name="qtd_produtos[<?php $linha['id_produto'] ?>]">
+                            Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_utilitario']; ?>" 
+                                name="qtd_utilitarios[<?php $linha['id_utilitario'] ?>]">
                         <hr>
                         
                 <!--Fim do HTML--><?php   
 
-                        $id_esperado = ($linha['id_produto']+1);
+                        $id_esperado = ($linha['id_utilitario']+1);
                     }
                 ?>
 
