@@ -1,0 +1,35 @@
+<HTML>
+    <HEAD>
+        <meta charset="utf-8">
+        <TITLE>Alterar Registros</TITLE>
+    </HEAD>
+
+    <BODY>
+        <h2>Alterar Registros</h2>
+            <form method="POST" action="alterarRegistro.php">
+
+                ID do registro que será alterado: <br/>
+                <input type="text" size="15" name="id_registro" required/>
+                    <br/><br/>
+
+                Novo Período*: <br/>
+                <input type="date" name="periodo" min="2000-01-01" max="2099-12-31" />
+                    <br/><br/>
+
+                Novo Valor*: <br/>
+                <input type="text" size="15" name="valor" />
+                    <br/><br/>
+
+                Nova Descrição*: <br/>
+                <textarea name="descricao" required></textarea>
+                    <br/>
+                    
+
+                <h5>* - Deixe em branco para não alterar</h5>
+
+                <input type="submit" value="Alterar registro" />
+            </form>
+            
+            <a href="../index.html">Voltar</a>
+    </BODY>
+</HTML>

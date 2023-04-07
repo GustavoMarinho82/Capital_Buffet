@@ -1,0 +1,161 @@
+* {
+  margin: 0px;
+  box-sizing: border-box;
+  padding: 0;
+}
+.btn-primary {
+	background: brown;
+	color: white;
+	text-transform: uppercase;
+	padding: 15px 60px;
+	border: none;
+	border-radius: 30px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	transition: all 300ms ease;
+}
+
+.btn-primary:hover {
+	background: black;
+	cursor: pointer;
+}
+/*navbar*/
+.navbar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.5);
+  justify-content: space-around;
+}
+
+.nav-title{
+  display: flex;
+  
+}
+.nav-title h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-top: 25px;
+  font-family: 'Dancing Script', cursive;
+  
+}
+.nav-title img{
+  width: 90px;
+}
+
+/*showcase*/
+.showcase{
+  height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.4);
+	background-blend-mode: color;
+  background: url("../imagens/restaurante.jpg") center center/cover rgb(0, 0, 0, 0.4);
+}
+.showcase .showcase-container {
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.showcase .showcase-container h2 {
+	font-size: 70px;
+  margin: 10px 0;
+  font-family: 'Alkatra', cursive;
+  letter-spacing: 3px;
+}
+
+.showcase .showcase-container p {
+	margin-bottom: 30px;
+	font-size: 1.5rem;
+  
+  font-family: 'PT Serif', serif;
+}
+
+.hamburgerMenu {
+  display: none;
+}
+
+.links {
+  font-size: 18px;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+  font-family: "PT Sans", sans-serif;
+  padding: 13px 10px 13px 10px;
+}
+
+.links a:hover {
+  background-color: brown;
+}
+
+#hamburger {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .navbar {
+    justify-content: space-between;
+  }
+
+  .hamburgerMenu {
+    display: block;
+    margin-right: 20px;
+  }
+
+  .hamburgerMenu label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 13px;
+    height: 50px;
+    width: 50px;
+  }
+
+  .hamburgerMenu label:hover,
+  .navbar #hamburger:checked ~ .hamburgerMenu > label {
+    background-color: brown;
+  }
+
+  .hamburgerMenu label div {
+    border-top: 2px solid #fff;
+    display: block;
+    height: 10px;
+    width: 25px;
+  }
+
+  .links {
+    background-color: brown;
+    transition: all 0.3s;
+    overflow-y: hidden;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 50px;
+    top: 60px;
+    left: 0px;
+  }
+
+  .links a {
+    display: block;
+    width: 100%;
+  }
+
+  #hamburger:not(:checked) ~ .links {
+    height: 0px;
+  }
+
+  #hamburger:checked ~ .links {
+    height: calc(100vh - 50px);
+  }
+}
+
+.to-top:hover{
+  cursor: pointer;
+}
