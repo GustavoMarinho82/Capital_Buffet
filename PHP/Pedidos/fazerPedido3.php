@@ -7,15 +7,6 @@
         
         $qtd_cargos = $_POST['qtd_cargos'];
             $_SESSION['qtd_cargos'] = $qtd_cargos;
-
-        //TESTANDO SOLUÇÃO
-            $qtd_comidas = $_POST['qtd_comidas'];
-            
-            for ($x=0; $x<count($qtd_comidas); $x++) {
-                echo "$x - $qtd_comidas[$x]";
-                echo "<br>";
-                
-            }
 ?>
 
 <HTML>
@@ -24,8 +15,7 @@
         <TITLE>Sumário</TITLE>
     </HEAD>
 
-    <BODY>
-            
+    <BODY> 
         <h1>Sumário do Pedido</h1>
 
             Tipo do Evento: <?php echo $_SESSION['tipo_evento'] ?> <br>
@@ -39,58 +29,65 @@
             <h2>Comidas</h2>
                 
                 <?php 
-                    $custo_comidas = 0;
-                    $qtd_comidas = $_POST['qtd_comidas'];
 
-                    $sql = "SELECT * FROM comidas";
+                    $sql = "SELECT * FROM comidas WHERE estoque_comida>0";
                         $consulta = mysqli_query($mysqli, $sql);
+
+                    $qtd_comidas = $_POST['qtd_comidas'];
+                    $custo_comidas = 0;
                     
+
                     while ($linha = mysqli_fetch_array($consulta)) {
 
                         $qtd_comida = $qtd_comidas[$linha['id_comida']];
+                        $preco_total_comida = ($qtd_comida*$linha['preco_comida']);
 
-                        if ($qtd_comida != 0) {
-                            ?>
-                            
+                        if ($qtd_comida > 0) {
+
+                            $custo_comidas+= $preco_total_comida;
+                
+                ?><!--Início do HTML-->
+
                             Nome: <?php echo $linha['nome_comida']?> <br>
-                            Quantidade pedida: <?php echo $qtd_comida?> <br>
+                            Quantidade solicitada: <?php echo $qtd_comida?> <br>
                             Preço por unidade: R$ <?php echo $linha['preco_comida']?> <br>
-                            Preço total: R$ <?php echo $qtd_comida*$linha['preco_comida']?> <br><br>
-                            
-                            <?php
-                            
-                            $custo_comidas+= ($qtd_comida*$linha['preco_comida']);
+                            Preço total: R$ <?php echo $preco_total_comida?> <br><br>
+
+                <!--Fim do HTML--><?php
+
                         }
                     } 
                 ?>
 
             <h2>Utilitários</h2>
 
-                <?php 
+                <?php    
+                    $sql = "SELECT * FROM produtos WHERE estoque_produto>0";
+                        $consulta = mysqli_query($mysqli, $sql);
+
+                    $qtd_produtos = $_POST['qtd_produtos'];
                     $custo_produtos = 0;
-                    $id_produto = 1;
                     
-                    foreach($_POST['qtd_produtos'] as $qtd_produto) {
-                        
-                        if ($qtd_produto != 0) {
 
-                            $sql= "SELECT * FROM produtos WHERE id_produto=$id_produto";
-                                $consulta = mysqli_query($mysqli, $sql);
-                                    $linha = mysqli_fetch_array($consulta);
+                    while ($linha = mysqli_fetch_array($consulta)) {
 
-                            ?>
-                            
+                        $qtd_produto = $qtd_produtos[$linha['id_produto']];
+                        $preco_total_produto = ($qtd_produto*$linha['preco_produto']);
+
+                        if ($qtd_produto > 0) {
+
+                            $custo_produtos+= $preco_total_produto;
+
+                ?><!--Início do HTML-->
+
                             Nome: <?php echo $linha['nome_produto']?> <br>
-                            Quantidade pedida: <?php echo $qtd_produto?> <br>
+                            Quantidade solicitada: <?php echo $qtd_produto?> <br>
                             Preço por unidade: R$ <?php echo $linha['preco_produto']?> <br>
-                            Preço total: R$ <?php echo $qtd_produto*$linha['preco_produto']?> <br><br>
-                            
-                            <?php
-                            
-                            $custo_produtos+= ($qtd_produto*$linha['preco_produto']);
-                        }
+                            Preço total: R$ <?php echo $preco_total_produto?> <br><br>
+                
+                <!--Fim do HTML--><?php
 
-                        $id_produto++;
+                        }
                     } 
                 ?>
 
@@ -109,7 +106,6 @@
                 <h1>Orçamento</h1>
 
                     <?php
-
                         $d = $_SESSION['duracao'];
 
                         $custo_funcionarios = (($qtd_cargos[0]*50*$d) + ($qtd_cargos[1]*35*$d) + ($qtd_cargos[2]*15*$d) + ($qtd_cargos[3]*25*$d) + 
@@ -122,9 +118,9 @@
                     Custo das Comidas: R$ <?php echo $custo_comidas ?> <br>
                     Custo dos Utilitários: R$ <?php echo $custo_produtos ?> <br>
                     Custo dos Funcionários: R$ <?php echo $custo_funcionarios ?> <br>
-                    Custo Total: R$ <?php echo $custo_total ?> <br><br><br>
+                    Custo Total: R$ <?php echo $custo_total ?> <br>
 
-
+                    <h6>* - É adicionada uma taxa de R$ 500 sobre o custo total</h6>
 
             <button onclick="window.location.href='fazerPedido4.php'">Finalizar pedido</button>
                 <br><br>

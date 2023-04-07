@@ -22,7 +22,8 @@ CREATE TABLE pedidos (
 	id_pedido INT UNSIGNED AUTO_INCREMENT,
 	tipo_evento TINYTEXT NOT NULL,
 	orcamento DECIMAL(11, 2) NOT NULL, #123456789.10
-	data_pedido DATE NOT NULL, #'AAAA-MM-DD'
+	status_pedido VARCHAR(20) DEFAULT 'Pendente',
+	data_pedido DATE DEFAULT CURRENT_DATE(), #'AAAA-MM-DD'
 	inicio_evento DATETIME NOT NULL,	#'AAAA-MM-DD HH:MM:SS'
 	fim_evento DATETIME NOT NULL,		#'AAAA-MM-DD HH:MM:SS'
 	qtd_convidados SMALLINT UNSIGNED NOT NULL,
