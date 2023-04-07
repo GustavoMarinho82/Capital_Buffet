@@ -110,12 +110,7 @@ function createFood(name, price, stock, type, category, desc){
 function listFood(name, price, stock, type, category, desc){
     axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{}}
     ).then( e => {
-        var data =e.data.split("|")
-        data.map( dat => {
-            if (dat != "|" && dat != ""){
-                console.log(JSON.parse(dat))
-            }
-        })
+        console.log(e.data)
     }).catch();
 }
 

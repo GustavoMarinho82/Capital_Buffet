@@ -1,21 +1,18 @@
 <?php
-        include '../conexao.php';
-            $sql = 'SELECT * FROM comidas';
-            $consulta = mysqli_query($mysqli, $sql);
-            $return= '';
-            
-            while ($linha = mysqli_fetch_array($consulta)) {
-
-                $i= $linha['id_comida'];
-                $n= $linha['nome_comida'];
-                $p= $linha['preco_comida'];
-                $q= $linha['estoque_comida'];
-                $t= $linha['tipo'];
-                $c= $linha['categoria'];
-                $d= $linha['descricao_comida'];
- 
-                $return .= '{"id":"'.$i.'","name":"'.$n.'","price":"'.$p.'","stock":"'.$q.'","type":"'.$t.'","cat":"'.$c.'","desc":"'.$d.'"}|';
-            }
-
-//$return .= '}';            
-echo $return;
+include '../conexao.php';
+$sql = 'SELECT * FROM comidas';
+$consulta = mysqli_query($mysqli, $sql);
+$reuturn = array();
+$x = 1;
+    while ($linha  = mysqli_fetch_array($consulta)) {
+        $return[$x] = array(
+            "id" => $linha ['id_comida'],
+            "nome" => $linha["nome_comida"],
+            "preco" => $linha['preco_comida'], "estoque" => $linha ['estoque_comida'],
+            "tipo" => $linha['tipo'],
+            "categoria" => $linha [ 'categoria'],
+            "descricao" => $linha ['descricao_comida']
+        );
+        $x++;
+    }
+echo json_encode($return);
