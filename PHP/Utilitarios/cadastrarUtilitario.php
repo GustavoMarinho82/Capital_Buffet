@@ -12,9 +12,10 @@
             $preco = str_replace(",", ".", $_POST['preco']);
             $estoque = $_POST['estoque'];
             $descricao = $_POST['descricao'];
+            $url_imagem = $_POST['url_imagem'];
 
 
-            $sql = "INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario) VALUES ('$nome', $preco, $estoque, '$descricao')";
+            $sql = "INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ('$nome', $preco, $estoque, '$descricao', '$url_imagem')";
                 mysqli_query($mysqli, $sql);
                 
             echo "Utilitário cadastrado com sucesso!";

@@ -50,7 +50,7 @@
                 ?><!--Início do HTML-->
 
                         <hr>
-                            <img src="https://media.istockphoto.com/id/491520707/photo/sample-red-grunge-round-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=FW80kR5ilPkiJtXZEauGTghNBOgQviVPxAbhLWwnKZk=" class="mostruario"> <br>
+                            <img src="<?php echo $linha['url_imagem_c'] ?>" class="mostruario"> <br>
 
                             Nome: <b><?php echo $linha['nome_comida'] ?></b> <br>
                             Preço: <b>R$ <?php echo $linha['preco_comida'] ?></b> <br>
@@ -90,7 +90,7 @@
                 ?><!--Início do HTML-->
 
                         <hr>
-                            <img src="https://media.istockphoto.com/id/491520707/photo/sample-red-grunge-round-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=FW80kR5ilPkiJtXZEauGTghNBOgQviVPxAbhLWwnKZk=" class="mostruario"> <br>
+                            <img src="<?php echo $linha['url_imagem_u'] ?>" class="mostruario"> <br>
 
                             Nome: <b><?php echo $linha['nome_utilitario'] ?></b> <br>
                             Preço: <b>R$ <?php echo $linha['preco_utilitario'] ?></b> <br>

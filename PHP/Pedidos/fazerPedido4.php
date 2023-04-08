@@ -80,6 +80,6 @@
     <BODY>
         Pedido registrado com sucesso! <br>
         
-        <a href="../index.html">Voltar</a>
+        <p><a href="../index.html">Voltar</a>
     </BODY>
 </HTML>

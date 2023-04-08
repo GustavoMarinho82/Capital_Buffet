@@ -14,7 +14,7 @@
                 $consulta = mysqli_query($mysqli, $sql);
         ?>
 
-        <table border="1" width="1400" cellspacing="0"> <!-- 2100= 150*14 -->
+        <table border="1" width="1560" cellspacing="0"> <!-- 1560= 110*14 -->
         <tr bgcolor="#BBBBBB">
         <th>ID</th><th>Tipo do Evento</th><th>Orçamento</th><th>Status</th><th>Data do Pedido</th><th>Início</th><th>Fim</th><th>Qtd de Convidados</th><th>Endereço</th><th>Observações</th><th>Comidas</th><th>Utilitários</th><th>Funcionários</th><th>ID do Cliente</th>
         </tr>

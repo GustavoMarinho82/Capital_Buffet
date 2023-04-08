@@ -8,12 +8,12 @@
         <?php
             include('../conexao.php');
 
-            $periodo = $_POST['periodo'];
+            $data_registro = $_POST['data_registro'];
             $valor = str_replace(",", ".", $_POST['valor']);
             $descricao = $_POST['descricao'];
 
 
-            $sql = "INSERT INTO registros_financeiros (periodo, valor, descricao) VALUES ('$periodo', $valor, '$descricao')";
+            $sql = "INSERT INTO registros_financeiros (data_registro, valor, descricao) VALUES ('$data_registro', $valor, '$descricao')";
                 mysqli_query($mysqli, $sql);
        
             echo "Valor registrado com sucesso!";

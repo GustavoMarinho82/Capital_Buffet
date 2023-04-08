@@ -14,9 +14,9 @@
                 $consulta = mysqli_query($mysqli, $sql);
         ?>
 
-        <table border="1" width="1050" cellspacing="0"> <!-- 1050= 150*7 -->
+        <table border="1" width="1200" cellspacing="0"> <!-- 1200= 150*8 -->
         <tr bgcolor="#BBBBBB">
-        <th>ID</th><th>Nome</th><th>Preço</th><th>Em Estoque</th><th>Tipo</th><th>Categoria</th><th>Descrição</th>
+        <th>ID</th><th>Nome</th><th>Preço</th><th>Em Estoque</th><th>Tipo</th><th>Categoria</th><th>Descrição</th><th>Imagem</th>
         </tr>
 
         <?php
@@ -30,6 +30,7 @@
                 $t= $linha["tipo"];
                 $c= $linha["categoria"];
                 $d= $linha["descricao_comida"];
+                $u= $linha["url_imagem_c"];
 
 
                 if($x % 2 == 0){
@@ -46,6 +47,8 @@
             <td><?php echo $t; ?></td>
             <td><?php echo $c; ?></td>
             <td><?php echo $d; ?></td>
+            <td><?php echo "<button onclick=\"location.href='$u';\">Visualizar</button>";?></td>
+
         </tr>
         
         <?php
