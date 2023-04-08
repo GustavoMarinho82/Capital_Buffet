@@ -8,9 +8,10 @@
         <h2>Listar Funcionários</h2>
         
         <?php
-        include "../conexao.php";
+            include "../conexao.php";
+            
             $sql = "SELECT * FROM funcionarios";
-            $consulta = mysqli_query($mysqli, $sql);
+                $consulta = mysqli_query($mysqli, $sql);
         ?>
 
         <table border="1" width="900" cellspacing="0"> <!-- 900= 150*6 -->

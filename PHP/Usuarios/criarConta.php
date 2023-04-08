@@ -6,7 +6,7 @@
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             //Confere se ambos não foram inicializados
             if (empty($_POST['cpf']) && empty($_POST['cnpj'])) {

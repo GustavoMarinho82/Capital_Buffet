@@ -6,7 +6,7 @@
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $id_usuario = $_POST['id_usuario'];
 

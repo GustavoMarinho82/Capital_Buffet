@@ -8,9 +8,10 @@
         <h2>Listar Registros</h2>
         
         <?php
-        include "../conexao.php";
+            include "../conexao.php";
+            
             $sql = "SELECT * FROM registros_financeiros";
-            $consulta = mysqli_query($mysqli, $sql);
+                $consulta = mysqli_query($mysqli, $sql);
         ?>
 
         <table border="1" width="600" cellspacing="0"> <!-- 600= 150*4 -->

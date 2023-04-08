@@ -6,7 +6,7 @@
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $periodo = $_POST['periodo'];
             $valor = str_replace(",", ".", $_POST['valor']);

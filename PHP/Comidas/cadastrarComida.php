@@ -6,7 +6,7 @@
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $nome = $_POST['nome'];
             $preco = str_replace(",", ".", $_POST['preco']);

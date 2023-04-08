@@ -6,7 +6,7 @@
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $nome = $_POST['nome'];
             $cpf = $_POST['cpf'];

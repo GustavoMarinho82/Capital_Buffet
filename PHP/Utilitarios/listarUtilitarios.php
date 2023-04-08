@@ -8,9 +8,10 @@
         <h2>Listar Utilitários</h2>
         
         <?php
-        include "../conexao.php";
+            include "../conexao.php";
+            
             $sql = "SELECT * FROM utilitarios";
-            $consulta = mysqli_query($mysqli, $sql);
+                $consulta = mysqli_query($mysqli, $sql);
         ?>
 
         <table border="1" width="750" cellspacing="0"> <!-- 750= 150*5 -->

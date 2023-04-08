@@ -8,9 +8,10 @@
         <h2>Listar Contas</h2>
         
         <?php
-        include "../conexao.php";
+            include "../conexao.php";
+            
             $sql = "SELECT * FROM usuarios";
-            $consulta = mysqli_query($mysqli, $sql);
+                $consulta = mysqli_query($mysqli, $sql);
         ?>
 
         <table border="1" width="1050" cellspacing="0"> <!-- 1050= 150*7 -->

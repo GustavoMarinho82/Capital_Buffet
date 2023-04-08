@@ -6,7 +6,7 @@
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $id_registro = $_POST['id_registro'];
             $periodo = $_POST['periodo'];
