@@ -1,15 +1,15 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>Alterar Registros</TITLE>
+        <TITLE>Alterar Registro</TITLE>
     </HEAD>
 
     <BODY>
         <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $id_registro = $_POST['id_registro'];
-            $periodo = $_POST['periodo'];
+            $data_registro = $_POST['data_registro'];
             $valor = str_replace(",", ".", $_POST['valor']);
             $descricao = $_POST['descricao'];
            
@@ -23,12 +23,12 @@
             } else {
 
                 $coluna = mysqli_fetch_array($consulta);
-                    if(empty($periodo))   { $periodo = $coluna["periodo"]; }
+                    if(empty($data_registro))   { $data_registro = $coluna["data_registro"]; }
                     if(empty($valor))     { $valor = $coluna["valor"]; }
                     if(empty($descricao)) { $descricao = $coluna["descricao"]; }
 
 
-                $sql = "UPDATE registros_financeiros SET periodo='$periodo', valor=$valor, descricao='$descricao' WHERE id_registro=$id_registro";
+                $sql = "UPDATE registros_financeiros SET data_registro='$data_registro', valor=$valor, descricao='$descricao' WHERE id_registro=$id_registro";
                     mysqli_query($mysqli, $sql);
 
                 echo "Registro alterado com sucesso!";

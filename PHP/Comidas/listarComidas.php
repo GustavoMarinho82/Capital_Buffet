@@ -48,7 +48,8 @@ $x = 0;
                 "preco" => $linha['preco_comida'], "estoque" => $linha ['estoque_comida'],
                 "tipo" => $linha['tipo'],
                 "categoria" => $linha [ 'categoria'],
-                "descricao" => $linha ['descricao_comida']
+                "descricao" => $linha ['descricao_comida'],
+                "img" => $linha ['url_imagem_c']
             );
             $x++;
     }

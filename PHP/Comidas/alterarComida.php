@@ -1,18 +1,19 @@
 <?php
-        include('../conexao.php');
+            include('../conexao.php');
 
             $id_comida = $_GET['id'];
-            $nome = $_GET['name'];
-            $preco = str_replace(",", ".", $_GET['price']);
-            $estoque = $_GET['stock'];
-            $categoria = $_GET['category'];
+            $nome = $_GET['nome'];
+            $preco = str_replace(",", ".", $_GET['preco']);
+            $estoque = $_GET['estoque'];
+            $categoria = $_GET['categoria'];
             $descricao = $_GET['desc'];
+            $url_imagem = $_GET['imagem'];
             
-            if (empty($_GET['type'])) { 
+            if (empty($_GET['tipo'])) { 
                 $tipo = ""; 
 
             } else { 
-                $tipo = $_GET['type']; 
+                $tipo = $_GET['tipo']; 
             }
 
 
@@ -25,15 +26,17 @@
             } else {
                     
                 $coluna = mysqli_fetch_array($consulta);
-                    if(empty($nome))      { $nome = $coluna["nome_comida"]; }
-                    if(empty($preco))     { $preco = $coluna["preco_comida"]; }
-                    if(empty($tipo))      { $tipo = $coluna["tipo"]; }
-                    if(empty($categoria)) { $categoria = $coluna["categoria"]; }
-                    if(empty($descricao)) { $descricao = $coluna["descricao_comida"]; }
+                    if(empty($nome))        { $nome = $coluna["nome_comida"]; }
+                    if(empty($preco))       { $preco = $coluna["preco_comida"]; }
+                    if(empty($tipo))        { $tipo = $coluna["tipo"]; }
+                    if(empty($categoria))   { $categoria = $coluna["categoria"]; }
+                    if(empty($descricao))   { $descricao = $coluna["descricao_comida"]; }
+                    if(empty($url_imagem))  { $url_imagem = $coluna["url_imagem_c"]; }
                     if(strlen($estoque) == 0)   { $estoque = $coluna["estoque_comida"]; }
+                    
 
                     
-                $sql = "UPDATE comidas SET nome_comida='$nome', preco_comida=$preco, estoque_comida=$estoque, tipo='$tipo', categoria='$categoria', descricao_comida='$descricao' WHERE id_comida='$id_comida'";
+                $sql = "UPDATE comidas SET nome_comida='$nome', preco_comida=$preco, estoque_comida=$estoque, tipo='$tipo', categoria='$categoria', descricao_comida='$descricao', url_imagem_c='$url_imagem' WHERE id_comida='$id_comida'";
                     mysqli_query($mysqli, $sql);
 
                 echo "Comida alterada com sucesso!";

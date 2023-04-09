@@ -8,14 +8,15 @@
         <h2>Listar Registros</h2>
         
         <?php
-        include "../conexao.php";
+            include "../conexao.php";
+            
             $sql = "SELECT * FROM registros_financeiros";
-            $consulta = mysqli_query($mysqli, $sql);
+                $consulta = mysqli_query($mysqli, $sql);
         ?>
 
         <table border="1" width="600" cellspacing="0"> <!-- 600= 150*4 -->
         <tr bgcolor="#BBBBBB">
-        <th>ID</th><th>Período</th><th>Valor</th><th>Descrição</th>
+        <th>ID</th><th>Data</th><th>Valor</th><th>Descrição</th>
         </tr>
 
         <?php
@@ -23,7 +24,7 @@
             
             while ($linha = mysqli_fetch_array($consulta)) {
                 $i= $linha["id_registro"];
-                $p= $linha["periodo"];
+                $p= $linha["data_registro"];
                 $v= $linha["valor"];
                 $d= $linha["descricao"];
 

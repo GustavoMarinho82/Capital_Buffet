@@ -1,8 +1,8 @@
 <?php 
     //date() -> consegue a data atual;
-    //strtotime -> foi usado para não ser possível fazer um pedido que vai acontecer em menos de 7 dias e em mais de 1 anos
-    $min_p = date('Y-m-d h:i', strtotime('+7 day'));
-    $max_p = date('Y-m-d h:i', strtotime('+1 year'));
+    //strtotime -> foi usado para não ser possível fazer um pedido que vai acontecer em menos de 14 dias e em mais de 2 anos
+    $min_p = date('Y-m-d h:i', strtotime('+14 day'));
+    $max_p = date('Y-m-d h:i', strtotime('+2 year'));
 ?>
 
 <HTML>

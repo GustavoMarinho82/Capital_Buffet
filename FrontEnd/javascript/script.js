@@ -90,56 +90,6 @@ function set(){
         }
     });
 }
-function createFood(name, price, stock, type, category, desc){
-    axios.get("../..//PHP/Comidas/cadastrarComida.php", { 
-        params:{
-        name:name,
-        price:price,
-        stock:stock,
-        type:type,
-        category:category,
-        desc:desc
-    }}).then( e => {
-        console.log(e)
-    }).catch();
-}
-
-function listFood(name, category){
-    axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{
-        nome: name || "",
-        ordem: order,
-        tipo: category || "",
-        categoria: type
-    }}
-    ).then( e => {
-        document.querySelector(".card-grid").innerHTML = articleCreate(e.data);
-        set();
-    }).catch();
-}
-listFood();
-function delFood(id){
-    axios.get("../..//PHP/Comidas/deletarComida.php", { params:{
-            id:id
-        }
-    }).then(e => {
-        console.log(e)
-    }).catch()
-}
-
-function modFood(id, name, price, stock, type, category, desc){
-    axios.get("../..//PHP/Comidas/alterarComida.php", { 
-        params:{
-        id:id,
-        name:name,
-        price:price,
-        stock:stock,
-        type:type,
-        category:category,
-        desc:desc
-    }}).then( e => {
-        console.log(e)
-    }).catch();
-}
 
 
 function articleCreate(content){
@@ -174,4 +124,106 @@ function articleCreate(content){
     }
     });
     return response;
+}
+
+
+
+function createFood(name, price, stock, type, category, desc, image){
+    axios.get("../..//PHP/Comidas/cadastrarComida.php", { 
+        params:{
+        nome:name,
+        preco:price,
+        estoque:stock,
+        tipo:type,
+        categoria:category,
+        desc:desc,
+        imagem: image
+    }}).then( e => {
+        console.log(e)
+    }).catch();
+}
+
+function listFood(name, category){
+    axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{
+        nome: name || "",
+        ordem: order,
+        tipo: category || "",
+        categoria: type
+    }}
+    ).then( e => {
+        document.querySelector(".card-grid").innerHTML = articleCreate(e.data);
+        set();
+    }).catch();
+}
+listFood();
+function delFood(id){
+    axios.get("../..//PHP/Comidas/deletarComida.php", { params:{
+            id:id
+        }
+    }).then(e => {
+        console.log(e)
+    }).catch()
+}
+
+function modFood(id, name, price, stock, type, category, desc, image){
+    axios.get("../..//PHP/Comidas/alterarComida.php", { 
+        params:{
+        id:id,
+        nome:name,
+        preco:price,
+        estoque:stock,
+        tipo:type,
+        categoria:category,
+        desc:desc,
+        imagem: image
+    }}).then( e => {
+        console.log(e)
+    }).catch();
+}
+
+function createUtility( name, price, stock, desc, image){
+    axios.get("../..//PHP/Utilitarios/cadastrarUtilitario.php", { 
+        params:{
+            nome: name,
+            preco: price,
+            estoque: stock,
+            desc: desc,
+            imagem: image
+        }}).then( e => {
+            console.log(e.data)
+        }). catch();
+}
+
+function listUtility(name, order){
+    axios.get("../..//PHP/Utilitarios/listarUtilitarios.php" ,{params:{
+        nome: name || "",
+        ordem: order || "",
+    }}
+    ).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function modUtility(id, name, price, stock, desc, image){
+ axios.get("../../PHP/Utilitarios/alterarUtilitario.php", {
+    params:{
+        id: id,
+        nome: name,
+        preco: price,
+        estoque: stock,
+        desc: desc,
+        imagem: image
+    }}).then( e =>{
+        console.log(e.data)
+    }).catch();
+}
+
+function delUtlility(id){
+    axios.get("../../PHP/Utilitarios/deletarUtilitario.php", {
+        params:{
+            id: id
+        }
+    }).then( e =>{
+        console.log(e.data)
+    }).catch();
 }

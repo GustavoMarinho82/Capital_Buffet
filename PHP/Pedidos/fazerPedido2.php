@@ -22,27 +22,35 @@
             hr { width:300px; text-align:left; margin-left:0 }
             .mostruario { max-width: 250px }
         </style>
-
     </HEAD>
 
     <BODY>
-            
         <h1>Escolher os componentes do Buffet</h1>
 
             <form method="POST" action="fazerPedido3.php">
 
-            <!--COMIDAS -->
+
+            <!-- COMIDAS -->
             <h2>Comidas</h2>
 
                 <?php 
                     $sql = "SELECT * FROM comidas WHERE estoque_comida>0";
                         $consulta = mysqli_query($mysqli, $sql);
 
-                    while ($linha = mysqli_fetch_array($consulta)) {
-                ?>
-                        <hr>
+                    $id_esperado = 0;
 
-                            <img src="https://media.istockphoto.com/id/491520707/photo/sample-red-grunge-round-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=FW80kR5ilPkiJtXZEauGTghNBOgQviVPxAbhLWwnKZk=" class="mostruario"> <br>
+                    while ($linha = mysqli_fetch_array($consulta)) {
+
+                        while ($linha['id_comida'] != $id_esperado) {
+                            
+                            ?><input type="hidden" value ="0" name="qtd_comidas[<?php echo $id_esperado ?>]"><?php
+                                $id_esperado++;
+                        }     
+                
+                ?><!--Início do HTML-->
+
+                        <hr>
+                            <img src="<?php echo $linha['url_imagem_c'] ?>" class="mostruario"> <br>
 
                             Nome: <b><?php echo $linha['nome_comida'] ?></b> <br>
                             Preço: <b>R$ <?php echo $linha['preco_comida'] ?></b> <br>
@@ -50,67 +58,88 @@
                             Tipo: <b><?php echo $linha['tipo']; ?></b> <br>
                             Categoria: <b><?php echo $linha['categoria']; ?></b> <br>
                             Descrição: <b><?php echo $linha['descricao_comida']; ?></b> <br>
-                            
+
                             Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_comida']; ?>" 
                                 name="qtd_comidas[<?php $linha['id_comida'] ?>]">
-
                         <hr>
-                <?php } ?>
+
+                <!--Fim do HTML--><?php
+                        
+                        $id_esperado = ($linha['id_comida']+1);
+                    }
+                ?>
 
 
             <!-- PRODUTOS -->
             <br><h2>Utilitários</h2>
 
                 <?php
-                    $sql = "SELECT * FROM produtos WHERE estoque_produto>0";
+                    $sql = "SELECT * FROM utilitarios WHERE estoque_utilitario>0";
                         $consulta = mysqli_query($mysqli, $sql);
 
+                    $id_esperado = 0;
+
                     while ($linha = mysqli_fetch_array($consulta)) {
-                ?>
-                        <hr>
 
-                            <img src="https://media.istockphoto.com/id/491520707/photo/sample-red-grunge-round-stamp-on-white-background.jpg?s=612x612&w=0&k=20&c=FW80kR5ilPkiJtXZEauGTghNBOgQviVPxAbhLWwnKZk=" class="mostruario"> <br>
-
-                            Nome: <b><?php echo $linha['nome_produto'] ?></b> <br>
-                            Preço: <b>R$ <?php echo $linha['preco_produto'] ?></b> <br>
-                            Qtd em Estoque: <b><?php echo $linha['estoque_produto'] ?></b> <br>
-                            Descrição: <b><?php echo $linha['descricao_produto']; ?></b> <br>
+                        while ($linha['id_utilitario'] != $id_esperado) {
                             
-                            Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_produto']; ?>" 
-                                name="qtd_produtos[<?php $linha['id_produto'] ?>]">
+                            ?><input type="hidden" value ="0" name="qtd_utilitarios[<?php echo $id_esperado ?>]"><?php
+                                $id_esperado++;
+                        }    
+
+                ?><!--Início do HTML-->
 
                         <hr>
-                <?php } ?>
+                            <img src="<?php echo $linha['url_imagem_u'] ?>" class="mostruario"> <br>
+
+                            Nome: <b><?php echo $linha['nome_utilitario'] ?></b> <br>
+                            Preço: <b>R$ <?php echo $linha['preco_utilitario'] ?></b> <br>
+                            Qtd em Estoque: <b><?php echo $linha['estoque_utilitario'] ?></b> <br>
+                            Descrição: <b><?php echo $linha['descricao_utilitario']; ?></b> <br>
+                                
+                            Quantidade desejada: <input type="number" value ="0" min="0" max="<?php echo $linha['estoque_utilitario']; ?>" 
+                                name="qtd_utilitarios[<?php $linha['id_utilitario'] ?>]">
+                        <hr>
+                        
+                <!--Fim do HTML--><?php   
+
+                        $id_esperado = ($linha['id_utilitario']+1);
+                    }
+                ?>
 
 
             <!-- FUNCIONÁRIOS -->
             <br><h2>Funcionários</h2>
 
                 <?php
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Chefe de cozinha'";
-                        $max_chefe = mysqli_num_rows(mysqli_query($mysqli, $sql));
+                    $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+                    
+                    $sql = "SELECT * FROM funcionarios WHERE cargo=?";
+                        $stmt = mysqli_prepare($mysqli, $sql);
+                            mysqli_stmt_bind_param($stmt, "s", $cargo);
 
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Copeiro'";
-                        $max_copeiro = mysqli_num_rows(mysqli_query($mysqli, $sql));
+                            
+                    for($x = 0; $x < count($cargos); $x++) {
+                        $cargo = $cargos[$x];
+                        
+                        $consulta = mysqli_stmt_execute($stmt); //Essa consulta foi utilizada para evitar um erro de sincronização
+                        $resultado = mysqli_stmt_get_result($stmt);
+                            $max_cargo[$x] = mysqli_num_rows($resultado);
+                    }
 
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Garçom'";
-                        $max_garcom = mysqli_num_rows(mysqli_query($mysqli, $sql));
-
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Barman'";
-                        $max_barman = mysqli_num_rows(mysqli_query($mysqli, $sql));
-
-                    $sql = "SELECT * FROM funcionarios WHERE cargo='Ajudante de cozinha'";
-                        $max_ajudante = mysqli_num_rows(mysqli_query($mysqli, $sql));
+                    $_SESSION['cargos'] = $cargos;
                 ?>
 
+                        <!--Início do HTML-->
                         <hr>
-
-                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_chefe ?>" name="qtd_chefe"> <br>
-                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_copeiro ?>" name="qtd_copeiro"> <br>
-                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_garcom ?>" name="qtd_garcom"> <br>
-                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_barman ?>" name="qtd_barman"> <br>
-                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_ajudante ?>" name="qtd_ajudante"> <br>
-
+                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[0] ?>" name="qtd_cargos[0]"> <br>
+                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[1] ?>" name="qtd_cargos[1]"> <br>
+                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[2] ?>" name="qtd_cargos[2]"> <br>
+                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[3] ?>" name="qtd_cargos[3]"> <br>
+                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[4] ?>" name="qtd_cargos[4]"> <br>
+                            Recepcionistas: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[5] ?>" name="qtd_cargos[5]"> <br>
+                            Seguranças: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[6] ?>" name="qtd_cargos[6]"> <br>
+                            Faxineiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[7]"> <br>
                         <hr>
 
 

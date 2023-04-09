@@ -1,13 +1,12 @@
-INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida) VALUES ("Água", 2.50, 15, "Bebida", "Líquidos", "nectar dos deuses");
-INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida) VALUES ("Macarrão", 25, 5, "Principal", "Massas", "");
-INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida) VALUES ("Pote de Açaí", 7.50, 3, "Sobremesa", "Quase Líquidos", "1000 ml");
-INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida) VALUES ("Bolo de Morango", 100, 1, "Sobremesa", "Bolos", "");
-INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida) VALUES ("Santo Milho", 100000, 0, "Principal", "Divinos", "Pai de Todxs");
+INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida, url_imagem_c) VALUES ("Água", 2.50, 15, "Bebida", "Líquidos", "nectar dos deuses", "https://i.imgur.com/VQogYj9.jpeg");
+INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida, url_imagem_c) VALUES ("Macarrão", 25, 5, "Principal", "Massas", "", "https://upload.wikimedia.org/wikipedia/commons/9/90/Touched_by_His_Noodly_Appendage_HD.jpg");
+INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida, url_imagem_c) VALUES ("Pote de Açaí", 7.50, 3, "Sobremesa", "Quase Líquidos", "1000 ml", "https://static.wixstatic.com/media/3c0c1e_dbd9c62732a14670a6fc9dc1f1a905bf~mv2.png/v1/fill/w_560,h_560,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/acai-sabores-da-orla.png");
+INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida, url_imagem_c) VALUES ("Bolo de Morango", 100, 1, "Sobremesa", "Bolos", "", "https://i.imgur.com/36Eb056.jpeg");
+INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida, url_imagem_c) VALUES ("Santo Milho", 100000, 0, "Principal", "Divinos", "Pai de Todxs", "https://i.imgur.com/2B8xQ8w_d.webp?maxwidth=520&shape=thumb&fidelity=high");
 
-INSERT INTO produtos (nome_produto, preco_produto, estoque_produto, descricao_produto) VALUES ("Mesa Retangular Grande", 100, 100, "Comprimento: 250 cm - Largura: 100 cm - Altura: 80 cm");
-INSERT INTO produtos (nome_produto, preco_produto, estoque_produto, descricao_produto) VALUES ("Kit Talhers Descartáveis", 10, 500, "Conteúdo: 100 garfos, 100 facas e 50 colheres");
-INSERT INTO produtos (nome_produto, preco_produto, estoque_produto, descricao_produto) VALUES ("Cadeiras", 12.50, 379, "");
-
+INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Mesa Retangular Grande", 100, 100, "Comprimento: 250 cm - Largura: 100 cm - Altura: 80 cm", "https://i.imgur.io/RxFmoEt_d.webp?maxwidth=640&shape=thumb&fidelity=medium");
+INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Kit Talhers Descartáveis", 10, 500, "Conteúdo: 100 garfos, 100 facas e 50 colheres", "https://www.atacadolibardi.com.br/media/resize/1920x1080/pasta/2/9938e66dcf655eebe3049df424c596495539191f.jpg");
+INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Cadeiras", 12.50, 379, "", "https://img.terabyteshop.com.br/produto/g/cadeira-gamer-ninja-katana-reclinavel-suporta-ate-120kg-preto-cgn-katana-p_158772.jpg");
     
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("999.999.999-99", "Eric Jacquin", "Chefe de cozinha", 12000, "jacquin@oficial.com", "(99) 99999-9999");
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-88", "Cara do Sal", "Ajudante de cozinha", 2000, "cara@sal", "(88) 88888-8888");
