@@ -1,40 +1,27 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Deletar Funcionário</TITLE>
-    </HEAD>
+<?php
+include('../conexao.php');
 
-    <BODY>
-        <?php
-        include('../conexao.php');
+$cpf = $_GET['cpf'];
 
-            $cpf = $_POST['cpf'];
+$sql = "SELECT * FROM funcionarios WHERE cpf_funcionario='$cpf'";
+    $consulta = mysqli_query($mysqli, $sql);
 
+if (mysqli_num_rows($consulta) == 0) {
+    echo json_encode(array( "status" => "falha", "causa" => "não encontrado"));
+    
+} else {
 
-            $sql = "SELECT * FROM funcionarios WHERE cpf_funcionario='$cpf'";
-                $consulta = mysqli_query($mysqli, $sql);
+    $sql = "SELECT * FROM pedido_funcionarios WHERE funcionario_cpf='$cpf'";
+        $consulta = mysqli_query($mysqli, $sql);
 
-            if (mysqli_num_rows($consulta) == 0) {
-                echo "Funcionário não encontrado!";
-                
-            } else {
+    if (mysqli_num_rows($consulta) != 0) {
+        echo json_encode(array("status"=>"falha", "causa"=>"faz parte de pedido"));
 
-                $sql = "SELECT * FROM pedido_funcionarios WHERE funcionario_cpf='$cpf'";
-                    $consulta = mysqli_query($mysqli, $sql);
+    } else {
 
-                if (mysqli_num_rows($consulta) != 0) {
-                    echo "Não é possível deletar o funcionário, porque ele faz parte de um pedido!";
+        $sql = "DELETE FROM funcionarios WHERE cpf_funcionario='$cpf'";
+            mysqli_query($mysqli, $sql);
 
-                } else {
-
-                    $sql = "DELETE FROM funcionarios WHERE cpf_funcionario='$cpf'";
-                        mysqli_query($mysqli, $sql);
-
-                    echo "Funcionário deletado com sucesso!";
-                }
-            }
-        ?>
-
-        <p><a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>
+        echo json_encode(array( "status" => "sucesso"));
+    }
+}

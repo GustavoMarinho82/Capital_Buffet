@@ -2,9 +2,7 @@
 include '../conexao.php';
 $count = 0;
 if(isset($_GET)){
-
     $sql = 'SELECT * FROM comidas';
-    
     if(isset($_GET["nome"]) && $_GET["nome"] != ""){
         $sql .= ' nome_comida LIKE "%'.$_GET["nome"].'%"';
         $count++;
@@ -12,7 +10,7 @@ if(isset($_GET)){
     if(isset($_GET["categoria"]) && $_GET["categoria"] != ""){
         if($count > 0){
             $sql .= "OR ";
-        } else {
+        }else{
             $sql .= " WHERE ";
             $count++;
         }
@@ -21,17 +19,16 @@ if(isset($_GET)){
     if(isset($_GET["tipo"]) && $_GET["tipo"] != ""){
         if($count > 0){
             $sql .= "OR ";
-        } else {
+        }else{
             $sql .= " WHERE ";
             $count++;
         }
          $sql .= ' tipo LIKE "%'.$_GET["tipo"].'%"';
     }
-
     if(isset($_GET["ordem"])){
         if($_GET["ordem"] == "+"){
             $sql .= " ORDER BY preco_comida DESC";
-        } else if($_GET["ordem"] == "-"){   
+        }else if($_GET["ordem"] == "-"){   
             $sql .= " ORDER BY preco_comida ASC";
         }
     }

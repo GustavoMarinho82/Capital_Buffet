@@ -243,18 +243,33 @@ function createEmployee(name, cpf, job, salary, mail, phone){
     }).catch();
 }
 
-function modEmployee(){
+function modEmployee(nome, cpf, cargo, salario, email, telefone){
     axios.get("../../PHP/Funcionarios/alterarFuncionario.php", {
         params: {
-            nome: name,
+            nome: nome,
             cpf: cpf,
-            cargo: job,
-            salario: salary,
-            email: mail,
-            telefone: phone
+            cargo: cargo,
+            salario: salario,
+            email: email,
+            telefone: telefone
         }
     }).then( e => {
         console.log(e,data)
-        console.log(e.data.status)
+        console.log("status: " + e.data.status)
+            if (e.data.cause){
+                console.log("cause: " + e.data.causa)
+            }
     }).catch();
+}
+
+function delFuncionario(cpf){
+    axios.get("../../PHP/Funcionarios/deletarFuncionario.php", {
+        params:{
+            cpf: cpf
+        }}).then( e =>{
+            console.log("status: "+e.data.status)
+            if (e.data.status == "falha"){
+                console.log("causa: "+e.data.causa)
+            }
+        }).catch();
 }
