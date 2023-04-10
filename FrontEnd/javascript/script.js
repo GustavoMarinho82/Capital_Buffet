@@ -227,3 +227,34 @@ function delUtlility(id){
         console.log(e.data)
     }).catch();
 }
+
+function createEmployee(name, cpf, job, salary, mail, phone){
+    axios.get("../../PHP/Funcionarios/cadastrarFuncionario.php", {
+        params:{
+            nome: name,
+            cpf: cpf,
+            cargo: job,
+            salario: salary,
+            email: mail,
+            telefone: phone
+        }
+    } ).then(e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function modEmployee(){
+    axios.get("../../PHP/Funcionarios/alterarFuncionario.php", {
+        params: {
+            nome: name,
+            cpf: cpf,
+            cargo: job,
+            salario: salary,
+            email: mail,
+            telefone: phone
+        }
+    }).then( e => {
+        console.log(e,data)
+        console.log(e.data.status)
+    }).catch();
+}
