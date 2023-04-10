@@ -83,6 +83,7 @@
 
 .links {
   font-size: 18px;
+  margin-left: 50px;
 }
 
 .links a {
@@ -95,7 +96,12 @@
 .links a:hover {
   background-color: brown;
 }
-
+.links #login{
+  color: rgb(253, 3, 3);
+  margin-left: 50px;
+  background-color: rgb(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
 #hamburger {
   display: none;
 }
