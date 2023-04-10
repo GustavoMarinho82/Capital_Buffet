@@ -54,7 +54,6 @@ CREATE TABLE pedido_funcionarios (
 
 CREATE TABLE utilitarios (
 	id_utilitario SMALLINT UNSIGNED AUTO_INCREMENT,
-	url_img_c TEXT NOT NULL,
 	nome_utilitario VARCHAR(50) NOT NULL,
 	preco_utilitario DECIMAL(11, 2) NOT NULL, #999999999.99
 	estoque_utilitario MEDIUMINT UNSIGNED NOT NULL,
