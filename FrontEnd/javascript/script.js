@@ -15,7 +15,7 @@ document.querySelectorAll('a').forEach(one => {
             if(type == "0"){
                 type = "";
             }
-            listFood();
+            listarComida();
             //console.log(type+ order );
         });
     }
@@ -31,7 +31,7 @@ document.querySelectorAll("l").forEach( one => {
         this.classList.toggle("active");
         order = this.getAttribute("data-order");
         //console.log(type+order);
-        listFood();
+        listarComida();
 
     });
 })
@@ -43,7 +43,7 @@ function set(){
             MP.addEventListener("click", function (){
                 var number = document.getElementById("n"+this.id);
                 var counter = parseInt(number.innerHTML);
-                var name = document.getElementById(this.id+"-name").innerHTML
+                var name = document.getElementById(this.id+"-name").getAttribute("data-id");
                 var price = parseFloat(document.getElementById(this.id+"price").getAttribute("data-price"))
                 if( document.getElementById("c"+this.id).checked && parseInt(number.getAttribute("data-limit")) > counter){
                     number.innerHTML = counter + 1;
@@ -58,7 +58,7 @@ function set(){
                 var number = document.getElementById("n"+this.id);
                 var counter = parseInt(number.innerHTML);
                 var price = parseFloat(document.getElementById(this.id+"price").getAttribute("data-price"))
-                var name = document.getElementById(this.id+"-name").innerHTML
+                var name = document.getElementById(this.id+"-name").getAttribute("data-id");
                 if(counter >= 1 && document.getElementById("c"+this.id).checked ){
                     number.innerHTML = counter - 1;
                     communication[name] = counter - 1;
@@ -81,7 +81,7 @@ function set(){
             } else {
                 document.querySelectorAll("."+this.getAttribute("data-Toggle")).forEach( act => { act.classList.add("gray")} )
                 document.getElementById("n"+this.getAttribute("data-Toggle")).innerHTML = "0";
-                var name = document.getElementById(this.getAttribute("data-Toggle")+"-name").innerHTML
+                var name = document.getElementById(this.getAttribute("data-Toggle")+"-name").getAttribute("data-id")
                 communication[name] = 0;
                 console.log(JSON.stringify(communication))
                 console.log(JSON.parse(JSON.stringify(communication)))
@@ -103,7 +103,7 @@ function articleCreate(content){
 			<div class="card-header">
 				<div>
 					<span></span>
-					<h3 id="_${content[index].id}-name">${content[index].nome}</h3>
+					<h3 id="_${content[index].id}-name" data-id="${content[index].id}">${content[index].nome}</h3>
 				</div>
 				<label class="toggle">
 					<input type="checkbox" id="c_${content[index].id}" data-Toggle="_${content[index].id}">
@@ -128,26 +128,26 @@ function articleCreate(content){
 
 
 
-function createFood(name, price, stock, type, category, desc, image){
+function criarComida(nome, preco, estoque, tipo, categoria, desc, imagem){
     axios.get("../..//PHP/Comidas/cadastrarComida.php", { 
         params:{
-        nome:name,
-        preco:price,
-        estoque:stock,
-        tipo:type,
-        categoria:category,
-        desc:desc,
-        imagem: image
+        nome:nome,
+        preco: preco,
+        estoque: estoque,
+        tipo: tipo,
+        categoria: categoria,
+        desc: desc,
+        imagem: imagem
     }}).then( e => {
         console.log(e)
     }).catch();
 }
 
-function listFood(name, category){
+function listarComida(nome, categoria){
     axios.get("../..//PHP/Comidas/listarComidas.php" ,{params:{
-        nome: name || "",
+        nome: nome || "",
         ordem: order,
-        tipo: category || "",
+        tipo: categoria || "",
         categoria: type
     }}
     ).then( e => {
@@ -155,8 +155,14 @@ function listFood(name, category){
         set();
     }).catch();
 }
-listFood();
-function delFood(id){
+listarComida();
+document.querySelector("#search").addEventListener("keydown", function  (){
+    listarComida(this.value)
+});
+document.querySelector("#search").addEventListener("keyup", function  (){
+    listarComida(this.value)
+});
+function delComida(id){
     axios.get("../..//PHP/Comidas/deletarComida.php", { params:{
             id:id
         }
@@ -165,60 +171,60 @@ function delFood(id){
     }).catch()
 }
 
-function modFood(id, name, price, stock, type, category, desc, image){
+function modComida(id, nome, preco, estoque, tipo, categoria, desc, imagem){
     axios.get("../..//PHP/Comidas/alterarComida.php", { 
         params:{
-        id:id,
-        nome:name,
-        preco:price,
-        estoque:stock,
-        tipo:type,
-        categoria:category,
-        desc:desc,
-        imagem: image
+        id: id,
+        nome: nome,
+        preco: preco,
+        estoque: estoque,
+        tipo: tipo,
+        categoria: categoria,
+        desc: desc,
+        imagem: imagem
     }}).then( e => {
         console.log(e)
     }).catch();
 }
 
-function createUtility( name, price, stock, desc, image){
+function criarUtilitario( nome, preco, estoque, desc, imagem){
     axios.get("../..//PHP/Utilitarios/cadastrarUtilitario.php", { 
         params:{
-            nome: name,
-            preco: price,
-            estoque: stock,
+            nome: nome,
+            preco: preco,
+            estoque: estoque,
             desc: desc,
-            imagem: image
+            imagem: imagem
         }}).then( e => {
             console.log(e.data)
         }). catch();
 }
 
-function listUtility(name, order){
+function listarUtilitario(nome, ordem){
     axios.get("../..//PHP/Utilitarios/listarUtilitarios.php" ,{params:{
-        nome: name || "",
-        ordem: order || "",
+        nome: nome || "",
+        ordem: ordem || "",
     }}
     ).then( e => {
         console.log(e.data)
     }).catch();
 }
 
-function modUtility(id, name, price, stock, desc, image){
+function modUtilitario(id, nome, preco, estoque, desc, imagem){
  axios.get("../../PHP/Utilitarios/alterarUtilitario.php", {
     params:{
         id: id,
-        nome: name,
-        preco: price,
-        estoque: stock,
+        nome: nome,
+        preco: preco,
+        estoque: estoque,
         desc: desc,
-        imagem: image
+        imagem: imagem
     }}).then( e =>{
         console.log(e.data)
     }).catch();
 }
 
-function delUtlility(id){
+function delUtilitario(id){
     axios.get("../../PHP/Utilitarios/deletarUtilitario.php", {
         params:{
             id: id
@@ -228,22 +234,22 @@ function delUtlility(id){
     }).catch();
 }
 
-function createEmployee(name, cpf, job, salary, mail, phone){
+function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
     axios.get("../../PHP/Funcionarios/cadastrarFuncionario.php", {
         params:{
-            nome: name,
+            nome: nome,
             cpf: cpf,
-            cargo: job,
-            salario: salary,
-            email: mail,
-            telefone: phone
+            cargo: cargo,
+            salario: salario,
+            email: email,
+            telefone: telefone
         }
     } ).then(e => {
         console.log(e.data)
     }).catch();
 }
 
-function modEmployee(nome, cpf, cargo, salario, email, telefone){
+function modFuncionario(nome, cpf, cargo, salario, email, telefone){
     axios.get("../../PHP/Funcionarios/alterarFuncionario.php", {
         params: {
             nome: nome,
@@ -257,7 +263,7 @@ function modEmployee(nome, cpf, cargo, salario, email, telefone){
         console.log(e,data)
         console.log("status: " + e.data.status)
             if (e.data.cause){
-                console.log("cause: " + e.data.causa)
+                console.log("causa: " + e.data.causa)
             }
     }).catch();
 }
@@ -272,4 +278,77 @@ function delFuncionario(cpf){
                 console.log("causa: "+e.data.causa)
             }
         }).catch();
+}
+
+function criarUsuario(nome, senha, cpf, cnpj, cep,  email, telefone){
+    axios.get("../../PHP/Usuarios/criarConta.php", {
+        params:{
+            nome: nome,
+            senha:senha,
+            cpf:cpf,
+            cnpj:cnpj,
+            cep:cep,
+            email:email,
+            telefone:telefone
+        }
+    }).then(e=>{
+        console.log(e.data.status)
+        if(e.data.status == "falha"){
+            console.log(`causa: ${e.data.causa}`)
+        }
+    }).catch();
+}
+
+function listarUsuario(query){
+    axios.get("../../PHP/Usuarios/listarContas.php", {
+        params:{
+            query:query
+        }
+    }).then(e=>{
+        console.log(e.data)
+    }).catch();
+}
+
+function modUsuario(id, nome, senha, cep,  email, telefone){
+    axios.get("../../PHP/Usuarios/criarConta.php", {
+        params:{
+            id:id,
+            nome: nome,
+            senha:senha,
+            cpf:cpf,
+            cnpj:cnpj,
+            cep:cep,
+            email:email,
+            telefone:telefone
+        }
+    }).then(e=>{
+        console.log(e.data.status)
+        if(e.data.status == "falha"){
+            console.log(`causa: ${e.data.causa}`)
+        }
+    }).catch();
+}
+
+function delUsuario(id){
+    axios.get("../../PHP/Usuarios/deletarConta.php", {
+        params:{
+            id: id
+        }
+    }).then( e => {
+        console.log("status: "+e.data.status);
+        if(e.data.status == "falha"){
+            console.log("causa: "+ e.data.causa)
+        }
+    })
+}
+
+function login(email, senha){
+    axios.get("../../PHP/Usuarios/login.php", {
+        params:{
+            email: email,
+            senha: senha
+        }
+    }).then(e=>{
+        console.log(e.data)
+    }).catch();
 }

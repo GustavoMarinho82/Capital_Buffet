@@ -4,7 +4,7 @@ $count = 0;
 if(isset($_GET)){
     $sql = 'SELECT * FROM comidas';
     if(isset($_GET["nome"]) && $_GET["nome"] != ""){
-        $sql .= ' nome_comida LIKE "%'.$_GET["nome"].'%"';
+        $sql .= ' WHERE nome_comida LIKE "%'.$_GET["nome"].'%"';
         $count++;
     }
     if(isset($_GET["categoria"]) && $_GET["categoria"] != ""){

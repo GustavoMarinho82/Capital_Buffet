@@ -1,26 +1,17 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Criar Conta</TITLE>
-    </HEAD>
-
-    <BODY>
-        <?php
+<?php
         include('../conexao.php');
 
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
+            $email = $_GET['email'];
+            $senha = $_GET['senha'];
 
             
             $sql = "SELECT * FROM usuarios WHERE email_usuario='$email' AND senha='$senha'";
                 $consulta = mysqli_query($mysqli, $sql);
 
             if (mysqli_num_rows($consulta) == 0) {
-                echo "Email ou senha incorretos!";
+                echo json_encode(array("status"=>"falha", "causa"=>"dados incorretos ou conta não cadastrada"));
 
             } else {
-                    
-                echo "Login realizado com sucesso! <br>";
 
                 $linha = mysqli_fetch_array($consulta);
                     $cpf = $linha['cpf'];
@@ -30,14 +21,9 @@
                     $consulta = mysqli_query($mysqli, $sql);
 
                 if (mysqli_num_rows($consulta) == 0) {
-                    echo "Logado como: Cliente";
+                    echo json_encode(array("status"=>"sucesso", "log"=>"cliente"));
                 
                 } else {
-                    echo "Logado como: Funcionário";
+                    echo json_encode(array("status"=>"sucesso", "log"=>"funcionario"));
                 }
             }
-        ?>
-
-        <p><a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>

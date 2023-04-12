@@ -1,24 +1,20 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Listar Contas</TITLE>
-    </HEAD>
-
-    <BODY>
-        <h2>Listar Contas</h2>
-        
         <?php
         include "../conexao.php";
+        if(isset($_GET) && $_GET["query"] != ""){
+            $query = $_GET["query"];
+            $sql = "SELECT * FROM usuarios WHERE 
+                nome_usuario LIKE '%$query%' OR
+                cpf LIKE '%$query%' OR
+                cnpj LIKE '%$query%' OR
+                cep LIKE '%$query%' OR
+                email_usuario LIKE '%$query%' OR
+                telefone_usuario LIKE '%$query%'
+                ";
+        }else{
             $sql = "SELECT * FROM usuarios";
+        }
             $consulta = mysqli_query($mysqli, $sql);
-        ?>
-
-        <table border="1" width="1050" cellspacing="0"> <!-- 1050= 150*7 -->
-        <tr bgcolor="#BBBBBB">
-        <th>ID</th><th>Nome</th><th>Senha</th><th>CPF/CNPJ</th><th>CEP</th><th>Email</th><th>Telefone</th>
-        </tr>
-
-        <?php
+            $return = array();
             $x = 0;
             
             while ($linha = mysqli_fetch_array($consulta)) {
@@ -31,40 +27,17 @@
                 $e= $linha["email_usuario"];
                 $t= $linha["telefone_usuario"];
 
+                $return[$x] = array(
+                    "id" => $i,
+                    "nome" => $n,
+                    "senha" => $s,
+                    "cpf"  => $cpf,
+                    "cnpj" => $cnpj,
+                    "cep" => $cep,
+                    "email" => $e,
+                    "telefone" => $t
+                );
 
-                if($x % 2 == 0){
-                    $cor = "#DDDDDD";
-                } else {
-                    $cor = "#FFFFFF";
-                }
-        ?>
-        <tr bgcolor="<?php echo $cor; ?>">
-            <td><?php echo $i; ?></td>
-            <td><?php echo $n; ?></td>
-            <td><?php echo $s; ?></td>
-            <td><?php 
-
-                if (empty($cnpj)) { 
-                    echo $cpf;
-                
-                } else {
-                    echo $cnpj;
-                } 
-            
-            ?></td>
-            <td><?php echo $cep; ?></td>
-            <td><?php echo $e; ?></td>
-            <td><?php echo $t; ?></td>
-        </tr>
-        
-        <?php
                 $x++;
             }
-        ?>
-
-        </table>
-            <br/>
-
-        <a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>
+echo json_encode($return);
