@@ -1,55 +1,45 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Listar Registros</TITLE>
-    </HEAD>
-
-    <BODY>
-        <h2>Listar Registros</h2>
-        
-        <?php
-            include "../conexao.php";
-            
-            $sql = "SELECT * FROM registros_financeiros";
-                $consulta = mysqli_query($mysqli, $sql);
-        ?>
-
-        <table border="1" width="600" cellspacing="0"> <!-- 600= 150*4 -->
-        <tr bgcolor="#BBBBBB">
-        <th>ID</th><th>Data</th><th>Valor</th><th>Descrição</th>
-        </tr>
-
-        <?php
-            $x = 0;
-            
-            while ($linha = mysqli_fetch_array($consulta)) {
-                $i= $linha["id_registro"];
-                $p= $linha["data_registro"];
-                $v= $linha["valor"];
-                $d= $linha["descricao"];
+<?php
+$abs_path = explode("/",str_replace("\\", "/",__DIR__));
+$max = sizeof($abs_path);
+$max--;
+$include = "";
+for($i = 0; $i < $max; $i++)
+{
+$include .= $abs_path[$i] . "/";
+}
+include($include . "conexao.php");
 
 
-                if($x % 2 == 0){
-                    $cor = "#DDDDDD";
-                } else {
-                    $cor = "#FFFFFF";
-                }
-        ?>
-        <tr bgcolor="<?php echo $cor; ?>">
-            <td><?php echo $i; ?></td>
-            <td><?php echo $p; ?></td>
-            <td><?php echo $v; ?></td>
-            <td><?php echo $d; ?></td>
-        </tr>
-        
-        <?php
-                $x++;
-            }
-        ?>
+if(isset($_GET) && $_GET["querry"] != ""){
 
-        </table>
-            <br/>
+    $querry = $_GET["querry"];
+    $sql = "SELECT * FROM registros_financeiros WHERE
+        data_registro LIKE '%$querry%' OR
+        valor LIKE '%$querry%' OR
+        descricao LIKE '%$querry%'
+    ";
 
-        <a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>
+}else{
+    $sql = "SELECT * FROM registros_financeiros";
+}
+    $consulta = mysqli_query($mysqli, $sql);
+$x = 0;
+$retutn = array();
+
+while ($linha = mysqli_fetch_array($consulta)) {
+    $i= $linha["id_registro"];
+    $p= $linha["data_registro"];
+    $v= $linha["valor"];
+    $d= $linha["descricao"];
+
+    $return[$x]=array(
+        "id" => $i,
+        "data" => $p,
+        "valor" => $v,
+        "desc" => $d
+    );
+    
+    $x++;
+}
+
+echo json_encode($return);

@@ -1,5 +1,14 @@
 <?php
-include '../conexao.php';
+$abs_path = explode("/",str_replace("\\", "/",__DIR__));
+$max = sizeof($abs_path);
+$max--;
+$include = "";
+for($i = 0; $i < $max; $i++)
+{
+$include .= $abs_path[$i] . "/";
+}
+include($include . "conexao.php");
+
 $count = 0;
 if(isset($_GET)){
     $sql = 'SELECT * FROM comidas';

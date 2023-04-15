@@ -1,6 +1,6 @@
 <?php
 	header("charset=utf-8");
-	$servidor = "localhost";
+	$servidor = "localhost:3306";
 	$usuario = "root";
 	$senha = "";
 	$banco = "capital_buffet";

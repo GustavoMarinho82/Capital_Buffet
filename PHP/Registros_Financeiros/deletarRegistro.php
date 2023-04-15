@@ -1,31 +1,28 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Deletar Registro</TITLE>
-    </HEAD>
+<?php
+$abs_path = explode("/",str_replace("\\", "/",__DIR__));
+$max = sizeof($abs_path);
+$max--;
+$include = "";
+for($i = 0; $i < $max; $i++)
+{
+$include .= $abs_path[$i] . "/";
+}
+include($include . "conexao.php");
 
-    <BODY>
-        <?php
-            include('../conexao.php');
 
-            $id_registro = $_POST['id_registro'];
+$id_registro = $_GET['id'];
 
 
-            $sql = "SELECT * FROM registros_financeiros WHERE id_registro=$id_registro";
-                $consulta = mysqli_query($mysqli, $sql);
+$sql = "SELECT * FROM registros_financeiros WHERE id_registro=$id_registro";
+    $consulta = mysqli_query($mysqli, $sql);
 
-            if (mysqli_num_rows($consulta) == 0) {
-                echo "Registro não encontrado!";
-                
-            } else {
-                
-                $sql = "DELETE FROM registros_financeiros WHERE id_registro=$id_registro";
-                    mysqli_query($mysqli, $sql);
+if (mysqli_num_rows($consulta) == 0) {
+    echo json_encode(array("status"=>"falha","causa"=>"não encontrado"));
+    
+} else {
+    
+    $sql = "DELETE FROM registros_financeiros WHERE id_registro=$id_registro";
+        mysqli_query($mysqli, $sql);
 
-                echo "Registro deletado com sucesso!";
-            }
-        ?>
-
-        <p><a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>
+    echo json_encode(array("status"=>"sucesso"));
+}

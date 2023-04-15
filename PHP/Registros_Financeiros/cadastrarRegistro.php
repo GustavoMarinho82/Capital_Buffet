@@ -1,24 +1,21 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Registrar Valor</TITLE>
-    </HEAD>
-
-    <BODY>
-        <?php
-            include('../conexao.php');
-
-            $data_registro = $_POST['data_registro'];
-            $valor = str_replace(",", ".", $_POST['valor']);
-            $descricao = $_POST['descricao'];
+<?php
+$abs_path = explode("/",str_replace("\\", "/",__DIR__));
+$max = sizeof($abs_path);
+$max--;
+$include = "";
+for($i = 0; $i < $max; $i++)
+{
+$include .= $abs_path[$i] . "/";
+}
+include($include . "conexao.php");
 
 
-            $sql = "INSERT INTO registros_financeiros (data_registro, valor, descricao) VALUES ('$data_registro', $valor, '$descricao')";
-                mysqli_query($mysqli, $sql);
-       
-            echo "Valor registrado com sucesso!";
-        ?>
+$data_registro = $_GET['data'];
+$valor = str_replace(",", ".", $_GET['valor']);
+$descricao = $_GET['desc'];
 
-        <p><a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>
+
+$sql = "INSERT INTO registros_financeiros (data_registro, valor, descricao) VALUES ('$data_registro', $valor, '$descricao')";
+    mysqli_query($mysqli, $sql);
+
+echo json_encode(array("status"=>"sucesso"));

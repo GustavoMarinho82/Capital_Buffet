@@ -94,10 +94,21 @@ function set(){
 
 function articleCreate(content){
     var response = "";
+    var quantity = 0;
+    var checked = "";
+    var gray = "";
     Object.keys(content).forEach(function(key, index){
         if (typeof(content[index].nome) == "undefined" || content[index].estoque == "0" ){
         
         }else{
+            quantity = 0
+            checked = ""
+            gray = "gray"
+            if(communication.hasOwnProperty(content[index].id)){
+                quantity = communication[content[index].id]
+                checked = "checked"
+                gray = ""
+            }
         response += `
         <article class="card" data-Type="${content[index].categoria}">
 			<div class="card-header">
@@ -106,7 +117,7 @@ function articleCreate(content){
 					<h3 id="_${content[index].id}-name" data-id="${content[index].id}">${content[index].nome}</h3>
 				</div>
 				<label class="toggle">
-					<input type="checkbox" id="c_${content[index].id}" data-Toggle="_${content[index].id}">
+					<input type="checkbox" id="c_${content[index].id}" data-Toggle="_${content[index].id}" ${checked}>
 					<span></span>
 				</label>
 			</div>
@@ -115,9 +126,9 @@ function articleCreate(content){
 			</div>
 			<div class="card-footer">
 				<a href="#">Quantity:</a><hr>
-				<span id="_${content[index].id}" class="material-symbols-outlined minus _${content[index].id} gray">do_not_disturb_on</span>
-				<number data-limit="${content[index].estoque}" id="n_${content[index].id}">0</number>
-				<span id="_${content[index].id}" class="material-symbols-outlined plus _${content[index].id} gray">add_circle</span>
+				<span id="_${content[index].id}" class="material-symbols-outlined minus _${content[index].id} ${gray}">do_not_disturb_on</span>
+				<number data-limit="${content[index].estoque}" id="n_${content[index].id}">${quantity}</number>
+				<span id="_${content[index].id}" class="material-symbols-outlined plus _${content[index].id} ${gray}">add_circle</span>
 			</div>
 			<div id ="_${content[index].id}price" data-price="${content[index].preco}" class="price">Price: R$ ${content[index].preco}</div>
 	    </article>`;
@@ -351,4 +362,36 @@ function login(email, senha){
     }).then(e=>{
         console.log(e.data)
     }).catch();
+}
+
+function criarRegistro(data, valor, desc){
+    axios.get("../../PHP/Registros_Financeiros/cadastrarRegistro.php", {
+        params:{
+            data: data,
+            valor: valor,
+            desc: desc
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function listarRegistro(querry){
+    axios.get("../../PHP/Registros_Financeiros/listarRegistros.php", {
+        params:{
+            querry: querry
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function delRegistro(id){
+    axios.get("../../PHP/Registros_Financeiros/deletarRegistro.php", {
+        params:{
+            id:id
+        }
+    }).then( e => {
+        console.log(e.data)
+    })
 }

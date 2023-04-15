@@ -1,12 +1,14 @@
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Alterar Registro</TITLE>
-    </HEAD>
-
-    <BODY>
-        <?php
-            include('../conexao.php');
+<?php
+            $abs_path = explode("/",str_replace("\\", "/",__DIR__));
+            $max = sizeof($abs_path);
+            $max--;
+            $include = "";
+            for($i = 0; $i < $max; $i++)
+            {
+            $include .= $abs_path[$i] . "/";
+            }
+            include($include . "conexao.php");
+            
 
             $id_registro = $_POST['id_registro'];
             $data_registro = $_POST['data_registro'];
