@@ -164,14 +164,15 @@ function listarComida(nome, categoria){
     ).then( e => {
         document.querySelector(".card-grid").innerHTML = articleCreate(e.data);
         set();
+        console.log(e.data)
     }).catch();
 }
 listarComida();
 document.querySelector("#search").addEventListener("keydown", function  (){
-    listarComida(this.value)
+    listarComida(this.value, "")
 });
 document.querySelector("#search").addEventListener("keyup", function  (){
-    listarComida(this.value)
+    listarComida(this.value, "")
 });
 function delComida(id){
     axios.get("../..//PHP/Comidas/deletarComida.php", { params:{
@@ -384,6 +385,19 @@ function listarRegistro(querry){
     }).then( e => {
         console.log(e.data)
     }).catch();
+}
+
+function modRegistro(id, data, valor, desc){
+    axios.get("../../PHP/Registros_Financeiros/alterarRegistro.php", {
+        params:{
+            id: id,
+            valor: valor,
+            data: data,
+            desc: desc
+        }
+    }).then(e => {
+        console.log(e)
+    })
 }
 
 function delRegistro(id){
