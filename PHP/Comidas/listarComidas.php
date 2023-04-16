@@ -10,30 +10,23 @@ $include .= $abs_path[$i] . "/";
 include($include . "conexao.php");
 
 $count = 0;
-if(isset($_GET)){
-    $sql = 'SELECT * FROM comidas';
-    if(isset($_GET["nome"]) && $_GET["nome"] != ""){
-        $sql .= ' WHERE nome_comida LIKE "%'.$_GET["nome"].'%"';
-        $count++;
+if(isset($_GET["querry"])){
+    if($_GET["querry"] != ""){
+    $querry = $_GET["querry"] ;
+    $sql = "SELECT * FROM comidas WHERE
+        nome_comida LIKE '%$querry%' OR
+        preco_comida LIKE '%$querry%' OR
+        estoque_comida LIKE '%$querry%' OR
+        tipo LIKE '%$querry%'
+    ";
+    } if($_GET["querry"] != "" && $_GET["categoria"] != ""){
+        $cat = $_GET["categoria"];
+        $sql .= " OR categoria LIKE '%$cat%'";
+    } else if ($_GET["categoria"] != ""){
+        $cat = $_GET["categoria"];
+        $sql = "SELECT * FROM comidas WHERE categoria LIKE '%$cat%'";
     }
-    if(isset($_GET["categoria"]) && $_GET["categoria"] != ""){
-        if($count > 0){
-            $sql .= "OR ";
-        }else{
-            $sql .= " WHERE ";
-            $count++;
-        }
-         $sql .= ' categoria LIKE "%'.$_GET["categoria"].'%"';
-    }
-    if(isset($_GET["tipo"]) && $_GET["tipo"] != ""){
-        if($count > 0){
-            $sql .= "OR ";
-        }else{
-            $sql .= " WHERE ";
-            $count++;
-        }
-         $sql .= ' tipo LIKE "%'.$_GET["tipo"].'%"';
-    }
+
     if(isset($_GET["ordem"])){
         if($_GET["ordem"] == "+"){
             $sql .= " ORDER BY preco_comida DESC";
@@ -51,7 +44,8 @@ $x = 0;
             $return[$x] = array(
                 "id" => $linha ['id_comida'],
                 "nome" => $linha["nome_comida"],
-                "preco" => $linha['preco_comida'], "estoque" => $linha ['estoque_comida'],
+                "preco" => $linha['preco_comida'],
+                "estoque" => $linha ['estoque_comida'],
                 "tipo" => $linha['tipo'],
                 "categoria" => $linha [ 'categoria'],
                 "descricao" => $linha ['descricao_comida'],

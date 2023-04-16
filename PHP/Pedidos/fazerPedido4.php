@@ -1,23 +1,32 @@
 <?php
-    include('../conexao.php');
-            
-    session_start();
-        $tipo = $_SESSION['tipo_evento'];
-        $orcamento = $_SESSION['custo_total'];
-        $inicio_evento = $_SESSION['inicio_evento'];
-        $fim_evento = $_SESSION['fim_evento'];
-        $qtd_convidados = $_SESSION['qtd_convidados'];
-        $endereco = $_SESSION['endereco'];
-        $observacoes = $_SESSION['observacoes'];
+$abs_path = explode("/",str_replace("\\", "/",__DIR__));
+$max = sizeof($abs_path);
+$max--;
+$include = "";
+for($i = 0; $i < $max; $i++)
+{
+$include .= $abs_path[$i] . "/";
+}
+include($include . "conexao.php");
 
-        $qtd_comidas = $_SESSION['qtd_comidas'];
-        $qtd_utilitarios = $_SESSION['qtd_utilitarios'];
+    $allData = json_decode($_GET["dados"]);
+    
+        $tipo = $allData['tipo_evento'];
+        $orcamento = $allData['custo_total'];
+        $inicio_evento = $allData['inicio_evento'];
+        $fim_evento = $allData['fim_evento'];
+        $qtd_convidados = $allData['qtd_convidados'];
+        $endereco = $allData['endereco'];
+        $observacoes = $allData['observacoes'];
 
-        $cargos = $_SESSION['cargos'];
-        $qtd_cargos = $_SESSION['qtd_cargos'];
+        $qtd_comidas = $allData['qtd_comidas'];
+        $qtd_utilitarios = $allData['qtd_utilitarios'];
+
+        $cargos = $allData['cargos'];
+        $qtd_cargos = $allData['qtd_cargos'];
 
     //Id do usuario setado como 1 só para testar
-    $usuario_id = 1;
+    $usuario_id = $allData["id_usuario"];
 
 
     //PEDIDOS
@@ -69,17 +78,5 @@
                         
             mysqli_stmt_execute($stmt);
     }
-?>
 
-<HTML>
-    <HEAD>
-        <meta charset="utf-8">
-        <TITLE>Finalizar Pedido</TITLE>
-    </HEAD>
-
-    <BODY>
-        Pedido registrado com sucesso! <br>
-        
-        <p><a href="../index.html">Voltar</a>
-    </BODY>
-</HTML>
+echo json_encode(array("status"=>"sucesso"));

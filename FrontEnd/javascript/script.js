@@ -1,7 +1,6 @@
 var order = "0";
 let type = "";
 var communication = {};
-communication.price = 0
 
 document.querySelectorAll('a').forEach(one => {
     if(one.getAttribute("data-Type")){
@@ -44,11 +43,9 @@ function set(){
                 var number = document.getElementById("n"+this.id);
                 var counter = parseInt(number.innerHTML);
                 var name = document.getElementById(this.id+"-name").getAttribute("data-id");
-                var price = parseFloat(document.getElementById(this.id+"price").getAttribute("data-price"))
                 if( document.getElementById("c"+this.id).checked && parseInt(number.getAttribute("data-limit")) > counter){
                     number.innerHTML = counter + 1;
                     communication[name] = counter + 1;
-                    communication.price += price
                     console.log(JSON.stringify(communication))
                     console.log(JSON.parse(JSON.stringify(communication)))
                 }
@@ -57,12 +54,10 @@ function set(){
             MP.addEventListener("click", function (){
                 var number = document.getElementById("n"+this.id);
                 var counter = parseInt(number.innerHTML);
-                var price = parseFloat(document.getElementById(this.id+"price").getAttribute("data-price"))
                 var name = document.getElementById(this.id+"-name").getAttribute("data-id");
                 if(counter >= 1 && document.getElementById("c"+this.id).checked ){
                     number.innerHTML = counter - 1;
                     communication[name] = counter - 1;
-                    communication.price -= price
                     console.log(JSON.stringify(communication))
                     console.log(JSON.parse(JSON.stringify(communication)))
                 }
@@ -408,4 +403,11 @@ function delRegistro(id){
     }).then( e => {
         console.log(e.data)
     })
+}
+
+function listarCargos(){
+    axios.get("../../PHP/Pedidos/listarCargos.php", {params:{}})
+        .then(e => {
+            console.log(e.data);
+        })
 }

@@ -7,3 +7,4 @@
 
 
 	$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
+	global $mysqli;

@@ -10,48 +10,18 @@ $include .= $abs_path[$i] . "/";
 include($include . "conexao.php");
 
 $count = 0;
-if(isset($_GET)){
-    $sql = 'SELECT * FROM funcionarios';
-    if(isset($_GET["nome"]) && $_GET["nome"] != ""){
-        $sql .= ' WHERE nome_funcionario LIKE "%'.$_GET["nome"].'%"';
-        $count++;
-    }
-    if(isset($_GET["cpf"]) && $_GET["cpf"] != ""){
-        if($count > 0){
-            $sql .= "OR ";
-        }else{
-            $sql .= " WHERE ";
-            $count++;
-        }
-         $sql .= ' cpf_funcionario LIKE "%'.$_GET["cpf"].'%"';
-    }
-    if(isset($_GET["cargo"]) && $_GET["cargo"] != ""){
-        if($count > 0){
-            $sql .= "OR ";
-        }else{
-            $sql .= " WHERE ";
-            $count++;
-        }
-         $sql .= ' cargo LIKE "%'.$_GET["cargo"].'%"';
-    }
-    if(isset($_GET["email"]) && $_GET["email"] != ""){
-        if($count > 0){
-            $sql .= "OR ";
-        }else{
-            $sql .= " WHERE ";
-            $count++;
-        }
-         $sql .= ' email_funcionario LIKE "%'.$_GET["email"].'%"';
-    }
-    if(isset($_GET["telefone"]) && $_GET["telefone"] != ""){
-        if($count > 0){
-            $sql .= "OR ";
-        }else{
-            $sql .= " WHERE ";
-            $count++;
-        }
-         $sql .= ' telefone_funcionario LIKE "%'.$_GET["telefone"].'%"';
-    }
+if(isset($_GET) && $_GET["querry"] != ""){
+
+    $querry = $_GET["querry"];
+    $sql = "SELECT * FROM funcionarios WHERE
+        nome_funcionario LIKE '%$querry%'OR
+        cpf_funcionario LIKE '%$querry%'OR
+        email_funcionario LIKE '%$querry%'OR
+        telefone_funcionario LIKE '%$querry%'OR
+        salario LIKE '%$querry%'OR
+        cargo LIKE '%$querry%'
+    ";
+   
     if(isset($_GET["ordem"])){
         if($_GET["ordem"] == "+"){
             $sql .= " ORDER BY salario DESC";
