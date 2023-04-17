@@ -9,24 +9,21 @@ $include .= $abs_path[$i] . "/";
 }
 include($include . "conexao.php");
 
-    $allData = json_decode($_GET["dados"]);
-    
-        $tipo = $allData['tipo_evento'];
-        $orcamento = $allData['custo_total'];
-        $inicio_evento = $allData['inicio_evento'];
-        $fim_evento = $allData['fim_evento'];
-        $qtd_convidados = $allData['qtd_convidados'];
-        $endereco = $allData['endereco'];
-        $observacoes = $allData['observacoes'];
+    $tipo = $_GET['tipo_evento'];
+    $orcamento = $_GET['custo_total'];
+    $inicio_evento = $_GET['inicio_evento'];
+    $fim_evento = $_GET['fim_evento'];
+    $qtd_convidados = $_GET['qtd_convidados'];
+    $endereco = $_GET['endereco'];
+    $observacoes = $_GET['observacoes'];
 
-        $qtd_comidas = $allData['qtd_comidas'];
-        $qtd_utilitarios = $allData['qtd_utilitarios'];
+    $qtd_comidas = $_GET['qtd_comidas'];
+    $qtd_utilitarios = $_GET['qtd_utilitarios'];
 
-        $cargos = $allData['cargos'];
-        $qtd_cargos = $allData['qtd_cargos'];
+    $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+    $qtd_cargos = $_GET['qtd_cargos'];
 
-    //Id do usuario setado como 1 só para testar
-    $usuario_id = $allData["id_usuario"];
+    $usuario_id = $_GET["id_usuario"];
 
 
     //PEDIDOS

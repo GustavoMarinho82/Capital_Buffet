@@ -162,6 +162,7 @@ function listarComida(nome, categoria){
         console.log(e.data)
     }).catch();
 }
+
 listarComida();
 document.querySelector("#search").addEventListener("keydown", function  (){
     listarComida(this.value, "")
@@ -406,8 +407,80 @@ function delRegistro(id){
 }
 
 function listarCargos(){
-    axios.get("../../PHP/Pedidos/listarCargos.php", {params:{}})
+    axios.get("../../PHP/Funcionarios/listarCargos.php", {params:{}})
         .then(e => {
             console.log(e.data);
         })
+}
+
+function listarPedidos(id){
+    axios.get("../../PHP/Pedidos/listarPedidos.php", {
+        params:{
+            id: id
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function listarPedidos2(id){
+    axios.get("../../PHP/Pedidos/listarPedidos2.php", {
+        params:{
+            id: id
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function modPedido(id, obs){
+    axios.get("../../PHP/Pedidos/alterarPedido.php", {
+        params:{
+            id: id,
+            obs: obs
+        }
+    }).then( e => [
+        console.log(e.data)
+    ]).catch();
+}
+
+function atualizarStatusPedido(id, status){
+    axios.get("../../PHP/Pedidos/atualizarStatus.php", {
+        params:{
+            id: id,
+            status: status,
+        }
+    }).then( e => {
+        console.log(e.data)
+    })
+}
+
+function delPedido(id){
+    axios.get("../../PHP/Pedidos/deletarPedido.php", {
+        params:{
+            id: id
+        }
+    }).then( e => {
+        console.log(e.data)
+    })
+}
+
+function criarPedido(tipo, orcamento, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, usuario_id){
+    axios.get("../../PHP/Pedidos/criarPedido.php", {
+        params:{
+            tipo: tipo, 
+            orcamento: orcamento, 
+            inicio: inicio, 
+            fim: fim, 
+            qtd_convidados: qtd_convidados, 
+            endereco: endereco, 
+            observacoes: observacoes, 
+            qtd_comidas: qtd_comidas, 
+            qtd_utilitarios: qtd_utilitarios, 
+            qtd_cargos: qtd_cargos, 
+            usuario_id: usuario_id
+        }
+    }).then( e => {
+        console.log(e.data)
+    })
 }
