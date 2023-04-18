@@ -10,8 +10,8 @@ $include .= $abs_path[$i] . "/";
 include($include . "conexao.php");
 
 $count = 0;
-if(isset($_GET["querry"])){
-    if($_GET["querry"] != ""){
+if( (isset($_GET["querry"]) && $_GET["querry"] != "" ) || ( isset($_GET["categoria"]) && $_GET["categoria"] != "")){
+    if(isset($_GET["querry"]) && $_GET["querry"] != ""){
     $querry = $_GET["querry"] ;
     $sql = "SELECT * FROM comidas WHERE
         nome_comida LIKE '%$querry%' OR
