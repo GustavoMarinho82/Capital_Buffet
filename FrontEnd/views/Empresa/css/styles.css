@@ -1,0 +1,93 @@
+.offcanvas{
+    background-color: aqua;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.left{
+    position: absolute;
+    left: 10%;
+}
+
+.right{
+    position: absolute;
+    right: 10%;
+}
+
+.offcanvas article{
+    width: 374px;
+    height: 386px;
+}
+
+.offcanvas .offcanvas-body article .card-footer{
+        display: flex;
+        justify-content: flex-start;
+}
+
+.form{
+    background-color: var(--c-background-primary);
+    padding: 1rem 1.25rem;
+    border-radius: 15px;
+    width: min-content;
+    
+}
+
+.create{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 374px;
+    border: 3px;
+    height: 40px;
+    background-color: lightgray;
+    border-top-right-radius: 51px;
+    border-bottom-right-radius: 51px;
+    border: 5px;
+    border-color: black;
+}
+
+.create p{
+    font-weight: 600;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-self: center;
+    margin-right: 4px;
+    position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.create input{
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 51px;
+    border-bottom-right-radius: 51px;
+}
+
+.alterar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+
+}
+
+.alterar *{
+    margin: 2px
+}
+
+.btn-close{
+    color: white;
+    background-color: var(--c-background-quaternary);
+}
+
+#criar{
+    display: none;
+}

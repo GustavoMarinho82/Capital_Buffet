@@ -8,6 +8,8 @@
             $include .= $abs_path[$i] . "/";
             }
             include($include . "conexao.php");
+include($include . "CORS.php");
+cors();
             
 
             $id_comida = $_GET['id'];
@@ -26,7 +28,7 @@
             }
 
 
-            $sql = "SELECT * FROM comidas WHERE id_comida=$id_comida";
+            $sql = "SELECT * FROM comidas WHERE id_comida='$id_comida'";
                 $consulta = mysqli_query($mysqli, $sql);
 
             if (mysqli_num_rows($consulta) == 0) {

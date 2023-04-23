@@ -8,6 +8,8 @@ for($i = 0; $i < $max; $i++){
     $include .= $abs_path[$i] . "/";
 }
 include($include . "conexao.php");
+include($include . "CORS.php");
+cors();
 
 $id_pedido = $_GET['id'];
 $observacoes = $_GET['obs'];

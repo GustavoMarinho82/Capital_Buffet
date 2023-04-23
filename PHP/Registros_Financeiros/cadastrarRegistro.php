@@ -8,6 +8,8 @@ for($i = 0; $i < $max; $i++)
 $include .= $abs_path[$i] . "/";
 }
 include($include . "conexao.php");
+include($include . "CORS.php");
+cors();
 
 
 $data_registro = $_GET['data'];

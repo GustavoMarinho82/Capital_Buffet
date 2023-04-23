@@ -8,6 +8,8 @@
             $include .= $abs_path[$i] . "/";
             }
             include($include . "conexao.php");
+include($include . "CORS.php");
+cors();
             
 
             $nome = $_GET['nome'];

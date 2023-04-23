@@ -8,21 +8,25 @@ for($i = 0; $i < $max; $i++)
 $include .= $abs_path[$i] . "/";
 }
 include($include . "conexao.php");
-
+include($include . "CORS.php");
+cors();
 $count = 0;
-if( (isset($_GET["querry"]) && $_GET["querry"] != "" ) || ( isset($_GET["categoria"]) && $_GET["categoria"] != "")){
+
+if(isset($_GET["id"]) && $_GET["id"] != "" ){
+
+    $id= $_GET["id"];
+    $sql="SELECT * FROM comidas WHERE id_comida = '$id'";
+
+}elseif( (isset($_GET["querry"]) && $_GET["querry"] != "" ) || ( isset($_GET["categoria"]) && $_GET["categoria"] != "")){
     if(isset($_GET["querry"]) && $_GET["querry"] != ""){
     $querry = $_GET["querry"] ;
     $sql = "SELECT * FROM comidas WHERE
-        nome_comida LIKE '%$querry%' OR
-        preco_comida LIKE '%$querry%' OR
-        estoque_comida LIKE '%$querry%' OR
-        tipo LIKE '%$querry%'
+        nome_comida LIKE '%$querry%'
     ";
-    } if($_GET["querry"] != "" && $_GET["categoria"] != ""){
+    } if($_GET["querry"] != "" && isset($_GET["categoria"]) && $_GET["categoria"] != ""){
         $cat = $_GET["categoria"];
         $sql .= " OR categoria LIKE '%$cat%'";
-    } else if ($_GET["categoria"] != ""){
+    } else if (isset($_GET["categoria"]) && $_GET["categoria"] != ""){
         $cat = $_GET["categoria"];
         $sql = "SELECT * FROM comidas WHERE categoria LIKE '%$cat%'";
     }
@@ -38,7 +42,7 @@ if( (isset($_GET["querry"]) && $_GET["querry"] != "" ) || ( isset($_GET["categor
     $sql = 'SELECT * FROM comidas';
 }
 $consulta = mysqli_query($mysqli, $sql);
-$reuturn = array();
+$return = array();
 $x = 0;
     while ($linha  = mysqli_fetch_array($consulta)) {
             $return[$x] = array(

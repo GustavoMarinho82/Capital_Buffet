@@ -9,6 +9,8 @@ $include .= $abs_path[$i] . "/";
 }
 
 include($include . "conexao.php");
+include($include . "CORS.php");
+cors();
 
 $id_registro = $_GET['id'];
 $data_registro = $_GET['data'];

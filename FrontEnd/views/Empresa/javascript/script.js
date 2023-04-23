@@ -1,413 +1,138 @@
-var order = "0";
-let type = "";
-var communication = {};
-
-document.querySelectorAll('a').forEach(one => {
-    if(one.getAttribute("data-Type")){
-
-        one.addEventListener('click', function (){
-
-            const foodTypes = document.querySelectorAll('a');
-            foodTypes.forEach( type =>{type.classList.remove("active");});
-            this.classList.add("active");
-            type = this.getAttribute("data-Type");
-            if(type == "0"){
-                type = "";
-            }
-            listarComida();
-            //console.log(type+ order );
-        });
-    }
-});
-
-document.querySelectorAll("l").forEach( one => {
-    one.addEventListener('click', function (){
-
-        document.querySelectorAll('l').forEach( toggle =>{
-                toggle.classList.remove("active");
-        });
-
-        this.classList.toggle("active");
-        order = this.getAttribute("data-order");
-        //console.log(type+order);
-        listarComida();
-
-    });
-})
-function set(){
-    var action = document.querySelectorAll(".material-symbols-outlined");
-    action.forEach(MP => {
-
-        if(MP.classList.contains("plus")){
-            MP.addEventListener("click", function (){
-                var number = document.getElementById("n"+this.id);
-                var counter = parseInt(number.innerHTML);
-                var name = document.getElementById(this.id+"-name").getAttribute("data-id");
-                if( document.getElementById("c"+this.id).checked && parseInt(number.getAttribute("data-limit")) > counter){
-                    number.innerHTML = counter + 1;
-                    communication[name] = counter + 1;
-                    console.log(JSON.stringify(communication))
-                    console.log(JSON.parse(JSON.stringify(communication)))
-                }
-            });
-        } else if(MP.classList.contains("minus")){
-            MP.addEventListener("click", function (){
-                var number = document.getElementById("n"+this.id);
-                var counter = parseInt(number.innerHTML);
-                var name = document.getElementById(this.id+"-name").getAttribute("data-id");
-                if(counter >= 1 && document.getElementById("c"+this.id).checked ){
-                    number.innerHTML = counter - 1;
-                    communication[name] = counter - 1;
-                    console.log(JSON.stringify(communication))
-                    console.log(JSON.parse(JSON.stringify(communication)))
-                }
-            });
-        }
-
-    });
-
-
-    var toggle = document.querySelectorAll("input");
-    toggle.forEach( toggler => {
-        if(toggler.getAttribute("data-Toggle")){
-            toggler.addEventListener("click", function (){
-                if(this.checked){
-                document.querySelectorAll("."+this.getAttribute("data-Toggle")).forEach( act => { act.classList.remove("gray")} )
-            } else {
-                document.querySelectorAll("."+this.getAttribute("data-Toggle")).forEach( act => { act.classList.add("gray")} )
-                document.getElementById("n"+this.getAttribute("data-Toggle")).innerHTML = "0";
-                var name = document.getElementById(this.getAttribute("data-Toggle")+"-name").getAttribute("data-id")
-                communication[name] = 0;
-                console.log(JSON.stringify(communication))
-                console.log(JSON.parse(JSON.stringify(communication)))
-            }
-            })
-        }
-    });
-}
-
-
-function articleCreate(content){
-    var response = "";
-    var quantity = 0;
-    var checked = "";
-    var gray = "";
-    Object.keys(content).forEach(function(key, index){
-        if (typeof(content[index].nome) == "undefined" || content[index].estoque == "0" ){
-        
-        }else{
-            quantity = 0
-            checked = ""
-            gray = "gray"
-            if(communication.hasOwnProperty(content[index].id)){
-                quantity = communication[content[index].id]
-                checked = "checked"
-                gray = ""
-            }
-        response += `
-        <article class="card" data-Type="${content[index].categoria}">
-			<div class="card-header">
-				<div>
-					<span></span>
-					<h3 id="_${content[index].id}-name" data-id="${content[index].id}">${content[index].nome}</h3>
-				</div>
-				<label class="toggle">
-					<input type="checkbox" id="c_${content[index].id}" data-Toggle="_${content[index].id}" ${checked}>
-					<span></span>
-				</label>
-			</div>
-			<div class="card-body">
-        <img src="${content[index].img || "../imagens/logo.png"}"/>
-			</div>
-			<div class="card-footer">
-				<a href="#">Quantity:</a><hr>
-				<span id="_${content[index].id}" class="material-symbols-outlined minus _${content[index].id} ${gray}">do_not_disturb_on</span>
-				<number data-limit="${content[index].estoque}" id="n_${content[index].id}">${quantity}</number>
-				<span id="_${content[index].id}" class="material-symbols-outlined plus _${content[index].id} ${gray}">add_circle</span>
-			</div>
-			<div id ="_${content[index].id}price" data-price="${content[index].preco}" class="price">Price: R$ ${content[index].preco}</div>
-	    </article>`;
-    }
-    });
-    return response;
-}
-
-
-
-function criarComida(nome, preco, estoque, tipo, categoria, desc, imagem){
-    axios.get("../../..//PHP/Comidas/cadastrarComida.php", { 
-        params:{
-        nome:nome,
-        preco: preco,
-        estoque: estoque,
-        tipo: tipo,
-        categoria: categoria,
-        desc: desc,
-        imagem: imagem
-    }}).then( e => {
-        console.log(e)
-    }).catch();
-}
-
-function listarComida(nome, categoria){
-    axios.get("../../..//PHP/Comidas/listarComidas.php" ,{params:{
-        querry: nome,
-        ordem: order,
-        tipo: categoria,
-        categoria: type
-    }}
-    ).then( e => {
-        document.querySelector(".card-grid").innerHTML = articleCreate(e.data);
-        set();
-        console.log(e.data)
-    }).catch();
-}
 listarComida();
-document.querySelector("#search").addEventListener("keydown", function  (){
-    listarComida(this.value, "")
+
+document.querySelector("#search").addEventListener("input", function  (){
+    listarComida("",this.value)
 });
-document.querySelector("#search").addEventListener("keyup", function  (){
-    listarComida(this.value, "")
-});
-function delComida(id){
-    axios.get("../../..//PHP/Comidas/deletarComida.php", { params:{
-            id:id
+
+document.querySelector("#create_nome").addEventListener("input", function (){
+    document.querySelector("#create-name").innerHTML = this.value;
+})
+
+document.querySelector("#create_image").addEventListener("input", function (){
+    if(this.value != ""){
+        document.querySelector("#create-img").src = this.value;
+    } else {
+        document.querySelector("#create-img").src = "../../imagens/logo.png";
+    }
+})
+
+document.querySelector("#create_estoque").addEventListener("input", function (){
+    document.querySelector("#create-estoque").innerHTML = this.value;
+})
+
+document.querySelector("#create_preco").addEventListener("input", function (){
+    document.querySelector("#create-preco").innerHTML = this.value;
+})
+
+document.querySelector("#create_desc").addEventListener("input", function (){
+    document.querySelector("#create-desc").innerHTML = this.value;
+})
+
+document.querySelectorAll(".show").forEach( canvas => {
+    if(canvas.classList.contains("offcanvas-left")){
+        canvas.style.display = "none";
+    } else {
+    canvas.classList.remove("show");
+    }
+})
+
+
+function alterar(id){
+    document.getElementById("create-name").innerHTML = document.getElementById("create_nome").value = document.getElementById(`_${id}-name`).innerHTML;
+    document.getElementById("create-img").src = document.getElementById("create_image").value = document.getElementById(`_${id}-img`).src;
+    document.getElementById("create-estoque").innerHTML = document.getElementById("create_estoque").value = document.getElementById(`_${id}-estoque`).innerHTML;
+    document.getElementById("create-preco").innerHTML = document.getElementById("create_preco").value = document.getElementById(`_${id}-preco`).innerHTML;
+    document.getElementById("create-desc").innerHTML = document.getElementById("create_desc").value = document.getElementById(`_${id}-desc`).innerHTML;
+    document.getElementById("create_categoria").value = document.getElementById(`${id}`).getAttribute("data-categoria");
+    document.getElementById("create_tipo").value = document.getElementById(`${id}`).getAttribute("data-tipo");
+
+    document.getElementById("deletar").style.display = "block"
+    document.getElementById("salvar").style.display = "block"
+    document.getElementById("criar").style.display = "none"
+
+    document.querySelectorAll(".offcanvas").forEach( canvas => {
+        if(canvas.classList.contains("offcanvas-left")){
+            canvas.style.display = "block";
+            canvas.style.visibility = "visible";
+            canvas.setAttribute("aria-hidden", "false")
         }
-    }).then(e => {
-        console.log(e)
-    }).catch()
+            canvas.classList.add("show");
+    });
+
+    document.querySelector("#salvar").addEventListener("click", function(){
+        concludeAlter(id)
+    });
+
+    document.querySelector("#deletar").addEventListener("click", function(){
+        del(id)
+    });
 }
 
-function modComida(id, nome, preco, estoque, tipo, categoria, desc, imagem){
-    axios.get("../../..//PHP/Comidas/alterarComida.php", { 
-        params:{
-        id: id,
-        nome: nome,
-        preco: preco,
-        estoque: estoque,
-        tipo: tipo,
-        categoria: categoria,
-        desc: desc,
-        imagem: imagem
-    }}).then( e => {
-        console.log(e)
-    }).catch();
-}
+function del(id){
+    var e = delComida(id);
 
-function criarUtilitario( nome, preco, estoque, desc, imagem){
-    axios.get("../../..//PHP/Utilitarios/cadastrarUtilitario.php", { 
-        params:{
-            nome: nome,
-            preco: preco,
-            estoque: estoque,
-            desc: desc,
-            imagem: imagem
-        }}).then( e => {
-            console.log(e.data)
-        }). catch();
-}
-
-function listarUtilitario(nome, ordem){
-    axios.get("../../..//PHP/Utilitarios/listarUtilitarios.php" ,{params:{
-        nome: nome || "",
-        ordem: ordem || "",
-    }}
-    ).then( e => {
-        console.log(e.data)
-    }).catch();
-}
-
-function modUtilitario(id, nome, preco, estoque, desc, imagem){
- axios.get("../../../../PHP/Utilitarios/alterarUtilitario.php", {
-    params:{
-        id: id,
-        nome: nome,
-        preco: preco,
-        estoque: estoque,
-        desc: desc,
-        imagem: imagem
-    }}).then( e =>{
-        console.log(e.data)
-    }).catch();
-}
-
-function delUtilitario(id){
-    axios.get("../../../../PHP/Utilitarios/deletarUtilitario.php", {
-        params:{
-            id: id
+    e.then( o => {
+        if ( o.data == "Comida deletada com sucesso!"){
+            listarComida();
+            document.querySelector(".btn-close").click();
+            notifications(o.data)
+        } else {
+            notifications(o.data, "Message--orange", "yes")
+            console.log(o.data)
         }
-    }).then( e =>{
-        console.log(e.data)
-    }).catch();
+    })
 }
 
-function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
-    axios.get("../../../../PHP/Funcionarios/cadastrarFuncionario.php", {
-        params:{
-            nome: nome,
-            cpf: cpf,
-            cargo: cargo,
-            salario: salario,
-            email: email,
-            telefone: telefone
-        }
-    } ).then(e => {
-        console.log(e.data)
-    }).catch();
-}
+ function concludeAlter(id){
+    var nome =document.getElementById("create-name").innerHTML;
+    var img =document.getElementById("create-img").src;
+    var estoque = document.getElementById("create-estoque").innerHTML;
+    var preco = document.getElementById("create-preco").innerHTML;
+    var desc = document.getElementById("create-desc").innerHTML;
+    var tipo = document.getElementById("create_tipo").value;
+    var categoria = document.getElementById("create_categoria").value;
+    //console.log(id)
 
-function modFuncionario(nome, cpf, cargo, salario, email, telefone){
-    axios.get("../../../../PHP/Funcionarios/alterarFuncionario.php", {
-        params: {
-            nome: nome,
-            cpf: cpf,
-            cargo: cargo,
-            salario: salario,
-            email: email,
-            telefone: telefone
-        }
-    }).then( e => {
-        console.log(e,data)
-        console.log("status: " + e.data.status)
-            if (e.data.cause){
-                console.log("causa: " + e.data.causa)
+    var e = modComida(id, nome, preco, estoque, tipo, categoria, desc, img);
+
+    e.then( o => {
+            if ( o.data == "Comida alterada com sucesso!"){
+                listarComida();
+                document.querySelector(".btn-close").click();
+                notifications(o.data)
+            } else {
+                notifications(o.data, "Message--orange", "yes")
+                console.log(o.data)
             }
-    }).catch();
-}
-
-function delFuncionario(cpf){
-    axios.get("../../../../PHP/Funcionarios/deletarFuncionario.php", {
-        params:{
-            cpf: cpf
-        }}).then( e =>{
-            console.log("status: "+e.data.status)
-            if (e.data.status == "falha"){
-                console.log("causa: "+e.data.causa)
-            }
-        }).catch();
-}
-
-function criarUsuario(nome, senha, cpf, cnpj, cep,  email, telefone){
-    axios.get("../../../../PHP/Usuarios/criarConta.php", {
-        params:{
-            nome: nome,
-            senha:senha,
-            cpf:cpf,
-            cnpj:cnpj,
-            cep:cep,
-            email:email,
-            telefone:telefone
-        }
-    }).then(e=>{
-        console.log(e.data.status)
-        if(e.data.status == "falha"){
-            console.log(`causa: ${e.data.causa}`)
-        }
-    }).catch();
-}
-
-function listarUsuario(query){
-    axios.get("../../../../PHP/Usuarios/listarContas.php", {
-        params:{
-            query:query
-        }
-    }).then(e=>{
-        console.log(e.data)
-    }).catch();
-}
-
-function modUsuario(id, nome, senha, cep,  email, telefone){
-    axios.get("../../../../PHP/Usuarios/criarConta.php", {
-        params:{
-            id:id,
-            nome: nome,
-            senha:senha,
-            cpf:cpf,
-            cnpj:cnpj,
-            cep:cep,
-            email:email,
-            telefone:telefone
-        }
-    }).then(e=>{
-        console.log(e.data.status)
-        if(e.data.status == "falha"){
-            console.log(`causa: ${e.data.causa}`)
-        }
-    }).catch();
-}
-
-function delUsuario(id){
-    axios.get("../../../../PHP/Usuarios/deletarConta.php", {
-        params:{
-            id: id
-        }
-    }).then( e => {
-        console.log("status: "+e.data.status);
-        if(e.data.status == "falha"){
-            console.log("causa: "+ e.data.causa)
-        }
-    })
-}
-
-function login(email, senha){
-    axios.get("../../../../PHP/Usuarios/login.php", {
-        params:{
-            email: email,
-            senha: senha
-        }
-    }).then(e=>{
-        console.log(e.data)
-    }).catch();
-}
-
-function criarRegistro(data, valor, desc){
-    axios.get("../../../../PHP/Registros_Financeiros/cadastrarRegistro.php", {
-        params:{
-            data: data,
-            valor: valor,
-            desc: desc
-        }
-    }).then( e => {
-        console.log(e.data)
-    }).catch();
-}
-
-function listarRegistro(querry){
-    axios.get("../../../../PHP/Registros_Financeiros/listarRegistros.php", {
-        params:{
-            querry: querry
-        }
-    }).then( e => {
-        console.log(e.data)
-    }).catch();
-}
-
-function modRegistro(id, data, valor, desc){
-    axios.get("../../../../PHP/Registros_Financeiros/alterarRegistro.php", {
-        params:{
-            id: id,
-            valor: valor,
-            data: data,
-            desc: desc
-        }
-    }).then(e => {
-        console.log(e)
-    })
-}
-
-function delRegistro(id){
-    axios.get("../../../../PHP/Registros_Financeiros/deletarRegistro.php", {
-        params:{
-            id:id
-        }
-    }).then( e => {
-        console.log(e.data)
-    })
-}
-
-function listarCargos(){
-    axios.get("../../../../PHP/Pedidos/listarCargos.php", {params:{}})
-        .then(e => {
-            console.log(e.data);
         })
 }
+
+function criar(){
+    var nome =document.getElementById("create-name").innerHTML;
+    var img =document.getElementById("create-img").src;
+    var estoque = document.getElementById("create-estoque").innerHTML;
+    var preco = document.getElementById("create-preco").innerHTML;
+    var desc = document.getElementById("create-desc").innerHTML;
+    var tipo = document.getElementById("create_tipo").value;
+    var categoria = document.getElementById("create_categoria").value;
+    //console.log(id)
+
+    var e = criarComida( nome, preco, estoque, tipo, categoria, desc, img);
+
+    e.then( o => {
+            if ( o.data == "Comida cadastrada com sucesso!"){
+                listarComida();
+                document.querySelector(".btn-close").click();
+                notifications(o.data)
+            } else {
+                notifications(o.data, "Message--orange", "yes")
+                console.log(o.data)
+            }
+        })
+}
+
+document.querySelector("#action").addEventListener("click", () => {
+    document.getElementById("deletar").style.display = "none"
+    document.getElementById("salvar").style.display = "none"
+    document.getElementById("criar").style.display = "block"
+})
