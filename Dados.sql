@@ -26,4 +26,4 @@ INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, ema
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-01", "faxi1", "Faxineiro", 1, "f@1", "(88) 88888-0001");
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-02", "faxi2", "Faxineiro", 1, "f@2", "(88) 88888-0002");
 
-INSERT INTO usuarios (nome_usuario, senha, cpf, cep, email_usuario, telefone_usuario) VALUES ("Eric Jacquin", "123qwe", "111.111.111-01", "11111-111", "jacquin@oficial.com", "(11) 11111-0001");
+INSERT INTO usuarios (nome_usuario, senha, cpf, cep, email_usuario, telefone_usuario, admin) VALUES ("Eric Jacquin", "123qwe", "111.111.111-01", "11111-111", "jacquin@oficial.com", "(11) 11111-0001", 1);

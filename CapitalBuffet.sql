@@ -7,6 +7,7 @@ CREATE TABLE usuarios (
 	cep CHAR(9) NOT NULL,	#99999-999
 	email_usuario VARCHAR(50) NOT NULL UNIQUE,
 	telefone_usuario CHAR(15) NOT NULL, #(99) 99999-9999
+	admin TINYINT(1) DEFAULT 0, #0 ou 1
 		PRIMARY KEY (id_usuario)
 );
 
@@ -21,7 +22,7 @@ CREATE TABLE registros_financeiros (
 CREATE TABLE pedidos (
 	id_pedido MEDIUMINT UNSIGNED AUTO_INCREMENT,
 	tipo_evento VARCHAR(50) NOT NULL,
-	orcamento DECIMAL(11, 2) NOT NULL, #999999999.99
+	orcamento DECIMAL(11, 2) UNSIGNED NOT NULL, #999999999.99
 	status_pedido VARCHAR(20) DEFAULT 'Pendente',
 	data_pedido DATE DEFAULT CURRENT_DATE(), #'AAAA-MM-DD'
 	inicio_evento DATETIME NOT NULL,	#'AAAA-MM-DD HH:MM'
@@ -39,7 +40,7 @@ CREATE TABLE funcionarios (
 	cpf_funcionario CHAR(14),	#999.999.999-99
 	nome_funcionario VARCHAR(50) NOT NULL,
 	cargo VARCHAR(50) NOT NULL,
-	salario DECIMAL(11, 2) NOT NULL,	#999999999.99
+	salario DECIMAL(11, 2) UNSIGNED NOT NULL,	#999999999.99
 	email_funcionario VARCHAR(50) NOT NULL,
 	telefone_funcionario CHAR(15) NOT NULL,	#(99) 99999-9999
 		PRIMARY KEY (cpf_funcionario)
@@ -55,7 +56,7 @@ CREATE TABLE pedido_funcionarios (
 CREATE TABLE utilitarios (
 	id_utilitario SMALLINT UNSIGNED AUTO_INCREMENT,
 	nome_utilitario VARCHAR(50) NOT NULL,
-	preco_utilitario DECIMAL(11, 2) NOT NULL, #999999999.99
+	preco_utilitario DECIMAL(11, 2) UNSIGNED NOT NULL, #999999999.99
 	estoque_utilitario MEDIUMINT UNSIGNED NOT NULL,
 	descricao_utilitario TINYTEXT,
 	url_imagem_u TEXT NOT NULL,
@@ -73,7 +74,7 @@ CREATE TABLE pedido_utilitarios (
 CREATE TABLE comidas (
 	id_comida SMALLINT UNSIGNED AUTO_INCREMENT,
 	nome_comida VARCHAR(50) NOT NULL,
-	preco_comida DECIMAL(11, 2) NOT NULL, #999999999.99
+	preco_comida DECIMAL(11, 2) UNSIGNED NOT NULL, #999999999.99
 	estoque_comida MEDIUMINT UNSIGNED NOT NULL,
 	tipo VARCHAR(9) NOT NULL, #Entrada, Principal, Sobremesa ou Bebida
   	categoria VARCHAR(50) NOT NULL,
