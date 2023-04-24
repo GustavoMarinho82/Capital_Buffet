@@ -8,10 +8,22 @@ INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, 
 INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Kit Talhers Descartáveis", 10, 500, "Conteúdo: 100 garfos, 100 facas e 50 colheres", "https://www.atacadolibardi.com.br/media/resize/1920x1080/pasta/2/9938e66dcf655eebe3049df424c596495539191f.jpg");
 INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Cadeiras", 12.50, 379, "", "https://img.terabyteshop.com.br/produto/g/cadeira-gamer-ninja-katana-reclinavel-suporta-ate-120kg-preto-cgn-katana-p_158772.jpg");
     
-INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("999.999.999-99", "Eric Jacquin", "Chefe de cozinha", 12000, "jacquin@oficial.com", "(99) 99999-9999");
-INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-88", "Cara do Sal", "Ajudante de cozinha", 2000, "cara@sal", "(88) 88888-8888");
-INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("111.111.111-11", "garçom1", "Garçom", 0.01, "g@1", "(11) 11111-1111");
-INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("111.111.111-12", "garçom2", "Garçom", 0.01, "g@2", "(12) 11111-1111");
-INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("111.111.111-13", "garçom3", "Garçom", 0.01, "g@3", "(13) 11111-1111");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("111.111.111-01", "Eric Jacquin", "Chefe de cozinha", 12000, "jacquin@oficial.com", "(11) 11111-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("111.111.111-02", "Gordon Ramsay", "Chefe de cozinha", 8000, "goramsay@oficial.com", "(11) 11111-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("222.222.222-01", "Cara do Sal", "Ajudante de cozinha", 2400, "cara@sal", "(22) 22222-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("222.222.222-02", "Cara do não Sal", "Ajudante de cozinha", 2000, "nao@sal", "(22) 22222-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("333.333.333-01", "copeiro1", "Copeiro", 1, "c@1", "(33) 33333-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("333.333.333-02", "copeiro2", "Copeiro", 1, "c@2", "(33) 33333-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("444.444.444-01", "garçom1", "Garçom", 1, "g@1", "(44) 44444-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("444.444.444-02", "garçom2", "Garçom", 1, "g@2", "(44) 44444-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("444.444.444-03", "garçom3", "Garçom", 1, "g@3", "(44) 44444-0003");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("555.555.555-01", "barman1", "Barman", 1, "b@1", "(55) 55555-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("555.555.555-02", "barman2", "Barman", 1, "b@2", "(55) 55555-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("666.666.666-01", "recepcionista1", "Recepcionista", 1, "r@1", "(66) 66666-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("666.666.666-02", "recepcionista2", "Recepcionista", 1, "r@2", "(66) 66666-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("777.777.777-01", "seguranca1", "Segurança", 1, "s@1", "(77) 77777-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("777.777.777-02", "seguranca2", "Segurança", 1, "s@2", "(77) 77777-0002");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-01", "faxi1", "Faxineiro", 1, "f@1", "(88) 88888-0001");
+INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-02", "faxi2", "Faxineiro", 1, "f@2", "(88) 88888-0002");
 
-INSERT INTO usuarios (nome_usuario, senha, cpf, cep, email_usuario, telefone_usuario) VALUES ("Eric Jacquin", "123qwe", "999.999.999-99", "99999-999", "jacquin@oficial.com", "(99) 99999-9999");
+INSERT INTO usuarios (nome_usuario, senha, cpf, cep, email_usuario, telefone_usuario, admin) VALUES ("Eric Jacquin", "123qwe", "111.111.111-01", "11111-111", "jacquin@oficial.com", "(11) 11111-0001", 1);
