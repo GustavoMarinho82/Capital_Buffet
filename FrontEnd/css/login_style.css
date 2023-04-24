@@ -52,10 +52,12 @@ body {
   font-size: 16px;
   color: var(--cor-fonte);
   margin-bottom: 20px;
-  border: none;
-  border-bottom: 30px;
-  outline: none;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-color: #be8040;
   background: transparent;
+  outline: none;
 }
 
 .login-box .user-box label {
