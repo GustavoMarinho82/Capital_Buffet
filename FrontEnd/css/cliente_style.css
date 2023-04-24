@@ -587,3 +587,7 @@ section.upcoming h1 {
     transform: none;
   }
 }
+
+#selection .cardapio label{
+    color: red;
+}

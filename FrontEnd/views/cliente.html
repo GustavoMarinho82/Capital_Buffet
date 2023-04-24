@@ -11,7 +11,7 @@
   <input class="nav" name="nav" type="radio" />
   <span class="nav">Pedidos</span>
   <input class="nav" name="nav" type="radio" />
-  <span class="nav">teste</span>
+  <span class="nav">Procurar meu pedido</span>
   <main class="content">
     <section id="profile">
       <a>Seja bem-vindo Sr.Ornelas </a>
@@ -30,7 +30,7 @@
             <fieldset class="material">
               <div>
                 <input required type="text" />
-                <label>Dados</label>
+                <label>CPF</label>
                 <hr />
               </div>
             </fieldset>
@@ -39,7 +39,7 @@
             <fieldset class="material">
               <div>
                 <input required type="text" />
-                <label>Dados</label>
+                <label>CNPJ</label>
                 <hr />
               </div>
             </fieldset>
@@ -48,16 +48,25 @@
             <fieldset class="material">
               <div>
                 <input required type="text" />
-                <label>Dados</label>
+                <label>CEP</label>
                 <hr />
               </div>
             </fieldset>
           </li>
-          <li class="large">
+          <li>
             <fieldset class="material">
               <div>
                 <input required type="text" />
-                <label>Dados</label>
+                <label>Email</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input required type="tel" />
+                <label>Telefone</label>
                 <hr />
               </div>
             </fieldset>
@@ -73,16 +82,68 @@
       </form>
     </section>
     <section id="account">
+      <label>Criar pedido</label>
       <form>
         <ul>
           <li>
             <fieldset class="material">
               <div>
-                <input required type="password" />
-                <label>Número do Pedido</label>
+                <input required type="text" />
+                <label>Tipo de Evento</label>
                 <hr />
               </div>
             </fieldset>
+          </li>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input required type="number" />
+                <label>Orçamento</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input id="data" type="date"/>
+                <label>Data do evento</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input required type="number" />
+                <label>Número estipulado dos convidados</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input required type="text" />
+                <label>Endereço do Evento</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input required type="text" />
+                <label>Observações</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+              <div>
+                <a href="./comidas.html" style="color: #ffe8be;">clique aqui para ir á página do cardápio</a>
+                <hr />
+              </div>
           </li>
           <li class="large padding">
             <fieldset class="material-button center">
@@ -94,8 +155,28 @@
         </ul>
       </form>
     </section>
-    <section class="upcoming" id="privacy">
-      <h1>Coming&nbsp;soon!</h1>
+    <section id="profile">
+      <h1>Veja seus pedidos</h1>
+      <form>
+        <ul>
+          <li>
+            <fieldset class="material">
+              <div>
+                <input required type="text" />
+                <label>Digite a indentificação do pedido</label>
+                <hr />
+              </div>
+            </fieldset>
+          </li>
+          <li>
+            <fieldset class="material-button center">
+              <div>
+                <input class="save" type="submit" value="Procurar" />
+              </div>
+            </fieldset>
+          </li>
+        </ul>
+      </form>
     </section>
   </main>
 	</div>
