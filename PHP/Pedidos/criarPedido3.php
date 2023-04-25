@@ -1,12 +1,24 @@
 <?php 
     include('../conexao.php');
 
+
     session_start();
-        $_SESSION['qtd_comidas'] = $_POST['qtd_comidas'];
-        $_SESSION['qtd_utilitarios'] = $_POST['qtd_utilitarios'];
+        //O \array_diff(array, [x]) remove os index's de um array que contenham valores iguais a x.
+        $_SESSION['qtd_comidas'] = \array_diff($_POST['qtd_comidas'], [0]);
+        $_SESSION['qtd_utilitarios'] = \array_diff($_POST['qtd_utilitarios'], [0]);
         
         $qtd_cargos = $_POST['qtd_cargos'];
-            $_SESSION['qtd_cargos'] = $qtd_cargos;
+        $_SESSION['qtd_cargos'] = \array_diff($_POST['qtd_cargos'], [0]);
+
+    foreach ($_SESSION['qtd_comidas'] as $index => $a) {
+        echo "[$index] => $a <br>";
+    } 
+    foreach ($_SESSION['qtd_utilitarios'] as $index => $a) {
+        echo "[$index] => $a <br>";
+    } 
+    foreach ($_SESSION['qtd_cargos'] as $index => $a) {
+        echo "[$index] => $a <br>";
+    } 
 ?>
 
 <HTML>
@@ -93,14 +105,14 @@
 
                 <h2>Funcionário</h2>
 
-                    Quantidade de Chefes: <b><?php echo $qtd_cargos[0] ?></b> (R$50/h cada)<br>
-                    Quantidade de Ajudantes de cozinha: <b><?php echo $qtd_cargos[1] ?></b> (R$35 cada)<br>
-                    Quantidade de Copeiros: <b><?php echo $qtd_cargos[2] ?></b> (R$15/h cada)<br>
-                    Quantidade de Garçons: <b><?php echo $qtd_cargos[3] ?></b> (R$25/h cada)<br>
-                    Quantidade de Barmans: <b><?php echo $qtd_cargos[4] ?></b> (R$35/h cada)<br>
-                    Quantidade de Recepcionistas: <b><?php echo $qtd_cargos[5] ?></b> (R$30/h cada)<br>
-                    Quantidade de Seguranças: <b><?php echo $qtd_cargos[6] ?></b> (R$45/h cada)<br>
-                    Quantidade de Faxineiros: <b><?php echo $qtd_cargos[7] ?></b> (R$20/h cada)<br>
+                    Quantidade de Chefes: <b><?php echo $qtd_cargos["Chefe de cozinha"] ?></b> (R$50/h cada)<br>
+                    Quantidade de Ajudantes de cozinha: <b><?php echo $qtd_cargos["Ajudante de cozinha"] ?></b> (R$35 cada)<br>
+                    Quantidade de Copeiros: <b><?php echo $qtd_cargos["Copeiro"] ?></b> (R$15/h cada)<br>
+                    Quantidade de Garçons: <b><?php echo $qtd_cargos["Garçom"] ?></b> (R$25/h cada)<br>
+                    Quantidade de Barmans: <b><?php echo $qtd_cargos["Barman"] ?></b> (R$35/h cada)<br>
+                    Quantidade de Recepcionistas: <b><?php echo $qtd_cargos["Recepcionista"] ?></b> (R$30/h cada)<br>
+                    Quantidade de Seguranças: <b><?php echo $qtd_cargos["Segurança"] ?></b> (R$45/h cada)<br>
+                    Quantidade de Faxineiros: <b><?php echo $qtd_cargos["Faxineiro"] ?></b> (R$20/h cada)<br>
 
 
                 <h1>Orçamento</h1>
@@ -108,8 +120,8 @@
                     <?php
                         $d = $_SESSION['duracao'];
 
-                        $custo_funcionarios = (($qtd_cargos[0]*50*$d) + ($qtd_cargos[1]*35*$d) + ($qtd_cargos[2]*15*$d) + ($qtd_cargos[3]*25*$d) + 
-                            ($qtd_cargos[4]*35*$d) + ($qtd_cargos[5]*30*$d) + ($qtd_cargos[6]*45*$d) + ($qtd_cargos[7]*20*$d));
+                        $custo_funcionarios = (($qtd_cargos["Chefe de cozinha"]*50*$d) + ($qtd_cargos["Ajudante de cozinha"]*35*$d) + ($qtd_cargos["Copeiro"]*15*$d) + ($qtd_cargos["Garçom"]*25*$d) + 
+                            ($qtd_cargos["Barman"]*35*$d) + ($qtd_cargos["Recepcionista"]*30*$d) + ($qtd_cargos["Segurança"]*45*$d) + ($qtd_cargos["Faxineiro"]*20*$d));
 
                         $custo_total = ($custo_comidas + $custo_utilitarios + $custo_funcionarios + 500);
                             $_SESSION['custo_total'] = $custo_total;           
@@ -122,8 +134,8 @@
 
                     <h6>* - É adicionada uma taxa de R$ 500 sobre o custo total</h6>
 
-            <button onclick="window.location.href='fazerPedido4.php'">Finalizar pedido</button>
+            <button onclick="window.location.href='criarPedido4.php'">Finalizar pedido</button>
                 <br><br>
-            <a href="fazerPedido2.php">Voltar</a>
+            <a href="criarPedido2.php">Voltar</a>
     </BODY>
 </HTML>

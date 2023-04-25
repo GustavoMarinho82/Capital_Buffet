@@ -27,7 +27,7 @@
     <BODY>
         <h1>Escolher os componentes do Buffet</h1>
 
-            <form method="POST" action="fazerPedido3.php">
+            <form method="POST" action="criarPedido3.php">
 
 
             <!-- COMIDAS -->
@@ -70,7 +70,7 @@
                 ?>
 
 
-            <!-- PRODUTOS -->
+            <!-- UTILITÁRIOS -->
             <br><h2>Utilitários</h2>
 
                 <?php
@@ -132,14 +132,14 @@
 
                         <!--Início do HTML-->
                         <hr>
-                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[0] ?>" name="qtd_cargos[0]"> <br>
-                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[1] ?>" name="qtd_cargos[1]"> <br>
-                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[2] ?>" name="qtd_cargos[2]"> <br>
-                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[3] ?>" name="qtd_cargos[3]"> <br>
-                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[4] ?>" name="qtd_cargos[4]"> <br>
-                            Recepcionistas: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[5] ?>" name="qtd_cargos[5]"> <br>
-                            Seguranças: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[6] ?>" name="qtd_cargos[6]"> <br>
-                            Faxineiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[7]"> <br>
+                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[0] ?>" name="qtd_cargos[Chefe de cozinha]"> <br>
+                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[1] ?>" name="qtd_cargos[Ajudante de cozinha]"> <br>
+                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[2] ?>" name="qtd_cargos[Copeiro]"> <br>
+                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[3] ?>" name="qtd_cargos[Garçom]"> <br>
+                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[4] ?>" name="qtd_cargos[Barman]"> <br>
+                            Recepcionistas: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[5] ?>" name="qtd_cargos[Recepcionista]"> <br>
+                            Seguranças: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[6] ?>" name="qtd_cargos[Segurança]"> <br>
+                            Faxineiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[Faxineiro]"> <br>
                         <hr>
 
 
@@ -148,6 +148,6 @@
                 <input type="submit" value="Ver o orçamento do pedido" />
             </form>
             
-            <a href="fazerPedido.php">Voltar</a>
+            <a href="criarPedido.php">Voltar</a>
     </BODY>
 </HTML>

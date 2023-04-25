@@ -5,7 +5,7 @@ INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria,
 INSERT INTO comidas (nome_comida, preco_comida, estoque_comida, tipo, categoria, descricao_comida, url_imagem_c) VALUES ("Santo Milho", 100000, 0, "Principal", "Divinos", "Pai de Todxs", "https://i.imgur.com/2B8xQ8w_d.webp?maxwidth=520&shape=thumb&fidelity=high");
 
 INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Mesa Retangular Grande", 100, 100, "Comprimento: 250 cm - Largura: 100 cm - Altura: 80 cm", "https://i.imgur.io/RxFmoEt_d.webp?maxwidth=640&shape=thumb&fidelity=medium");
-INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Kit Talhers Descartáveis", 10, 500, "Conteúdo: 100 garfos, 100 facas e 50 colheres", "https://www.atacadolibardi.com.br/media/resize/1920x1080/pasta/2/9938e66dcf655eebe3049df424c596495539191f.jpg");
+INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Kit Talheres Descartáveis", 10, 500, "Conteúdo: 100 garfos, 100 facas e 50 colheres", "https://www.atacadolibardi.com.br/media/resize/1920x1080/pasta/2/9938e66dcf655eebe3049df424c596495539191f.jpg");
 INSERT INTO utilitarios (nome_utilitario, preco_utilitario, estoque_utilitario, descricao_utilitario, url_imagem_u) VALUES ("Cadeiras", 12.50, 379, "", "https://img.terabyteshop.com.br/produto/g/cadeira-gamer-ninja-katana-reclinavel-suporta-ate-120kg-preto-cgn-katana-p_158772.jpg");
     
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("111.111.111-01", "Eric Jacquin", "Chefe de cozinha", 12000, "jacquin@oficial.com", "(11) 11111-0001");
@@ -26,4 +26,4 @@ INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, ema
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-01", "faxi1", "Faxineiro", 1, "f@1", "(88) 88888-0001");
 INSERT INTO funcionarios (cpf_funcionario, nome_funcionario, cargo, salario, email_funcionario, telefone_funcionario) VALUES ("888.888.888-02", "faxi2", "Faxineiro", 1, "f@2", "(88) 88888-0002");
 
-INSERT INTO usuarios (nome_usuario, senha, cpf, cep, email_usuario, telefone_usuario, admin) VALUES ("Eric Jacquin", "123qwe", "111.111.111-01", "11111-111", "jacquin@oficial.com", "(11) 11111-0001", 1);
+INSERT INTO usuarios (nome_usuario, senha, cpf, cep, email_usuario, telefone_usuario, admin) VALUES ("Sudo", "123qwe", "000.000.000-00", "00000-000", "sudodivinobuffet@gmail.com", "(00) 00000-0000", 1);

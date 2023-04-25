@@ -16,7 +16,7 @@
 
         <table border="1" width="1050" cellspacing="0"> <!-- 1050= 150*7 -->
         <tr bgcolor="#BBBBBB">
-        <th>ID</th><th>Nome</th><th>Senha</th><th>CPF/CNPJ</th><th>CEP</th><th>Email</th><th>Telefone</th>
+        <th>ID</th><th>Nome</th><th>Senha</th><th>CPF/CNPJ</th><th>CEP</th><th>Email</th><th>Telefone</th><th>Privilégio</th>
         </tr>
 
         <?php
@@ -31,9 +31,12 @@
                 $cep= $linha["cep"];
                 $e= $linha["email_usuario"];
                 $t= $linha["telefone_usuario"];
+                $a= $linha["admin"];
+
+                $p = ($a == 1) ? "Func. Admin" : "Cliente";
 
 
-                if($x % 2 == 0){
+                if ($x % 2 == 0){
                     $cor = "#DDDDDD";
                 } else {
                     $cor = "#FFFFFF";
@@ -43,19 +46,11 @@
             <td><?php echo $i; ?></td>
             <td><?php echo $n; ?></td>
             <td><?php echo $s; ?></td>
-            <td><?php 
-
-                if (empty($cnpj)) { 
-                    echo $cpf;
-                
-                } else {
-                    echo $cnpj;
-                } 
-            
-            ?></td>
+            <td><?php echo empty($cnpj) ? $cpf : $cnpj;?></td>
             <td><?php echo $cep; ?></td>
             <td><?php echo $e; ?></td>
             <td><?php echo $t; ?></td>
+            <td><?php echo $p; ?></td>
         </tr>
         
         <?php

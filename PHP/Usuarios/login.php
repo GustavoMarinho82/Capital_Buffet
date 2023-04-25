@@ -19,21 +19,16 @@
                 echo "Email ou senha incorretos!";
 
             } else {
-                    
                 echo "Login realizado com sucesso! <br>";
 
                 $linha = mysqli_fetch_array($consulta);
-                    $cpf = $linha['cpf'];
+                    $admin = $linha['admin'];
 
-                //Se o CPF do usuário for o mesmo de um funcionário, então ele logará como funcionário, senão logará como cliente
-                $sql = "SELECT * FROM funcionarios WHERE cpf_funcionario='$cpf'";
-                    $consulta = mysqli_query($mysqli, $sql);
-
-                if (mysqli_num_rows($consulta) == 0) {
-                    echo "Logado como: Cliente";
+                if ($admin == 1) {
+                    echo "Logado como: Funcionário administrador";
                 
                 } else {
-                    echo "Logado como: Funcionário";
+                    echo "Logado como: Cliente";
                 }
             }
         ?>
