@@ -8,15 +8,16 @@
   <link rel="stylesheet" href="css/notification.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/funcionarios.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,0,0" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <meta charset="UTF-8">
   <title>Capital Buffet</title>
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <header class="header">
 	<div class="header-content responsive-wrapper">
 		<div class="header-logo">
@@ -60,27 +61,6 @@
 		<button data-bs-dismiss="offcanvas" class="btn-close"></button>
 	</div>
 	<div class="offcanvas-body">
-		<article class="card left">
-			<div class="card-header">
-				<div>
-					<span></span>
-					<h3 id="create-name"></h3>
-				</div>
-					<button class="btn  btn-outline-primary toggle" onclick="">Alterar</button>
-			</div>
-			<hr>
-			<div class="card-body">
-		<img id="create-img" src="../../imagens/logo.png"}"/>
-			</div>
-			<hr>
-			<div class="card-footer">
-				<b href="#">Em estoque: <j id="create-estoque"></j> </b>
-			</div>
-			<div class="price">Preço: R$<j id="create-preco"></j></div>
-			<div id="create-desc" style="display:none"></div>
-		</article>
-
-		<div class="right">
 		<div class="form">
 			<id stylr=""display:none></id>
 			<label class="create" for="create_nome">
@@ -125,8 +105,6 @@
 			</div>
 
 		</div>
-		</div>
-
 	</div>
   </div>
 
@@ -141,41 +119,30 @@
 			</div>
 		</div>
 		<div class="horizontal-tabs">
-			<a data-header="y" class="active" href="#">Comidas</a>
+			<a data-header="y" href="#">Comidas</a>
 			<a data-header="y" href="#">utilitários</a>
 			<a data-header="y" href="#">Pedidos</a>
 			<a data-header="y" href="#">Contas</a>
-			<a data-header="y" href="Funcionarios.html">Funcionários</a>
+			<a data-header="y" class="active" href="#">Funcionários</a>
 			<a data-header="y" href="#">Financeiro</a>
 		</div>
-		<!--<div class="content-header">
-			<div class="content-header-intro">
-				<h2>Intergrations and connected apps</h2>
-				<p>Supercharge your workflow and connect the tool you use every day.</p>
-			</div>
-			<div class="content-header-actions">
-				<a href="#" class="button">
-					<i class="ph-faders-bold"></i>
-					<span>Filters</span>
-				</a>
-				<a href="#" class="button">
-					<i class="ph-plus-bold"></i>
-					<span>Request integration</span>
-				</a>
-			</div>
-		</div>-->
 		<div class="content">
 			<div class="content-main">
-				<div class="card-grid">
-					
-					<!-- div where the foods will be -->
+				<div class="table">
+					<div class="head">
+                        <span class="first">Nome:</span>
+                        <span>CPF:</span>
+                        <span>Cargo:</span>
+                        <span>Salario:</span>
+                        <div class="contatos">Contatos:</div>
+                    </div>
+					<!-- div where the workers will be listed -->
 
 				</div>
 			</div>
 		</div>
 	</div>
 </main>
-<!-- partial -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../../dependencias/axios.min.js"></script>
 <script src='https://unpkg.com/phosphor-icons'></script>
@@ -183,7 +150,6 @@
 <script src="javascript/notification.js"></script>
 <script src="javascript/variables.js"></script>
 <script src="javascript/functions.js"></script>
-<script src="javascript/script.js" defer></script>
-
+<script src="javascript/funcionarios.js" defer></script>
 </body>
 </html>

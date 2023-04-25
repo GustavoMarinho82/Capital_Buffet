@@ -15,6 +15,42 @@ document.querySelectorAll('a').forEach(one => {
 });
 
 
+function rowCreate(content){
+    var response = `
+    <div class="head">
+        <span class="first" >Nome:</span>
+        <span>CPF:</span>
+        <span>Cargo:</span>
+        <span>Salario:</span>
+        <div class="contatos">Contatos:</div>
+    </div>`;
+    var id;
+    var length = content.length - 1;
+    for (key = 0; key <= length; key++){
+        if (typeof(content[key].nome) == "undefined" ){
+        
+        }else{
+            id = content[key].cpf
+            response += `
+            <div class="row">
+                <span class="first" id="_${id}-nome" >${content[key].nome}</span>
+                <span>${content[key].cpf}</span>
+                <span>${content[key].cargo}</span>
+                <span>R$ ${content[key].salario}</span>
+                <div class="contatos">
+                    <button class="btn btn-outline-primary">
+                        <span class="material-symbols-outlined">
+                            call
+                        </span>
+                    </button>
+                </div>
+            </div>
+            `;
+    }
+    }
+    return response;
+}
+
 function articleCreate(content){
     var response = "";
     var id;
@@ -37,7 +73,7 @@ function articleCreate(content){
             <img id="_${id}-img" src="${content[key].img || "../imagens/logo.png"}"/>
                 </div><hr>
                 <div class="card-footer">
-                    <b href="#">Em estoque: <j id="_${id}-estoque" >${content[key].estoque}</j></b><hr>
+                    <b href="#">Em estoque: <j id="_${id}-estoque" >${content[key].estoque}</j></b>
                 </div>
                 <div id="_${id}price" class="price">Preço: R$ <j id="_${id}-preco">${content[key].preco}</j></div>
                 <div id="_${id}-desc" style="display:none">${content[key].descricao}</div>
@@ -179,6 +215,18 @@ async function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
         console.log(e.data)
     }).catch();
 }
+
+async function listarFuncionario(querry){
+    axios.get(PATH + "PHP/Funcionarios/listarFuncionarios.php", {
+        params:{
+            querry: querry
+        }
+    } ).then( e => {
+        console.log(e.data)
+        document.querySelector(".table").innerHTML = rowCreate(e.data);
+    });
+}
+
 
 async function modFuncionario(nome, cpf, cargo, salario, email, telefone){
     await axios.get(PATH + "PHP/Funcionarios/alterarFuncionario.php", {

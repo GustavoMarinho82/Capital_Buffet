@@ -12,7 +12,7 @@ include($include . "CORS.php");
 cors();
 
 $count = 0;
-if(isset($_GET) && $_GET["querry"] != ""){
+if(isset($_GET["querry"]) && $_GET["querry"] != ""){
 
     $querry = $_GET["querry"];
     $sql = "SELECT * FROM funcionarios WHERE

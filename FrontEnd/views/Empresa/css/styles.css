@@ -24,7 +24,7 @@
     height: 386px;
 }
 
-.offcanvas .offcanvas-body article .card-footer{
+.card-footer{
         display: flex;
         justify-content: flex-start;
 }
