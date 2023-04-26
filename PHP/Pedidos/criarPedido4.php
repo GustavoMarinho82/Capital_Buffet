@@ -33,7 +33,7 @@
     }
 
 
-    //PEDIDOS_UTILITÁrios
+    //PEDIDOS_UTILITÁRIOS
     foreach($qtd_utilitarios as $id_utilitario => $qtd_utilitario) {
         $sql = "INSERT INTO pedido_utilitarios (pedido_id, utilitario_id, qtd_utilitario) VALUES ($ultimo_id, $id_utilitario, $qtd_utilitario)";
             mysqli_query($mysqli, $sql);

@@ -9,16 +9,6 @@
         
         $qtd_cargos = $_POST['qtd_cargos'];
         $_SESSION['qtd_cargos'] = \array_diff($_POST['qtd_cargos'], [0]);
-
-    foreach ($_SESSION['qtd_comidas'] as $index => $a) {
-        echo "[$index] => $a <br>";
-    } 
-    foreach ($_SESSION['qtd_utilitarios'] as $index => $a) {
-        echo "[$index] => $a <br>";
-    } 
-    foreach ($_SESSION['qtd_cargos'] as $index => $a) {
-        echo "[$index] => $a <br>";
-    } 
 ?>
 
 <HTML>

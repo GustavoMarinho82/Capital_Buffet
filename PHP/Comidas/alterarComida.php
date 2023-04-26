@@ -42,7 +42,6 @@
                     if(strlen($estoque) == 0)   { $estoque = $coluna["estoque_comida"]; }
                     
 
-                    
                 $sql = "UPDATE comidas SET nome_comida='$nome', preco_comida=$preco, estoque_comida=$estoque, tipo='$tipo', categoria='$categoria', descricao_comida='$descricao', url_imagem_c='$url_imagem' WHERE id_comida='$id_comida'";
                     mysqli_query($mysqli, $sql);
 

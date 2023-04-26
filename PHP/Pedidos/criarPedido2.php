@@ -53,7 +53,7 @@
                             <img src="<?php echo $linha['url_imagem_c'] ?>" class="mostruario"> <br>
 
                             Nome: <b><?php echo $linha['nome_comida'] ?></b> <br>
-                            Preço: <b>R$ <?php echo $linha['preco_comida'] ?></b> <br>
+                            Preço por unidade: <b>R$ <?php echo $linha['preco_comida'] ?></b> <br>
                             Qtd em Estoque: <b><?php echo $linha['estoque_comida'] ?></b> <br>
                             Tipo: <b><?php echo $linha['tipo']; ?></b> <br>
                             Categoria: <b><?php echo $linha['categoria']; ?></b> <br>
@@ -93,7 +93,7 @@
                             <img src="<?php echo $linha['url_imagem_u'] ?>" class="mostruario"> <br>
 
                             Nome: <b><?php echo $linha['nome_utilitario'] ?></b> <br>
-                            Preço: <b>R$ <?php echo $linha['preco_utilitario'] ?></b> <br>
+                            Preço por unidade: <b>R$ <?php echo $linha['preco_utilitario'] ?></b> <br>
                             Qtd em Estoque: <b><?php echo $linha['estoque_utilitario'] ?></b> <br>
                             Descrição: <b><?php echo $linha['descricao_utilitario']; ?></b> <br>
                                 
@@ -126,8 +126,6 @@
                         $resultado = mysqli_stmt_get_result($stmt);
                             $max_cargo[$x] = mysqli_num_rows($resultado);
                     }
-
-                    $_SESSION['cargos'] = $cargos;
                 ?>
 
                         <!--Início do HTML-->
@@ -142,8 +140,6 @@
                             Faxineiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[Faxineiro]"> <br>
                         <hr>
 
-
-                <input type="hidden" value="">
 
                 <input type="submit" value="Ver o orçamento do pedido" />
             </form>
