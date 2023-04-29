@@ -133,7 +133,7 @@ function articleCreate(content){
 }
 
 
-
+//COMIDAS
 function criarComida(nome, preco, estoque, tipo, categoria, desc, imagem){
     axios.get("../..//PHP/Comidas/cadastrarComida.php", { 
         params:{
@@ -169,6 +169,7 @@ document.querySelector("#search").addEventListener("keydown", function  (){
 document.querySelector("#search").addEventListener("keyup", function  (){
     listarComida(this.value, "")
 });
+
 function delComida(id){
     axios.get("../..//PHP/Comidas/deletarComida.php", { params:{
             id:id
@@ -194,6 +195,7 @@ function modComida(id, nome, preco, estoque, tipo, categoria, desc, imagem){
     }).catch();
 }
 
+//UTILITARIOS
 function criarUtilitario( nome, preco, estoque, desc, imagem){
     axios.get("../..//PHP/Utilitarios/cadastrarUtilitario.php", { 
         params:{
@@ -241,6 +243,7 @@ function delUtilitario(id){
     }).catch();
 }
 
+//FUNCIONARIOS
 function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
     axios.get("../../PHP/Funcionarios/cadastrarFuncionario.php", {
         params:{
@@ -287,6 +290,14 @@ function delFuncionario(cpf){
         }).catch();
 }
 
+function listarCargos(){
+    axios.get("../../PHP/Funcionarios/listarCargos.php", {params:{}})
+        .then(e => {
+            console.log(e.data);
+        })
+}
+
+//USUARIOS
 function criarUsuario(nome, senha, cpf, cnpj, cep,  email, telefone){
     axios.get("../../PHP/Usuarios/criarConta.php", {
         params:{
@@ -316,8 +327,8 @@ function listarUsuario(query){
     }).catch();
 }
 
-function modUsuario(id, nome, senha, cep,  email, telefone){
-    axios.get("../../PHP/Usuarios/criarConta.php", {
+function modUsuario(id, nome, senha, cep,  email, telefone, admin){
+    axios.get("../../PHP/Usuarios/alterarConta.php", {
         params:{
             id:id,
             nome: nome,
@@ -326,7 +337,8 @@ function modUsuario(id, nome, senha, cep,  email, telefone){
             cnpj:cnpj,
             cep:cep,
             email:email,
-            telefone:telefone
+            telefone:telefone,
+            admin: admin
         }
     }).then(e=>{
         console.log(e.data.status)
@@ -360,6 +372,7 @@ function login(email, senha){
     }).catch();
 }
 
+//REGISTROS FINANCEIROS
 function criarRegistro(data, valor, desc){
     axios.get("../../PHP/Registros_Financeiros/cadastrarRegistro.php", {
         params:{
@@ -405,9 +418,77 @@ function delRegistro(id){
     })
 }
 
-function listarCargos(){
-    axios.get("../../PHP/Pedidos/listarCargos.php", {params:{}})
-        .then(e => {
-            console.log(e.data);
-        })
+//PEDIDOS
+function criarPedido(tipo, orcamento, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, usuario_id){
+    axios.get("../../PHP/Pedidos/criarPedido.php", {
+        params:{
+            tipo: tipo, 
+            orcamento: orcamento, 
+            inicio: inicio, 
+            fim: fim, 
+            qtd_convidados: qtd_convidados, 
+            endereco: endereco, 
+            observacoes: observacoes, 
+            qtd_comidas: qtd_comidas, 
+            qtd_utilitarios: qtd_utilitarios, 
+            qtd_cargos: qtd_cargos, 
+            usuario_id: usuario_id
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function listarPedido(querry){ //Não alterei o listarPedidos.php, lembre de mudar depois
+    axios.get("../../PHP/Pedidos/listarPedidos.php", {
+        params:{
+            querry: querry
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function listarPedido2(querry){ //Não alterei o listarPedidos2.php, lembre de mudar depois
+    axios.get("../../PHP/Pedidos/listarPedidos2.php", {
+        params:{
+            querry: querry
+        }
+    }).then( e => {
+        console.log(e.data)
+    }).catch();
+}
+
+function modPedido(id_pedido, tipo, status, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, qtd_antiga_comidas, qtd_antiga_utilitarios, qtd_antiga_cargos, usuario_id){
+    axios.get("../../PHP/Pedidos/alterarPedido.php", {
+        params:{
+            id_pedido: id_pedido,
+            tipo: tipo,
+            status: status,
+            inicio: inicio, 
+            fim: fim, 
+            qtd_convidados: qtd_convidados, 
+            endereco: endereco, 
+            observacoes: observacoes, 
+            qtd_comidas: qtd_comidas, 
+            qtd_utilitarios: qtd_utilitarios, 
+            qtd_cargos: qtd_cargos, 
+            qtd_antiga_comidas: qtd_antiga_comidas, 
+            qtd_antiga_utilitarios: qtd_antiga_utilitarios, 
+            qtd_antiga_cargos: qtd_antiga_cargos,
+            usuario_id: usuario_id
+        }
+    }).then(e => {
+        console.log(e)
+    })
+}
+
+function delPedido(id){
+    axios.get("../../PHP/Pedidos/deletarPedido.php", {
+        params:{
+            id: id
+        }
+    }).then( e => {
+        console.log(e.data)
+    })
 }
