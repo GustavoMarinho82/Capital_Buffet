@@ -34,11 +34,12 @@ function rowCreate(content){
             response += `
             <div class="row">
                 <span class="first" id="_${id}-nome" >${content[key].nome}</span>
-                <span>${content[key].cpf}</span>
-                <span>${content[key].cargo}</span>
-                <span>R$ ${content[key].salario}</span>
-                <div class="contatos">
-                    <button class="btn btn-outline-primary">
+                <span id="_${id}-cpf">${content[key].cpf}</span>
+                <span id="_${id}-cargo">${content[key].cargo}</span>
+                <span id="_${id}-salario" data-salario="${content[key].salario}">R$ ${content[key].salario}</span>
+                <div class="contatos" id="_${id}-contatos" data-email="${content[key].email}" data-telefone="${content[key].telefone}" >
+                    <button class="btn btn-outline-primary"
+                    type="button" data-toggle="modal" data-target="#exampleModalCenter" onclick="contatoFuncionario('${id}')">
                         <span class="material-symbols-outlined">
                             call
                         </span>
@@ -222,7 +223,6 @@ async function listarFuncionario(querry){
             querry: querry
         }
     } ).then( e => {
-        console.log(e.data)
         document.querySelector(".table").innerHTML = rowCreate(e.data);
     });
 }
