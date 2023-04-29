@@ -7,12 +7,9 @@
     <BODY>
         <?php
             include('../conexao.php');
-
+            
             session_start();
                 $id_pedido = $_SESSION['id_pedido'];
-                $qtd_antiga_comidas = $_SESSION['qtd_antiga_comidas'];
-                $qtd_antiga_utilitarios = $_SESSION['qtd_antiga_utilitarios'];
-                $qtd_antiga_funcionarios = $_SESSION['qtd_antiga_funcionarios'];
 
             $tipo = $_POST['tipo_evento'];
             $inicio_evento = $_POST['inicio_evento'];
@@ -22,34 +19,17 @@
             $observacoes = $_POST['observacoes'];
             $status = $_POST['status'];
 
+            //Não use \array_diff nesses array
             $qtd_comidas = $_POST['qtd_comidas'];
             $qtd_utilitarios = $_POST['qtd_utilitarios'];
             $qtd_cargos = $_POST['qtd_cargos'];
 
-            $orcamento = 500;
-            
-                $sql = "SELECT * FROM comidas";
-                    $consulta = mysqli_query($mysqli, $sql);
-                        
-                while ($linha = mysqli_fetch_array($consulta)) {
-                    $qtd_comida = $qtd_comidas[$linha['id_comida']];
-                        $orcamento+= ($qtd_comida*$linha['preco_comida']);
-                }
+            $qtd_antiga_comidas = conseguir_qtd_antiga($mysqli, "comida", $id_pedido);
+            $qtd_antiga_utilitarios = conseguir_qtd_antiga($mysqli, "utilitario", $id_pedido);
+            $qtd_antiga_funcionarios = conseguir_qtd_antiga_funcionarios($mysqli, $id_pedido);
 
-                $sql = "SELECT * FROM utilitarios";
-                    $consulta = mysqli_query($mysqli, $sql);
-                        
-                while ($linha = mysqli_fetch_array($consulta)) {
-                    $qtd_utilitario = $qtd_utilitarios[$linha['id_utilitario']];
-                        $orcamento+= ($qtd_utilitario*$linha['preco_utilitario']);
-                }
+            $orcamento = conseguir_orcamento($mysqli, $inicio_evento, $fim_evento, $qtd_comidas, $qtd_utilitarios, $qtd_cargos);
 
-                $duracao = date_diff(date_create($inicio_evento), date_create($fim_evento), true);
-                $d = $duracao->format('%h');
-
-                $orcamento += (($qtd_cargos["Chefe de cozinha"]*50*$d) + ($qtd_cargos["Ajudante de cozinha"]*35*$d) + ($qtd_cargos["Copeiro"]*15*$d) + ($qtd_cargos["Garçom"]*25*$d) + 
-                    ($qtd_cargos["Barman"]*35*$d) + ($qtd_cargos["Recepcionista"]*30*$d) + ($qtd_cargos["Segurança"]*45*$d) + ($qtd_cargos["Faxineiro"]*20*$d));
-            
             
             $sql = "SELECT * FROM pedidos WHERE id_pedido=$id_pedido";
                 $consulta = mysqli_query($mysqli, $sql);
@@ -74,7 +54,7 @@
 
                 //PEDIDOS_COMIDAS
                 foreach ($qtd_comidas as $id_comida => $qtd_comida) {
-                    $qtd_antiga_comida = $qtd_antiga_comidas[$id_comida];
+                    $qtd_antiga_comida = isset($qtd_antiga_comidas[$id_comida]) ? $qtd_antiga_comidas[$id_comida] : 0;
 
                     if ($qtd_antiga_comida != $qtd_comida) {
                         if ($qtd_comida == 0) {
@@ -94,7 +74,7 @@
                 
                 //PEDIDOS_UTILITÁRIOS
                 foreach ($qtd_utilitarios as $id_utilitario => $qtd_utilitario) {
-                    $qtd_antiga_utilitario = $qtd_antiga_utilitarios[$id_utilitario];
+                    $qtd_antiga_utilitario = isset($qtd_antiga_utilitarios[$id_utilitario]) ? $qtd_antiga_utilitarios[$id_utilitario] : 0;
                     
                     if ($qtd_antiga_utilitario != $qtd_utilitario) {
                         if ($qtd_utilitario == 0) {
@@ -159,3 +139,60 @@
         <p><a href="../index.html">Voltar</a>
     </BODY>
 </HTML>
+
+<?php
+    //FUNÇÕES
+    function conseguir_qtd_antiga($mysqli, $entidade, $id_pedido) {
+        $sql = "SELECT * FROM pedido_" . $entidade . "s WHERE pedido_id=$id_pedido";
+            $consulta = mysqli_query($mysqli, $sql);
+
+        $qtd_antiga = array();
+        
+        while($linha = mysqli_fetch_array($consulta)) {
+            $qtd_antiga[$linha[$entidade . '_id']] = $linha['qtd_' . $entidade];
+        }
+        
+        return $qtd_antiga;
+    };
+
+    function conseguir_qtd_antiga_funcionarios($mysqli, $id_pedido) {
+        $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+        $qtd_antiga = array();
+
+        foreach($cargos as $cargo) {
+            $sql = "SELECT * FROM pedido_funcionarios WHERE pedido_id=$id_pedido AND funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo')";
+                $consulta = mysqli_query($mysqli, $sql);
+                    $qtd_antiga[$cargo] = mysqli_num_rows($consulta);
+        }
+
+        return $qtd_antiga;
+    };
+
+    function conseguir_orcamento($mysqli, $inicio_evento, $fim_evento, $qtd_comidas, $qtd_utilitarios, $qtd_cargos) {
+        $orcamento = 500;
+
+        $sql = "SELECT * FROM comidas";
+            $consulta = mysqli_query($mysqli, $sql);
+                
+        while ($linha = mysqli_fetch_array($consulta)) {
+            $qtd_comida = $qtd_comidas[$linha['id_comida']];
+                $orcamento+= ($qtd_comida*$linha['preco_comida']);
+        }
+
+        $sql = "SELECT * FROM utilitarios";
+            $consulta = mysqli_query($mysqli, $sql);
+                
+        while ($linha = mysqli_fetch_array($consulta)) {
+            $qtd_utilitario = $qtd_utilitarios[$linha['id_utilitario']];
+                $orcamento+= ($qtd_utilitario*$linha['preco_utilitario']);
+        }
+
+        $duracao = date_diff(date_create($inicio_evento), date_create($fim_evento), true);
+            $d = $duracao->format('%h');
+        
+            $orcamento += (($qtd_cargos["Chefe de cozinha"]*50*$d) + ($qtd_cargos["Ajudante de cozinha"]*35*$d) + ($qtd_cargos["Copeiro"]*15*$d) + ($qtd_cargos["Garçom"]*25*$d) + 
+                ($qtd_cargos["Barman"]*35*$d) + ($qtd_cargos["Recepcionista"]*30*$d) + ($qtd_cargos["Segurança"]*45*$d) + ($qtd_cargos["Faxineiro"]*20*$d));
+
+        return $orcamento;
+    };
+?>

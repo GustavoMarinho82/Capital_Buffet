@@ -98,7 +98,6 @@
                         $sql2 = "SELECT qtd_comida FROM pedido_comidas WHERE comida_id=${linha['id_comida']} AND pedido_id=$id_pedido";
                             $consulta2 = mysqli_query($mysqli, $sql2);
                                 $qtd_antiga = (mysqli_num_rows($consulta2) == 0) ? 0 : mysqli_fetch_row($consulta2)[0];
-                                    $_SESSION['qtd_antiga_comidas'][$linha['id_comida']] = $qtd_antiga;
 
                 ?><!--Início do HTML-->
 
@@ -143,7 +142,6 @@
                         $sql2 = "SELECT qtd_utilitario FROM pedido_utilitarios WHERE utilitario_id=${linha['id_utilitario']} AND pedido_id=$id_pedido";
                             $consulta2 = mysqli_query($mysqli, $sql2);
                                 $qtd_antiga = (mysqli_num_rows($consulta2) == 0) ? 0 : mysqli_fetch_row($consulta2)[0];
-                                    $_SESSION['qtd_antiga_utilitarios'][$linha['id_utilitario']] = $qtd_antiga;
 
                 ?><!--Início do HTML-->
 
@@ -187,10 +185,9 @@
                         $resultado = mysqli_stmt_get_result($stmt);
                             $max_cargo[$x] = mysqli_num_rows($resultado);
 
-                        $sql2 = "SELECT * FROM pedido_funcionarios WHERE funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo')";
+                        $sql2 = "SELECT * FROM pedido_funcionarios WHERE pedido_id=$id_pedido AND funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo')";
                             $consulta2 = mysqli_query($mysqli, $sql2);
                                 $qtd_antiga[$x] = mysqli_num_rows($consulta2);
-                                    $_SESSION['qtd_antiga_funcionarios'][$cargo] = $qtd_antiga[$x];
                     }
                 ?>
 
