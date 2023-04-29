@@ -21,6 +21,7 @@ $qtd_convidados = $_GET['qtd_convidados'];
 $endereco = $_GET['endereco'];
 $observacoes = $_GET['observacoes'];
 
+//Não use \array_diff nesses array
 $qtd_comidas = $_GET['qtd_comidas'];
 $qtd_utilitarios = $_GET['qtd_utilitarios'];
 $qtd_cargos = $_GET['qtd_cargos'];
