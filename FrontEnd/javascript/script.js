@@ -459,7 +459,7 @@ function listarPedido2(querry){ //Não alterei o listarPedidos2.php, lembre de m
     }).catch();
 }
 
-function modPedido(id_pedido, tipo, status, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, qtd_antiga_comidas, qtd_antiga_utilitarios, qtd_antiga_cargos, usuario_id){
+function modPedido(id_pedido, tipo, status, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, usuario_id){
     axios.get("../../PHP/Pedidos/alterarPedido.php", {
         params:{
             id_pedido: id_pedido,
@@ -472,10 +472,7 @@ function modPedido(id_pedido, tipo, status, inicio, fim, qtd_convidados, enderec
             observacoes: observacoes, 
             qtd_comidas: qtd_comidas, 
             qtd_utilitarios: qtd_utilitarios, 
-            qtd_cargos: qtd_cargos, 
-            qtd_antiga_comidas: qtd_antiga_comidas, 
-            qtd_antiga_utilitarios: qtd_antiga_utilitarios, 
-            qtd_antiga_cargos: qtd_antiga_cargos,
+            qtd_cargos: qtd_cargos,
             usuario_id: usuario_id
         }
     }).then(e => {
