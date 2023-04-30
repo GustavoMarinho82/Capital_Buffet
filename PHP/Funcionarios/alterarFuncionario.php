@@ -20,7 +20,7 @@ $telefone = $_GET['telefone'];
 $sql = "SELECT * FROM funcionarios WHERE cpf_funcionario='$cpf'";
     $consulta = mysqli_query($mysqli, $sql);
 if (mysqli_num_rows($consulta) == 0) {
-    echo json_encode(array("status" => "falha", "causa" => "não encontrado"));
+    echo json_encode(array("status" => "falha", "causa" => "não encontrado", $cpf));
 } else {
     $coluna = mysqli_fetch_array($consulta);
         if(empty($nome))      { $nome = $coluna["nome_funcionario"]; }

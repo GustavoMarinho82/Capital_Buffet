@@ -33,14 +33,14 @@ function rowCreate(content){
             id = content[key].cpf
             response += `
             <div class="row">
-                <span class="first" id="_${id}-nome" >${content[key].nome}</span>
-                <span id="_${id}-cpf">${content[key].cpf}</span>
-                <span id="_${id}-cargo">${content[key].cargo}</span>
-                <span id="_${id}-salario" data-salario="${content[key].salario}">R$ ${content[key].salario}</span>
+                <span onclick="mod('${id}')" class="first" id="_${id}-nome" >${content[key].nome}</span>
+                <span onclick="mod('${id}')" id="_${id}-cpf">${content[key].cpf}</span>
+                <span onclick="mod('${id}')" id="_${id}-cargo">${content[key].cargo}</span>
+                <span onclick="mod('${id}')" id="_${id}-salario" data-salario="${content[key].salario}">R$ ${content[key].salario}</span>
                 <div class="contatos" id="_${id}-contatos" data-email="${content[key].email}" data-telefone="${content[key].telefone}" >
                     <button class="btn btn-outline-primary"
-                    type="button" data-toggle="modal" data-target="#exampleModalCenter" onclick="contatoFuncionario('${id}')">
-                        <span class="material-symbols-outlined">
+                    type="button" data-toggle="modal" data-id="${id}" data-target="#exampleModalCenter" onclick="contatoFuncionario('${id}')">
+                        <span id="${id}" class="material-symbols-outlined">
                             call
                         </span>
                     </button>
@@ -203,7 +203,7 @@ async function delUtilitario(id){
 }
 
 async function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
-    await axios.get(PATH + "PHP/Funcionarios/cadastrarFuncionario.php", {
+    return axios.get(PATH + "PHP/Funcionarios/cadastrarFuncionario.php", {
         params:{
             nome: nome,
             cpf: cpf,
@@ -212,9 +212,7 @@ async function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
             email: email,
             telefone: telefone
         }
-    } ).then(e => {
-        console.log(e.data)
-    }).catch();
+    } )
 }
 
 async function listarFuncionario(querry){
@@ -224,12 +222,26 @@ async function listarFuncionario(querry){
         }
     } ).then( e => {
         document.querySelector(".table").innerHTML = rowCreate(e.data);
+        document.querySelectorAll(".btn-outline-primary").forEach( e => {
+            e.addEventListener("mouseover", function () {
+                if(document.getElementById(this.getAttribute("data-id"))){
+                    document.getElementById(this.getAttribute("data-id")).classList.add("white")
+                }
+            })
+        })
+        document.querySelectorAll(".btn-outline-primary").forEach( e => {
+            e.addEventListener("mouseout", function () {
+                if(document.getElementById(this.getAttribute("data-id"))){
+                    document.getElementById(this.getAttribute("data-id")).classList.remove("white")
+                }
+            })
+        })
     });
 }
 
 
 async function modFuncionario(nome, cpf, cargo, salario, email, telefone){
-    await axios.get(PATH + "PHP/Funcionarios/alterarFuncionario.php", {
+    return axios.get(PATH + "PHP/Funcionarios/alterarFuncionario.php", {
         params: {
             nome: nome,
             cpf: cpf,
@@ -238,25 +250,14 @@ async function modFuncionario(nome, cpf, cargo, salario, email, telefone){
             email: email,
             telefone: telefone
         }
-    }).then( e => {
-        console.log(e,data)
-        console.log("status: " + e.data.status)
-            if (e.data.cause){
-                console.log("causa: " + e.data.causa)
-            }
-    }).catch();
+    })
 }
 
 async function delFuncionario(cpf){
-    await axios.get(PATH + "PHP/Funcionarios/deletarFuncionario.php", {
+    return axios.get(PATH + "PHP/Funcionarios/deletarFuncionario.php", {
         params:{
             cpf: cpf
-        }}).then( e =>{
-            console.log("status: "+e.data.status)
-            if (e.data.status == "falha"){
-                console.log("causa: "+e.data.causa)
-            }
-        }).catch();
+        }})
 }
 
 async function criarUsuario(nome, senha, cpf, cnpj, cep,  email, telefone){
