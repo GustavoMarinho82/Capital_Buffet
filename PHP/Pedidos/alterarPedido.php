@@ -99,36 +99,21 @@ if (mysqli_num_rows($consulta) == 0) {
         $qtd_antiga_funcionario = $qtd_antiga_funcionarios[$cargo];
 
         if ($qtd_antiga_funcionario != $qtd_cargo) {
-            if ($qtd_cargo == 0) {
-                $sql = "DELETE FROM pedido_funcionarios WHERE funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo')";
-                    mysqli_query($mysqli, $sql);
-
-            } else if ($qtd_antiga_funcionario > $qtd_cargo) {
-                $diferenca= $qtd_antiga_funcionario - $qtd_cargo;
+            if ($qtd_antiga_funcionario > $qtd_cargo) {
+                $diferenca = $qtd_antiga_funcionario - $qtd_cargo;
 
                 $sql = "DELETE FROM pedido_funcionarios WHERE funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo') LIMIT $diferenca";
                     mysqli_query($mysqli, $sql);
 
-            } else {     
-                $diferenca = $qtd_cargo - $qtd_antiga_funcionario;     
+            } else {
+                $diferenca = $qtd_cargo - $qtd_antiga_funcionario; 
 
-                while($diferenca != 0) {
-
-                    $sql = "SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo' ORDER BY rand()";
-                        $consulta = mysqli_query($mysqli, $sql);
-                        
-                    while ($cpf_funcionario = mysqli_fetch_column($consulta)) {
-                        $sql2 = "SELECT * FROM pedido_funcionarios WHERE funcionario_cpf='$cpf_funcionario'";
-                            $consulta2 = mysqli_query($mysqli, $sql2);
-
-                        if (mysqli_num_rows($consulta2) == 0) {
-                            $sql3 = "INSERT INTO pedido_funcionarios (pedido_id, funcionario_cpf) VALUES ($id_pedido, '$cpf_funcionario')";
-                                mysqli_query($mysqli, $sql3);
-
-                            $diferenca--;
-                            break;
-                        }
-                    }
+                $sql = "SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo' AND cpf_funcionario NOT IN (SELECT funcionario_cpf FROM pedido_funcionarios) ORDER BY rand() LIMIT $diferenca";
+                    $consulta = mysqli_query($mysqli, $sql);
+                    
+                while ($cpf_funcionario = mysqli_fetch_column($consulta)) {
+                    $sql = "INSERT INTO pedido_funcionarios (pedido_id, funcionario_cpf) VALUES ($id_pedido, '$cpf_funcionario')";
+                        mysqli_query($mysqli, $sql);
                 }
             }
         }

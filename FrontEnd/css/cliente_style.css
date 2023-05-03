@@ -62,13 +62,13 @@ a, button, input[type=submit] {
   display: flex;
   flex-flow: row wrap;
   background: var(--fundo);
-  box-shadow: 0 0 20px rgba(21, 21, 29, 0.2);
+  box-shadow: 0 0 20px rgba(210, 126, 0, 0.5);
   overflow: hidden;
   color: #ffe8be;
   border-radius: 2px;
   width: 100%;
   max-width: 600px;
-  height: 500px;
+  height: 540px;
 }
 /*@media only screen and (min-width: 500px) {
   #settings {
@@ -83,9 +83,15 @@ span.nav {
   display: block;
   position: relative;
   width: 100%;
-  padding: 18px 0;
+  padding: 20px 0;
   text-align: center;
 }
+.nav#procurar{
+  display: inline-block;
+  padding: 8px 10px;
+  white-space: pre-line;
+}
+
 span.nav:nth-of-type(1) {
   z-index: 5;
 }
@@ -280,6 +286,13 @@ section.upcoming h1 {
   margin-top: 13px;
 }
 
+.title_material{
+  margin: 10 0 0px;
+  padding: 0;
+  color: var(--texto);
+  text-align: center;
+  font-size: 1.5rem;
+}
 .material {
   width: 100%;
 }
