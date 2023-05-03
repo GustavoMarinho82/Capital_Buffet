@@ -52,6 +52,45 @@ function rowCreate(content){
     return response;
 }
 
+function criarRegistros(content){
+    var response = `
+    <div class="head">
+        <span class="first">Data:</span>
+        <span>Valor:</span>
+        <div class="last">Descrição:</div>
+    </div>`;
+
+    var id, data;
+    var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    var length = content.length - 1;
+    for (key = 0; key <= length; key++){
+        if (typeof(content[key].id) == "undefined" ){
+        
+        }else{
+            id = content[key].id
+            dateP = content[key].data.split("-")
+            var today  = new Date(dateP[0], dateP[1] - 1, dateP[2]);
+            data = new Intl.DateTimeFormat("br", options).format(today);
+
+            response += `
+            <div class="row">
+                <span onclick="mod('${id}')" class="first" id="_${id}-data" data-data="${content[key].data}" >${data}</span>
+                <span onclick="mod('${id}')" id="_${id}-valor" data-valor="${content[key].valor}">R$ ${content[key].valor}</span>
+                <div class="last" id="_${id}-contatos">
+                    <button class="btn btn-outline-primary"
+                    type="button" data-toggle="modal" id="_${id}-desc" data-target="#exampleModalCenter" data-Desc="${content[key].desc}" onclick="contatoFuncionario('${id}')">
+                        <span id="${id}" class="material-symbols-outlined">
+                            call
+                        </span>
+                    </button>
+                </div>
+            </div>
+            `;
+        }
+    }
+    return response;
+}
+
 function articleCreate(content){
     var response = "";
     var id;
@@ -334,15 +373,13 @@ async function login(email, senha){
 }
 
 async function criarRegistro(data, valor, desc){
-    await axios.get(PATH + "PHP/Registros_Financeiros/cadastrarRegistro.php", {
+    return axios.get(PATH + "PHP/Registros_Financeiros/cadastrarRegistro.php", {
         params:{
             data: data,
             valor: valor,
             desc: desc
         }
-    }).then( e => {
-        console.log(e.data)
-    }).catch();
+    });
 }
 
 async function listarRegistro(querry){
@@ -351,31 +388,27 @@ async function listarRegistro(querry){
             querry: querry
         }
     }).then( e => {
-        console.log(e.data)
+        document.querySelector(".table").innerHTML = criarRegistros(e.data);
     }).catch();
 }
 
 async function modRegistro(id, data, valor, desc){
-    await axios.get(PATH + "PHP/Registros_Financeiros/alterarRegistro.php", {
+    return axios.get(PATH + "PHP/Registros_Financeiros/alterarRegistro.php", {
         params:{
             id: id,
             valor: valor,
             data: data,
             desc: desc
         }
-    }).then(e => {
-        console.log(e)
-    })
+    });
 }
 
 async function delRegistro(id){
-    await axios.get(PATH + "PHP/Registros_Financeiros/deletarRegistro.php", {
+    return axios.get(PATH + "PHP/Registros_Financeiros/deletarRegistro.php", {
         params:{
             id:id
         }
-    }).then( e => {
-        console.log(e.data)
-    })
+    });
 }
 
 async function listarCargos(){

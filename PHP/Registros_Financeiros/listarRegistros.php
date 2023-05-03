@@ -12,7 +12,7 @@ include($include . "CORS.php");
 cors();
 
 
-if(isset($_GET) && $_GET["querry"] != ""){
+if(isset($_GET["querry"]) && $_GET["querry"] != ""){
 
     $querry = $_GET["querry"];
     $sql = "SELECT * FROM registros_financeiros WHERE
@@ -26,7 +26,7 @@ if(isset($_GET) && $_GET["querry"] != ""){
 }
     $consulta = mysqli_query($mysqli, $sql);
 $x = 0;
-$retutn = array();
+$return = array();
 
 while ($linha = mysqli_fetch_array($consulta)) {
     $i= $linha["id_registro"];

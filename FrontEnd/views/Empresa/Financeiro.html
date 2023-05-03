@@ -4,11 +4,12 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="icon" type="image/x-icon" href="../../imagens/logo.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="../../dependencias/bootstrap.min.css">
   <link rel="stylesheet" href="css/notification.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/funcionarios.css">
+  <link rel="stylesheet" href="css/financeiro.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -28,35 +29,21 @@
 	<div class="offcanvas-body">
 		<div class="form">
 			<id stylr=""display:none></id>
-			<label class="create" for="create_nome">
-				<p>Nome:</p>
-				<input type="text" id="create_nome">
-			</label>
-<br class="cpf">
-			<label for="create_cpf" class="create cpf">
-				<p>CPF:</p>
-				<input type="text" id="create_cpf">
+			<label class="create" for="create_data">
+				<p>Data:</p>
+				<input type="date" id="create_data">
 			</label>
 <br>
-			<label for="create_cargo" class="create">
-				<p>Cargo:</p>
-				<input id="create_cargo">
+			<label for="create_valor" class="create">
+				<p>Valor:</p>
+				<input type="text" id="create_valor">
 			</label>
 <br>
-			<label for="create_salario" class="create">
-				<p>Salário:</p>
-				<input type="text" id="create_salario">
+			<label for="create_desc" class="create">
+				<p>Descrição:</p>
+				<input type="text" id="create_desc">
 			</label>
 <br>
-			<label for="create_email" class="create">
-				<p>Email:</p>
-				<input type="email" id="create_email">
-			</label>
-<br>
-			<label for="create_telefone" class="create">
-				<p>Telefone:</p>
-				<input type="text" id="create_telefone">
-			</label>
 			<div class="alterar">
 				<button id="deletar" class="btn btn-outline-danger toggle">Deletar</button>
 				<button id="salvar" class="btn btn-outline-primary toggle">Salvar</button>
@@ -141,18 +128,16 @@
 			<a data-header="y" href="#">Utilitários</a>
 			<a data-header="y" href="#">Pedidos</a>
 			<a data-header="y" href="#">Contas</a>
-			<a data-header="y" class="active" href="#">Funcionários</a>
-			<a data-header="y" href="Financeiro.html">Financeiro</a>
+			<a data-header="y" href="Funcionarios.html">Funcionários</a>
+			<a data-header="y" class="active" href="#">Financeiro</a>
 		</div>
 		<div class="content">
 			<div class="content-main">
 				<div class="table">
 					<div class="head">
-                        <span class="first">Nome:</span>
-                        <span>CPF:</span>
-                        <span>Cargo:</span>
-                        <span>Salario:</span>
-                        <div class="contatos">Contatos:</div>
+                        <span class="first">Data:</span>
+                        <span>Valor:</span>
+                        <span>Descrição:</span>
                     </div>
 					<!-- div where the workers will be listed -->
 
@@ -165,13 +150,11 @@
 <script src="../../dependencias/axios.min.js" type="text/javascript"></script>
 <!-- <script src="../../dependencias/popper.min.js" defer ></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" defer integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src='https://unpkg.com/phosphor-icons' type="text/javascript"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js' type="text/javascript"></script>
-<script src="../../dependencias/jquery.maskedinput-1.1.4.pack.js" type="text/javascript"></script>
 <script src="../../dependencias/imask.js"></script>
 <script src="javascript/notification.js" type="text/javascript"></script>
 <script src="javascript/variables.js" type="text/javascript"></script>
 <script src="javascript/functions.js" type="text/javascript"></script>
-<script src="javascript/funcionarios.js" type="text/javascript"></script>
+<script src="javascript/financeiro.js" type="text/javascript"></script>
 </body>
 </html>
