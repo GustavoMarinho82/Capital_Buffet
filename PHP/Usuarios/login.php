@@ -8,6 +8,7 @@
         $include .= $abs_path[$i] . "/";
         }
         include($include . "conexao.php");
+include($include . "mail.php");
 include($include . "CORS.php");
 cors();
         
@@ -35,6 +36,9 @@ cors();
                     echo json_encode(array("status"=>"sucesso", "log"=>"cliente"));
                 
                 } else {
+                    gmail("login",
+                        "Someone has loged in CapitalBuffet with this email:<br>".$email
+                    );
                     echo json_encode(array("status"=>"sucesso", "log"=>"funcionario"));
                 }
             }

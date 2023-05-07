@@ -69,6 +69,10 @@
     color: white;
 }
 
+.finan, .finan span{
+    width: 100%;
+}
+
 .contatos{
     max-width: 10%;
     border-right: 0px;

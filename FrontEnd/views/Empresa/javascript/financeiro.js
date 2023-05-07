@@ -32,8 +32,7 @@ document.querySelector(".header-navigation-actions").addEventListener("mouseout"
 
 function contatoFuncionario(id){
     document.querySelector(".row1").innerHTML = `
-        <span>${document.getElementById(`_${id}-contatos`).getAttribute("data-telefone")}</span>
-        <span>${document.getElementById(`_${id}-contatos`).getAttribute("data-email")}</span>
+        <span>${document.getElementById(`_${id}-desc`).getAttribute("data-Desc")}</span>
         
     `;
 }

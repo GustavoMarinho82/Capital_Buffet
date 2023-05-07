@@ -8,6 +8,7 @@
             $include .= $abs_path[$i] . "/";
             }
             include($include . "conexao.php");
+include($include . "mail.php");
 include($include . "CORS.php");
 cors();
             

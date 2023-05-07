@@ -77,10 +77,10 @@ function criarRegistros(content){
                 <span onclick="mod('${id}')" class="first" id="_${id}-data" data-data="${content[key].data}" >${data}</span>
                 <span onclick="mod('${id}')" id="_${id}-valor" data-valor="${content[key].valor}">R$ ${content[key].valor}</span>
                 <div class="last" id="_${id}-contatos">
-                    <button class="btn btn-outline-primary"
+                    <button data-id="${id}" class="btn btn-outline-primary"
                     type="button" data-toggle="modal" id="_${id}-desc" data-target="#exampleModalCenter" data-Desc="${content[key].desc}" onclick="contatoFuncionario('${id}')">
                         <span id="${id}" class="material-symbols-outlined">
-                            call
+                            menu
                         </span>
                     </button>
                 </div>
@@ -389,6 +389,20 @@ async function listarRegistro(querry){
         }
     }).then( e => {
         document.querySelector(".table").innerHTML = criarRegistros(e.data);
+        document.querySelectorAll(".btn-outline-primary").forEach( e => {
+            e.addEventListener("mouseover", function () {
+                if(document.getElementById(this.getAttribute("data-id"))){
+                    document.getElementById(this.getAttribute("data-id")).classList.add("white")
+                }
+            })
+        })
+        document.querySelectorAll(".btn-outline-primary").forEach( e => {
+            e.addEventListener("mouseout", function () {
+                if(document.getElementById(this.getAttribute("data-id"))){
+                    document.getElementById(this.getAttribute("data-id")).classList.remove("white")
+                }
+            })
+        })
     }).catch();
 }
 
