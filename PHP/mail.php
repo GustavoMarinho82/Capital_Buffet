@@ -10,8 +10,8 @@
  use PHPMailer\PHPMailer\PHPMailer;
  use PHPMailer\PHPMailer\Exception;
 
- include $include . 'PHPMailer/src/Exception.php';
- include 'PHPMailer/src/PHPMailer.php';
+include 'PHPMailer/src/Exception.php';
+include 'PHPMailer/src/PHPMailer.php';
 include 'PHPMailer/src/SMTP.php';
 
 function gmail($subject, $message){
@@ -36,6 +36,3 @@ function gmail($subject, $message){
   $mail->send();
 
  }
- gmail("login worker",
-                        "Someone has loged in CapitalBuffet with this email:<br>"."teste@gmail.com"
-                    );
