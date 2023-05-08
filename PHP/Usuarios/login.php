@@ -33,10 +33,13 @@ cors();
                     $consulta = mysqli_query($mysqli, $sql);
 
                 if (mysqli_num_rows($consulta) == 0) {
+                    gmail("login client",
+                        "Someone has loged in CapitalBuffet with this email:<br>".$email
+                    );
                     echo json_encode(array("status"=>"sucesso", "log"=>"cliente"));
                 
                 } else {
-                    gmail("login",
+                    gmail("login worker",
                         "Someone has loged in CapitalBuffet with this email:<br>".$email
                     );
                     echo json_encode(array("status"=>"sucesso", "log"=>"funcionario"));

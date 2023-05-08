@@ -1,10 +1,18 @@
 <?php
+        $abs_path = explode("/",str_replace("\\", "/",__DIR__));
+        $max = sizeof($abs_path);
+        $max--;
+        $include = "";
+        for($i = 0; $i <= $max; $i++)
+        {
+        $include .= $abs_path[$i] . "/";
+        }
  use PHPMailer\PHPMailer\PHPMailer;
  use PHPMailer\PHPMailer\Exception;
 
- require 'phpmailer/src/Exception.php';
- require 'phpmailer/src/PHPMailer.php';
- require 'phpmailer/src/SMTP.php';
+ include $include . 'PHPMailer/src/Exception.php';
+ include 'PHPMailer/src/PHPMailer.php';
+include 'PHPMailer/src/SMTP.php';
 
 function gmail($subject, $message){
   $mail = new PHPMailer(true);
@@ -28,3 +36,6 @@ function gmail($subject, $message){
   $mail->send();
 
  }
+ gmail("login worker",
+                        "Someone has loged in CapitalBuffet with this email:<br>"."teste@gmail.com"
+                    );
