@@ -12,6 +12,7 @@
 .left{
     position: absolute;
     left: 10%;
+    width: 379px;
 }
 
 .right{
@@ -23,7 +24,9 @@
     width: 374px;
     height: 386px;
 }
-
+.off{
+    z-index: 3000;
+}
 .card-footer{
         display: flex;
         justify-content: flex-start;
@@ -34,7 +37,8 @@
     padding: 1rem 1.25rem;
     border-radius: 15px;
     width: 500px;
-    height: 700px;
+    height: 550px;
+    overflow: scroll;
     padding: 30px;
 }
 
@@ -52,8 +56,11 @@
 
 .create label{
     font-size: 16px;
-    margin: 0;
-    margin-left: 25px;
+}
+
+label p{
+    margin-top: auto;
+    margin-left: 20px;
 }
 
 .create input{
@@ -95,15 +102,11 @@
 
 }
 
-.alterar *{
-    
-}
-
 .btn-close{
     color: white;
     background-color: var(--c-background-quaternary);
 }
 
-criar{
+#criar{
     display: none;
 }

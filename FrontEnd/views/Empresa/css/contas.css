@@ -7,15 +7,6 @@
     padding: 0px;
 }
 
-.content-main{
-    display: flex;
-    justify-content: space-between;
-}
-
-.table, .chart{
-    width: 45%;
-}
-
 .head, .row, .head1, .row1{
     width: 100%;
     display: flex;
@@ -37,7 +28,7 @@
 }
 
 .head *, .row *{
-    width: 33%;
+    width: 22.5%;
     min-height: fit-content;
     min-width: fit-content;
     height: 50px;
@@ -73,11 +64,9 @@
     background-color: var(--c-accent-primary);
     color: white;
 }
-
-.finan, .finan span{
-    width: 100%;
+.last{
+    width: 10%;
 }
-
 .contatos{
     max-width: 10%;
     border-right: 0px;
@@ -93,8 +82,10 @@
 
 }
 
-.last{
-    border: 0px;
+.create p{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 button .material-symbols-outlined{
@@ -124,15 +115,17 @@ button .material-symbols-outlined{
 }
 
 .s{
+    overflow: hidden;
     display:flex;
     position: absolute;
-    z-index: 1000000;
     animation-name: down;
     animation-duration: 0.1s;
 }
 .ss{
     display: none;
 }
+
+.form{padding-bottom: 0px;}
 
 @keyframes down {
     0%{top: -100%} 

@@ -33,7 +33,7 @@ if(isset($_GET)){
 
 $consulta = mysqli_query($mysqli, $sql);
 $reuturn = array();
-
+$x=0;
 
 while ($linha = mysqli_fetch_array($consulta)) {
     $i= $linha["id_utilitario"];

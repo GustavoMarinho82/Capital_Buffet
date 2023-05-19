@@ -19,7 +19,6 @@ $senha = $_GET['senha'];
 $cep = $_GET['cep'];
 $email = $_GET['email'];
 $telefone = $_GET['telefone'];
-$admin = $_GET['admin'];
 
 
 $sql = "SELECT * FROM usuarios WHERE id_usuario=$id_usuario";
@@ -36,10 +35,8 @@ if (mysqli_num_rows($consulta) == 0) {
         if(empty($cep))         { $cep = $coluna["cep"]; }
         if(empty($email))       { $email = $coluna["email_usuario"]; }
         if(empty($telefone))    { $telefone = $coluna["telefone_usuario"]; }
-        if(strlen($admin) == 0) { $admin = $coluna["admin"]; } 
 
-
-    $sql = "UPDATE usuarios SET nome_usuario='$nome', senha='$senha', cep='$cep', email_usuario='$email', telefone_usuario='$telefone', admin=$admin WHERE id_usuario=$id_usuario";
+    $sql = "UPDATE usuarios SET nome_usuario='$nome', senha='$senha', cep='$cep', email_usuario='$email', telefone_usuario='$telefone' WHERE id_usuario=$id_usuario";
         mysqli_query($mysqli, $sql);
 
     echo json_encode(array("status"=>"sucesso"));

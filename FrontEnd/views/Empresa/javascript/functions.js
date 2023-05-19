@@ -52,7 +52,7 @@ function rowCreate(content){
     return response;
 }
 
-function criarRegistros(content){
+function criarRegistros(content, valores, datas){
     var response = `
     <div class="head">
         <span class="first">Data:</span>
@@ -63,24 +63,87 @@ function criarRegistros(content){
     var id, data;
     var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     var length = content.length - 1;
-    for (key = 0; key <= length; key++){
-        if (typeof(content[key].id) == "undefined" ){
+    content.forEach(element => {
+        if (typeof(element.id) == "undefined" ){
         
         }else{
-            id = content[key].id
-            dateP = content[key].data.split("-")
+            id = element.id
+            dateP = element.data.split("-")
             var today  = new Date(dateP[0], dateP[1] - 1, dateP[2]);
             data = new Intl.DateTimeFormat("br", options).format(today);
 
             response += `
             <div class="row">
-                <span onclick="mod('${id}')" class="first" id="_${id}-data" data-data="${content[key].data}" >${data}</span>
-                <span onclick="mod('${id}')" id="_${id}-valor" data-valor="${content[key].valor}">R$ ${content[key].valor}</span>
+                <span onclick="mod('${id}')" class="first" id="_${id}-data" data-data="${element.data}" >${data}</span>
+                <span onclick="mod('${id}')" id="_${id}-valor" data-valor="${element.valor}">R$ ${element.valor}</span>
                 <div class="last" id="_${id}-contatos">
                     <button data-id="${id}" class="btn btn-outline-primary"
-                    type="button" data-toggle="modal" id="_${id}-desc" data-target="#exampleModalCenter" data-Desc="${content[key].desc}" onclick="contatoFuncionario('${id}')">
+                    type="button" data-toggle="modal" id="_${id}-desc" data-target="#exampleModalCenter" data-Desc="${element.desc}" onclick="contatoFuncionario('${id}')">
                         <span id="${id}" class="material-symbols-outlined">
                             menu
+                        </span>
+                    </button>
+                </div>
+            </div>
+            `;
+        }
+    });
+
+    for(i=0; i < datas.length; i++){
+        dateP = datas[i].split("-")
+            var today  = new Date(dateP[0], dateP[1] - 1, dateP[2]);
+            datas[i] = new Intl.DateTimeFormat("br", options).format(today);
+    }
+
+        const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: datas,
+      datasets: [
+        {
+            label:"valores",
+            data: valores,
+            borderWidth: 1,
+            tension:0.2,
+            fill: true,
+            borderColor: 'rgb(75, 1, 255)',    
+        }
+    ]}
+  });
+    
+    return response;
+}
+
+function criarContas(content){
+    var response = `
+    <div class="head">
+        <span class="first">Nome:</span>
+        <span>Senha:</span>
+        <span>CPF / CNPJ:</span>
+        <span>CEP:</span>
+        <div class="last">Contatos:</div>
+    </div>`;
+
+    var id
+    var length = content.length - 1;
+    for (key = 0; key <= length; key++){
+        if (typeof(content[key].id) == "undefined" ){
+        
+        }else{
+            id = content[key].id
+            response += `
+            <div class="row">
+                <span onclick="mod('${id}')" class="first" id="_${id}-nome">${content[key].nome}</span>
+                <span onclick="mod('${id}')" id="_${id}-senha" >${content[key].senha}</span>
+                <span onclick="mod('${id}')" id="_${id}-cpf-cnpj" data-cpf="${content[key].cpf}" data-cnpj="${content[key].cnpj}" >${content[key].cpf || content[key].cnpj}</span>
+                <span onclick="mod('${id}')" id="_${id}-cep" >${content[key].cep}</span>
+                <div class="last">
+                    <button data-id="${id}" class="btn btn-outline-primary"
+                    type="button" data-toggle="modal" id="_${id}-contatos" data-target="#exampleModalCenter" data-email="${content[key].email}" data-telefone="${content[key].telefone}" onclick="contatoFuncionario('${id}')">
+                        <span id="${id}" class="material-symbols-outlined">
+                            call
                         </span>
                     </button>
                 </div>
@@ -123,6 +186,38 @@ function articleCreate(content){
     return response;
 }
 
+function CreateUtility(content){
+    var response = "";
+    var id;
+    var length = content.length - 1;
+    for (key = 0; key <= length; key++){
+        if (typeof(content[key].nome) == "undefined" ){
+        
+        }else{
+            id = content[key].id
+            response += `
+            <article id="${id}" class="card">
+                <div class="card-header">
+                    <div>
+                        <span></span>
+                        <h3 id="_${id}-name" data-id="_${id}">${content[key].nome}</h3>
+                    </div>
+                        <button class="btn btn-outline-primary toggle" onclick="alterar('${id}')">Alterar</button>
+                </div>
+                <hr><div class="card-body">
+            <img id="_${id}-img" src="${content[key].img || "../imagens/logo.png"}"/>
+                </div><hr>
+                <div class="card-footer">
+                    <b href="#">Em estoque: <j id="_${id}-estoque" >${content[key].estoque}</j></b>
+                </div>
+                <div id="_${id}price" class="price">Preço: R$ <j id="_${id}-preco">${content[key].preco}</j></div>
+                <div id="_${id}-desc" style="display:none">${content[key].descricao}</div>
+            </article>`;
+    }
+    }
+    return response;
+}
+
 function notifications(message, color, error){
     var notification =
      `<div class="Message ${color}" id="js-timer">
@@ -142,7 +237,7 @@ function notifications(message, color, error){
         }
         
         setTimeout(function() {
-            closeMessage($('#js-timer'));
+            $('#js-timer').addClass('is-hidden');
           }, 5000);
 }
 
@@ -195,16 +290,14 @@ function modComida(id, nome, preco, estoque, tipo, categoria, desc, imagem){
 }
 
 async function criarUtilitario( nome, preco, estoque, desc, imagem){
-    await axios.get(PATH + "PHP/Utilitarios/cadastrarUtilitario.php", { 
+    return axios.get(PATH + "PHP/Utilitarios/cadastrarUtilitario.php", { 
         params:{
             nome: nome,
             preco: preco,
             estoque: estoque,
-            desc: desc,
+            descricao: desc,
             imagem: imagem
-        }}).then( e => {
-            console.log(e.data)
-        }). catch();
+        }});
 }
 
 async function listarUtilitario(nome, ordem){
@@ -213,12 +306,12 @@ async function listarUtilitario(nome, ordem){
         ordem: ordem || "",
     }}
     ).then( e => {
-        console.log(e.data)
+        document.querySelector(".card-grid").innerHTML = CreateUtility(e.data);
     }).catch();
 }
 
 async function modUtilitario(id, nome, preco, estoque, desc, imagem){
- await axios.get(PATH + "PHP/Utilitarios/alterarUtilitario.php", {
+ return axios.get(PATH + "PHP/Utilitarios/alterarUtilitario.php", {
     params:{
         id: id,
         nome: nome,
@@ -226,19 +319,15 @@ async function modUtilitario(id, nome, preco, estoque, desc, imagem){
         estoque: estoque,
         desc: desc,
         imagem: imagem
-    }}).then( e =>{
-        console.log(e.data)
-    }).catch();
+    }});
 }
 
 async function delUtilitario(id){
-    await axios.get(PATH + "PHP/Utilitarios/deletarUtilitario.php", {
+    return axios.get(PATH + "PHP/Utilitarios/deletarUtilitario.php", {
         params:{
             id: id
         }
-    }).then( e =>{
-        console.log(e.data)
-    }).catch();
+    });
 }
 
 async function criarFuncionario(nome, cpf, cargo, salario, email, telefone){
@@ -300,7 +389,7 @@ async function delFuncionario(cpf){
 }
 
 async function criarUsuario(nome, senha, cpf, cnpj, cep,  email, telefone){
-    await axios.get(PATH + "PHP/Usuarios/criarConta.php", {
+    return axios.get(PATH + "PHP/Usuarios/criarConta.php", {
         params:{
             nome: nome,
             senha:senha,
@@ -310,12 +399,7 @@ async function criarUsuario(nome, senha, cpf, cnpj, cep,  email, telefone){
             email:email,
             telefone:telefone
         }
-    }).then(e=>{
-        console.log(e.data.status)
-        if(e.data.status == "falha"){
-            console.log(`causa: ${e.data.causa}`)
-        }
-    }).catch();
+    });
 }
 
 async function listarUsuario(query){
@@ -323,42 +407,45 @@ async function listarUsuario(query){
         params:{
             query:query
         }
-    }).then(e=>{
-        console.log(e.data)
-    }).catch();
+    }).then( e => {
+        document.querySelector(".table").innerHTML = criarContas(e.data)
+        document.querySelectorAll(".btn-outline-primary").forEach( e => {
+            e.addEventListener("mouseover", function () {
+                if(document.getElementById(this.getAttribute("data-id"))){
+                    document.getElementById(this.getAttribute("data-id")).classList.add("white")
+                }
+            })
+        })
+        document.querySelectorAll(".btn-outline-primary").forEach( e => {
+            e.addEventListener("mouseout", function () {
+                if(document.getElementById(this.getAttribute("data-id"))){
+                    document.getElementById(this.getAttribute("data-id")).classList.remove("white")
+                }
+            })
+        })
+    });
+    
 }
 
 async function modUsuario(id, nome, senha, cep,  email, telefone){
-    await axios.get(PATH + "PHP/Usuarios/criarConta.php", {
+    return axios.get(PATH + "PHP/Usuarios/alterarConta.php", {
         params:{
             id:id,
             nome: nome,
             senha:senha,
-            cpf:cpf,
-            cnpj:cnpj,
             cep:cep,
             email:email,
             telefone:telefone
         }
-    }).then(e=>{
-        console.log(e.data.status)
-        if(e.data.status == "falha"){
-            console.log(`causa: ${e.data.causa}`)
-        }
-    }).catch();
+    });
 }
 
 async function delUsuario(id){
-    await axios.get(PATH + "PHP/Usuarios/deletarConta.php", {
+    return axios.get(PATH + "PHP/Usuarios/deletarConta.php", {
         params:{
             id: id
         }
-    }).then( e => {
-        console.log("status: "+e.data.status);
-        if(e.data.status == "falha"){
-            console.log("causa: "+ e.data.causa)
-        }
-    })
+    });
 }
 
 async function login(email, senha){
@@ -388,7 +475,7 @@ async function listarRegistro(querry){
             querry: querry
         }
     }).then( e => {
-        document.querySelector(".table").innerHTML = criarRegistros(e.data);
+        document.querySelector(".table").innerHTML = criarRegistros(e.data.data, e.data.valores, e.data.dates);
         document.querySelectorAll(".btn-outline-primary").forEach( e => {
             e.addEventListener("mouseover", function () {
                 if(document.getElementById(this.getAttribute("data-id"))){

@@ -27,13 +27,16 @@ if(isset($_GET["querry"]) && $_GET["querry"] != ""){
 }
     $consulta = mysqli_query($mysqli, $sql);
 $x = 0;
-$return = array();
+$return = $valores = $dates =array();
 
 while ($linha = mysqli_fetch_array($consulta)) {
     $i= $linha["id_registro"];
     $p= $linha["data_registro"];
     $v= $linha["valor"];
     $d= $linha["descricao"];
+
+    $valores[$x] = $v; 
+    $dates[$x] = $p; 
 
     $return[$x]=array(
         "id" => $i,
@@ -45,4 +48,4 @@ while ($linha = mysqli_fetch_array($consulta)) {
     $x++;
 }
 
-echo json_encode($return);
+echo json_encode(array("data" => $return, "valores" => $valores, "dates" => $dates));

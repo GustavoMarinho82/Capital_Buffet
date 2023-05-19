@@ -83,7 +83,7 @@ img {
     justify-content: space-between;
   }
   .header-content > a {
-    display: inline-flex;
+    /*display: inline-flex;*/
   }
 }
 
@@ -526,10 +526,10 @@ img {
 }
 .card-footer {
   margin-top: auto;
-  padding: 1rem 1.25rem;
+  padding: 1.5rem 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   border-top: 1px solid var(--c-border-primary);
 }
 .card-footer b, number {
@@ -539,8 +539,130 @@ img {
   font-size: 0.875rem;
 }
 
+
+.ss{
+  display: none;
+}
+
+@keyframes down {
+  0%{top: -100%} 
+  1%{top: -99%} 
+  2%{top: -98%} 
+  3%{top: -97%} 
+  4%{top: -96%} 
+  5%{top: -95%} 
+  6%{top: -94%} 
+  7%{top: -93%} 
+  8%{top: -92%} 
+  9%{top: -91%} 
+  10%{top: -90%} 
+  11%{top: -89%} 
+  12%{top: -88%} 
+  13%{top: -87%} 
+  14%{top: -86%} 
+  15%{top: -85%} 
+  16%{top: -84%} 
+  17%{top: -83%} 
+  18%{top: -82%} 
+  19%{top: -81%} 
+  20%{top: -80%} 
+  21%{top: -79%} 
+  22%{top: -78%} 
+  23%{top: -77%} 
+  24%{top: -76%} 
+  25%{top: -75%} 
+  26%{top: -74%} 
+  27%{top: -73%} 
+  28%{top: -72%} 
+  29%{top: -71%} 
+  30%{top: -70%} 
+  31%{top: -69%} 
+  32%{top: -68%} 
+  33%{top: -67%} 
+  34%{top: -66%} 
+  35%{top: -65%} 
+  36%{top: -64%} 
+  37%{top: -63%} 
+  38%{top: -62%} 
+  39%{top: -61%} 
+  40%{top: -60%} 
+  41%{top: -59%} 
+  42%{top: -58%} 
+  43%{top: -57%} 
+  44%{top: -56%} 
+  45%{top: -55%} 
+  46%{top: -54%} 
+  47%{top: -53%} 
+  48%{top: -52%} 
+  49%{top: -51%} 
+  50%{top: -50%} 
+  51%{top: -49%} 
+  52%{top: -48%} 
+  53%{top: -47%} 
+  54%{top: -46%} 
+  55%{top: -45%} 
+  56%{top: -44%} 
+  57%{top: -43%} 
+  58%{top: -42%} 
+  59%{top: -41%} 
+  60%{top: -40%} 
+  61%{top: -39%} 
+  62%{top: -38%} 
+  63%{top: -37%} 
+  64%{top: -36%} 
+  65%{top: -35%} 
+  66%{top: -34%} 
+  67%{top: -33%} 
+  68%{top: -32%} 
+  69%{top: -31%} 
+  70%{top: -30%} 
+  71%{top: -29%} 
+  72%{top: -28%} 
+  73%{top: -27%} 
+  74%{top: -26%} 
+  75%{top: -25%} 
+  76%{top: -24%} 
+  77%{top: -23%} 
+  78%{top: -22%} 
+  79%{top: -21%} 
+  80%{top: -20%} 
+  81%{top: -19%} 
+  82%{top: -18%} 
+  83%{top: -17%} 
+  84%{top: -16%} 
+  85%{top: -15%} 
+  86%{top: -14%} 
+  87%{top: -13%} 
+  88%{top: -12%} 
+  89%{top: -11%} 
+  90%{top: -10%} 
+  91%{top: -9%} 
+  92%{top: -8%} 
+  93%{top: -7%} 
+  94%{top: -6%} 
+  95%{top: -5%} 
+  96%{top: -4%} 
+  97%{top: -3%} 
+  98%{top: -2%} 
+  99%{top: -1%} 
+  100%{top: -0%} 
+}
+
+*{
+  -ms-overflow-style: none;
+  scrollbar-width: 0px;
+}
+
+*::-webkit-scrollbar {
+  visibility:hidden;
+}
+
 html::-webkit-scrollbar {
+  visibility: visible;
   width: 12px;
+}
+html{
+  -ms-overflow-style: 12px
 }
 html::-webkit-scrollbar-thumb {
   background-color: var(--c-text-primary);

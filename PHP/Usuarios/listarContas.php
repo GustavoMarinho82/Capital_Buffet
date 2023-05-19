@@ -1,18 +1,18 @@
-        <?php
-        $abs_path = explode("/",str_replace("\\", "/",__DIR__));
-        $max = sizeof($abs_path);
-        $max--;
-        $include = "";
-        for($i = 0; $i < $max; $i++)
-        {
-        $include .= $abs_path[$i] . "/";
-        }
-        include($include . "conexao.php");
+<?php
+$abs_path = explode("/",str_replace("\\", "/",__DIR__));
+$max = sizeof($abs_path);
+$max--;
+$include = "";
+for($i = 0; $i < $max; $i++)
+{
+$include .= $abs_path[$i] . "/";
+}
+include($include . "conexao.php");
 include($include . "mail.php");
 include($include . "CORS.php");
 cors();
         
-        if(isset($_GET) && $_GET["query"] != ""){
+        if(isset($_GET["querry"]) && $_GET["query"] != ""){
             $query = $_GET["query"];
             $sql = "SELECT * FROM usuarios WHERE 
                 nome_usuario LIKE '%$query%' OR

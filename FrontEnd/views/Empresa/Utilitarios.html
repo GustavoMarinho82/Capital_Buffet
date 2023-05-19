@@ -6,8 +6,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="../../dependencias/bootstrap.min.css">
   <link rel="stylesheet" href="css/notification.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contas.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -17,47 +18,12 @@
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<header class="header">
-	<div class="header-content responsive-wrapper">
-		<div class="header-logo">
-			<logo href="#">
-				<div class="logo">
-				<img src="../../imagens/logo.png" />
-				</div>
-				<div>
-				Capital Buffet
-				</div>
-			</logo>
-		</div>
-		<div class="header-navigation">
-            <nav class="header-navigation-links">
-			</nav>
-			<div class="header-navigation-actions">
-				<a href="#" class="button">
-					<i class="ph-lightning-bold"></i>
-					<span id="action" data-bs-toggle="offcanvas" data-bs-target="#alterar" aria-controls="alterar">Criar</span>
-				</a>
-				<!--<a href="#" class="icon-button">
-					<i class="ph-gear-bold"></i>
-				</a>
-				<a href="#" class="icon-button">
-					<i class="ph-bell-bold"></i>
-				</a>-->
-			</div>
-		</div>
-		<a href="#" class="button">
-			<i class="ph-list-bold"></i>
-			<span>Menu</span>
-		</a>
-	</div>
-</header>
-
 <div class="notifications"></div>
 
-<div class="offcanvas offcanvas-top" data-bs-scroll="false" data-bs-backdrop="false" id="alterar" aria-labelledby="offcanvasLabel">
+<div class="off">
 	<div class="notifications-error"></div>
 	<div class="offcanvas-header">
-		<button data-bs-dismiss="offcanvas" class="btn-close"></button>
+		<button id="act" class="btn-close"></button>
 	</div>
 	<div class="offcanvas-body">
 		<article class="card left">
@@ -107,16 +73,6 @@
 				<p>Descriçao:</p>
 				<input type="text" id="create_desc">
 			</label>
-<br>
-			<label for="create_tipo" class="create">
-				<p>Tipo:</p>
-				<input type="text" id="create_tipo">
-			</label>
-<br>
-			<label for="create_Categoria" class="create">
-				<p>Categoria:</p>
-				<input type="text" id="create_categoria">
-			</label>
 
 			<div class="alterar">
 				<button id="deletar" class="btn btn-outline-danger toggle">deletar</button>
@@ -130,6 +86,41 @@
 	</div>
   </div>
 
+  <header class="header">
+	<div class="header-content responsive-wrapper">
+		<div class="header-logo">
+			<logo href="#">
+				<div class="logo">
+				<img src="../../imagens/logo.png" />
+				</div>
+				<div>
+				Capital Buffet
+				</div>
+			</logo>
+		</div>
+		<div class="header-navigation">
+            <nav class="header-navigation-links">
+			</nav>
+			<div id="action" class="header-navigation-actions">
+				<a href="#" class="button">
+					<i class="ph-lightning-bold"></i>
+					<span>Criar</span>
+				</a>
+				<!--<a href="#" class="icon-button">
+					<i class="ph-gear-bold"></i>
+				</a>
+				<a href="#" class="icon-button">
+					<i class="ph-bell-bold"></i>
+				</a>-->
+			</div>
+		</div>
+		<a href="#" class="button">
+			<i class="ph-list-bold"></i>
+			<span>Menu</span>
+		</a>
+	</div>
+</header>
+
 <main class="main">	
 	<div class="responsive-wrapper">
 		<div class="main-header">
@@ -141,8 +132,8 @@
 			</div>
 		</div>
 		<div class="horizontal-tabs">
-			<a data-header="y" class="active" href="#">Comidas</a>
-			<a data-header="y" href="#">Utilitários</a>
+			<a data-header="y" href="./">Comidas</a>
+			<a data-header="y" class="active" href="#">Utilitários</a>
 			<a data-header="y" href="#">Pedidos</a>
 			<a data-header="y" href="contas.html" href="">Contas</a>
 			<a data-header="y" href="Funcionarios.html">Funcionários</a>
@@ -183,7 +174,8 @@
 <script src="javascript/notification.js"></script>
 <script src="javascript/variables.js"></script>
 <script src="javascript/functions.js"></script>
-<script src="javascript/script.js" defer></script>
+<script src="../../dependencias/imask.js"></script>
+<script src="javascript/utilitarios.js" defer></script>
 
 </body>
 </html>
