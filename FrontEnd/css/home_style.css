@@ -6,7 +6,7 @@
   padding: 0;
 }
 .btn-primary {
-	background: brown;
+	background: var(--marrom);
 	color: white;
 	text-transform: uppercase;
 	padding: 15px 60px;
@@ -92,16 +92,22 @@
   text-decoration: none;
   font-family: "PT Sans", sans-serif;
   padding: 13px 10px 13px 10px;
+  border-radius: 5px;
 }
 
 .links a:hover {
-  background-color: brown;
+  transition: all .5s ease;
+  background-color: #780000;
 }
 .links #login{
   color: #fff;
   margin-left: 50px;
-  background-color: rgb(0, 0, 0, 15);
+  background-color: rgb(0, 0, 0, 0.5);
   border-radius: 8px;
+}
+.links #login:hover{
+  transition: all .5s ease;
+  background-color: #780000;
 }
 #hamburger {
   display: none;
@@ -127,7 +133,7 @@
 
   .hamburgerMenu label:hover,
   .navbar #hamburger:checked ~ .hamburgerMenu > label {
-    background-color: brown;
+    background-color: var(--marrom);
   }
 
   .hamburgerMenu label div {
@@ -223,14 +229,31 @@ ul {
   margin-top: 30px;
   color: #4d4d4d;
 }
+
 .center-text h2 {
   margin-top: 25px;
   line-height: 0;
+}
+.center-text label{
+  display: block;
+  font-family: "PT Sans", sans-serif;
+  line-height: 1.5;
+  font-size: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .center-text label{
+    max-width: 80%;
+  }
 }
 .center-text p {
   margin-top: 0;
   font-family: "PT Sans", sans-serif;
   line-height: 1.5;
+  font-size: 5px;
 }
 .center-text a {
   font-family: "PT Sans", sans-serif;
@@ -248,10 +271,10 @@ ul {
   align-items: center;
 }
 .add-flex .stuffed-cherries {
-  background: url("https://s-media-cache-ak0.pinimg.com/736x/61/b1/98/61b19844448b2bad5c78e9a2c6347986.jpg") no-repeat center center;
+  background: url("../imagens/cereja.jpg") no-repeat center center;
   background-size: cover;
-  height: 315px;
-  width: 320px;
+  height: 415px;
+  width: 820px;
 }
 
 .center-h1 {

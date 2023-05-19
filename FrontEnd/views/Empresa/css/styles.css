@@ -37,8 +37,11 @@
     padding: 1rem 1.25rem;
     border-radius: 15px;
     width: 500px;
+<<<<<<< HEAD
     height: 550px;
     overflow: scroll;
+=======
+>>>>>>> 04b4fd212f52926e0f893aaa3bbb91890ca60e65
     padding: 30px;
 }
 

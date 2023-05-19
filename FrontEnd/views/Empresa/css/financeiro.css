@@ -7,6 +7,7 @@
     padding: 0px;
 }
 
+<<<<<<< HEAD
 .content-main{
     display: flex;
     justify-content: space-between;
@@ -14,6 +15,10 @@
 
 .table, .chart{
     width: 45%;
+=======
+.table{
+    width: 50%;
+>>>>>>> 04b4fd212f52926e0f893aaa3bbb91890ca60e65
 }
 
 .head, .row, .head1, .row1{

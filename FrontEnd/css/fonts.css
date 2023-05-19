@@ -32,3 +32,10 @@
     font-family: "Alex Brush";
     src: url("https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap");
 }
+
+
+/*Cores*/
+:root{
+    --marrom: #780000;
+    --laranja: #be8040;
+}
