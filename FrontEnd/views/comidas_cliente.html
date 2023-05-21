@@ -64,16 +64,37 @@
               </li>
 
               <div id="popupOverlay" class="popup-overlay" style="display: none;">
-                <div class="popup">
-                  <span class="material-icons close-icon" onclick="hidePopup()">close</span>
-                  <label id="popupText"></label>
-                  <label id="popupText">Nome</label>
-                  <label id="popupText">Preço</label>
-                  <label id="popupText">tipo</label>
-                  <label id="popupText">categoria</label>
-                  <label id="popupText">descrição</label>
-                  <img src="../imagens/pao.jfif" alt="teste">
-                </div>
+                <div class="container" id="container">
+                  <div class="form-container sign-up-container">
+                    <form>
+                        <span class="material-icons close-icon" onclick="hidePopup()">close</span>
+                          <div class="result" for="create_nome">
+                            <label>Nome:</label>
+                            <a id="result_nome">Giovana Lira de França</a>
+                          </div>
+                          <div class="result" for="create_nome">
+                            <label>Preço:</label>
+                            <a id="result_nome">R$inestimável</a>
+                          </div>
+                          <div class="result" for="create_nome">
+                            <label>Tipo:</label>
+                            <a id="result_nome">Da igreja</a>
+                          </div>
+                          <div class="result" for="create_nome">
+                            <label>Categoria:</label>
+                            <a id="result_nome">Jantar</a>
+                          </div>
+                          <div class="result" for="create_nome">
+                            <label>Descrição:</label>
+                            <a id="result_nome">Estudante da firjan, sofrida da cabeça, galantiadora</a>
+                          </div>
+                    </form>
+                  </div>
+                  <div class="overlay-container">
+                    <div class="overlay">
+                      <div class="overlay-panel overlay-left">
+                
+                      </div>
               </div>
             </ul>
           </article>
@@ -172,7 +193,7 @@
     function showPopup(text) {
     var popupOverlay = document.getElementById('popupOverlay');
     var popupText = document.getElementById('popupText');
-    popupText.innerText = text;
+
     popupOverlay.style.display = 'flex';
   }
 
