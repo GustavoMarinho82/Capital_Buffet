@@ -58,13 +58,14 @@ a {
 
 .aside-float {
   text-align: right;
-  width: 20%;
+  width: 12%;
   padding: 15px;
 }
 
 .nav-side {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  left: 2px;
+  text-align: center;
 }
 
 .nav-side a {
@@ -80,7 +81,7 @@ a {
 }
 
 .items {
-  width: 100%;
+  width: 95%;
   padding-left: 10px;
   padding-top: 25px;
 }
