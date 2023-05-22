@@ -346,6 +346,7 @@ ul {
 .reservation-section div:last-child img {
   margin: auto;
   width: 85%;
+  padding-bottom: 60px;
 }
 
 /*
