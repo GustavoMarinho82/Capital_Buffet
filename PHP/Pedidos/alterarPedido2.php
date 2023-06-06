@@ -6,6 +6,7 @@
 
     <BODY>
         <?php
+            require('../variaveis.php');
             include('../conexao.php');
             
             session_start();
@@ -24,11 +25,11 @@
             $qtd_utilitarios = $_POST['qtd_utilitarios'];
             $qtd_cargos = $_POST['qtd_cargos'];
 
-            $qtd_antiga_comidas = conseguir_qtd_antiga($mysqli, "comida", $id_pedido);
-            $qtd_antiga_utilitarios = conseguir_qtd_antiga($mysqli, "utilitario", $id_pedido);
-            $qtd_antiga_funcionarios = conseguir_qtd_antiga_funcionarios($mysqli, $id_pedido);
+            $qtd_antiga_comidas = conseguir_qtd_antiga("comida");
+            $qtd_antiga_utilitarios = conseguir_qtd_antiga("utilitario");
+            $qtd_antiga_funcionarios = conseguir_qtd_antiga_funcionarios();
 
-            $orcamento = conseguir_orcamento($mysqli, $inicio_evento, $fim_evento, $qtd_comidas, $qtd_utilitarios, $qtd_cargos);
+            $orcamento = conseguir_orcamento();
 
             
             $sql = "SELECT * FROM pedidos WHERE id_pedido=$id_pedido";
@@ -127,7 +128,9 @@
 
 <?php
     //FUNÇÕES
-    function conseguir_qtd_antiga($mysqli, $entidade, $id_pedido) {
+    function conseguir_qtd_antiga($entidade) {
+        global $mysqli, $id_pedido;
+
         $sql = "SELECT * FROM pedido_" . $entidade . "s WHERE pedido_id=$id_pedido";
             $consulta = mysqli_query($mysqli, $sql);
 
@@ -140,11 +143,11 @@
         return $qtd_antiga;
     };
 
-    function conseguir_qtd_antiga_funcionarios($mysqli, $id_pedido) {
-        $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+    function conseguir_qtd_antiga_funcionarios() {
+        global $mysqli, $id_pedido, $cargos;
         $qtd_antiga = array();
 
-        foreach($cargos as $cargo) {
+        foreach($cargos as $cargo => $custo_hora) {
             $sql = "SELECT * FROM pedido_funcionarios WHERE pedido_id=$id_pedido AND funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo')";
                 $consulta = mysqli_query($mysqli, $sql);
                     $qtd_antiga[$cargo] = mysqli_num_rows($consulta);
@@ -153,7 +156,8 @@
         return $qtd_antiga;
     };
 
-    function conseguir_orcamento($mysqli, $inicio_evento, $fim_evento, $qtd_comidas, $qtd_utilitarios, $qtd_cargos) {
+    function conseguir_orcamento() {
+        global $mysqli, $inicio_evento, $fim_evento, $qtd_comidas, $qtd_utilitarios, $qtd_cargos, $cargos;
         $orcamento = 500;
 
         $sql = "SELECT * FROM comidas";
@@ -175,8 +179,9 @@
         $duracao = date_diff(date_create($inicio_evento), date_create($fim_evento), true);
             $d = $duracao->format('%h');
         
-            $orcamento += (($qtd_cargos["Chefe de cozinha"]*50*$d) + ($qtd_cargos["Ajudante de cozinha"]*35*$d) + ($qtd_cargos["Copeiro"]*15*$d) + ($qtd_cargos["Garçom"]*25*$d) + 
-                ($qtd_cargos["Barman"]*35*$d) + ($qtd_cargos["Recepcionista"]*30*$d) + ($qtd_cargos["Segurança"]*45*$d) + ($qtd_cargos["Faxineiro"]*20*$d));
+            foreach ($cargos as $cargo => $custo_hora) { 
+                $orcamento+= ($qtd_cargos[$cargo]*$custo_hora*$d);
+            }
 
         return $orcamento;
     };

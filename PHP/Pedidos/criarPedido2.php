@@ -1,4 +1,5 @@
-<?php 
+<?php
+    require('../variaveis.php');
     include('../conexao.php');
     
     session_start();
@@ -111,35 +112,23 @@
             <!-- FUNCIONÁRIOS -->
             <br><h2>Funcionários</h2>
 
+                <hr>
                 <?php
-                    $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+                    global $cargos;
                     
                     $sql = "SELECT * FROM funcionarios WHERE cargo=?";
                         $stmt = mysqli_prepare($mysqli, $sql);
                             mysqli_stmt_bind_param($stmt, "s", $cargo);
 
-                            
-                    for($x = 0; $x < count($cargos); $x++) {
-                        $cargo = $cargos[$x];
-                        
+                    foreach ($cargos as $cargo => $custo_hora) {
                         $consulta = mysqli_stmt_execute($stmt); //Essa consulta foi utilizada para evitar um erro de sincronização
                         $resultado = mysqli_stmt_get_result($stmt);
-                            $max_cargo[$x] = mysqli_num_rows($resultado);
+                            $max_cargo = mysqli_num_rows($resultado);
+                        
+                        echo "$cargo: <input type='number' value ='0' min='0' max='$max_cargo' name='qtd_cargos[$cargo]'> <br>";
                     }
                 ?>
-
-                        <!--Início do HTML-->
-                        <hr>
-                            Chefes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[0] ?>" name="qtd_cargos[Chefe de cozinha]"> <br>
-                            Ajudantes de cozinha: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[1] ?>" name="qtd_cargos[Ajudante de cozinha]"> <br>
-                            Copeiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[2] ?>" name="qtd_cargos[Copeiro]"> <br>
-                            Garçons: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[3] ?>" name="qtd_cargos[Garçom]"> <br>
-                            Barmans: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[4] ?>" name="qtd_cargos[Barman]"> <br>
-                            Recepcionistas: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[5] ?>" name="qtd_cargos[Recepcionista]"> <br>
-                            Seguranças: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[6] ?>" name="qtd_cargos[Segurança]"> <br>
-                            Faxineiros: <input type="number" value ="0" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[Faxineiro]"> <br>
-                        <hr>
-
+                <hr>
 
                 <input type="submit" value="Ver o orçamento do pedido" />
             </form>

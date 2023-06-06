@@ -1,6 +1,6 @@
 <?php 
+    require('../variaveis.php');
     include('../conexao.php');
-
 
     session_start();
         //O \array_diff(array, [x]) remove os index's de um array que contenham valores iguais a x.
@@ -109,12 +109,14 @@
 
                     <?php
                         $d = $_SESSION['duracao'];
+                        $custo_funcionarios = 0; 
 
-                        $custo_funcionarios = (($qtd_cargos["Chefe de cozinha"]*50*$d) + ($qtd_cargos["Ajudante de cozinha"]*35*$d) + ($qtd_cargos["Copeiro"]*15*$d) + ($qtd_cargos["Garçom"]*25*$d) + 
-                            ($qtd_cargos["Barman"]*35*$d) + ($qtd_cargos["Recepcionista"]*30*$d) + ($qtd_cargos["Segurança"]*45*$d) + ($qtd_cargos["Faxineiro"]*20*$d));
+                        foreach($cargos as $cargo => $custo_hora) {
+                            $custo_funcionarios+= ($qtd_cargos[$cargo]*$custo_hora*$d);
+                        }
 
                         $custo_total = ($custo_comidas + $custo_utilitarios + $custo_funcionarios + 500);
-                            $_SESSION['custo_total'] = $custo_total;           
+                            $_SESSION['custo_total'] = $custo_total;
                     ?>
 
                     Custo das Comidas: R$ <?php echo $custo_comidas ?> <br>

@@ -6,6 +6,7 @@
 
     <BODY>
         <?php
+            require('../variaveis.php');
             include('../conexao.php');
 
             $id_pedido = $_POST['id_pedido'];
@@ -43,7 +44,7 @@
 
                         mysqli_query($mysqli, $sql);
 
-                        recalcular_orcamento($mysqli, $id_pedido, $cpf_funcionario, $acao);
+                        recalcular_orcamento();
 
                         echo "Ação realizada com sucesso!";
                     }
@@ -55,8 +56,10 @@
     </BODY>
 </HTML>
 
-<?php
-    function recalcular_orcamento($mysqli, $id_pedido, $cpf_funcionario, $acao) {
+<?php 
+    function recalcular_orcamento() {
+        global $cargos, $mysqli, $id_pedido, $cpf_funcionario, $acao;
+        
         $sql = "SELECT orcamento, inicio_evento, fim_evento FROM pedidos WHERE id_pedido=$id_pedido";
             $consulta = mysqli_query($mysqli, $sql);
                 $linha = mysqli_fetch_assoc($consulta);
@@ -66,8 +69,6 @@
 
         $duracao = date_diff(date_create($inicio_evento), date_create($fim_evento), true);
             $d = $duracao->format('%h');
-
-        $cargos = array("Chefe de cozinha" => 50 , "Ajudante de cozinha" => 35, "Copeiro" => 15, "Garçom" => 25, "Barman" => 35, "Recepcionista" => 30, "Segurança" => 45, "Faxineiro" => 20);
         
         $sql = "SELECT cargo FROM funcionarios WHERE cpf_funcionario='$cpf_funcionario'";
             $consulta = mysqli_query($mysqli, $sql);  

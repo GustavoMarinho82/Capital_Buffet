@@ -11,6 +11,7 @@
 
     <BODY>
         <?php
+            require('../variaveis.php');
             include('../conexao.php');
 
             $id_pedido = $_POST['id_pedido'];
@@ -167,8 +168,9 @@
             <!-- FUNCIONÁRIOS -->
             <br><h2>Funcionários</h2>
 
+                <hr>
                 <?php
-                    $cargos = array("Chefe de cozinha", "Ajudante de cozinha", "Copeiro", "Garçom", "Barman", "Recepcionista", "Segurança", "Faxineiro");
+                    global $cargos;
                     
                     $sql = "SELECT * FROM funcionarios WHERE cargo=?";
                         $stmt = mysqli_prepare($mysqli, $sql);
@@ -177,32 +179,19 @@
                     $max_cargo= array(); //Essas variáveis foram inicializadas vazias para evitar um erro de uso de valores escalares
                     $qtd_antiga = array(); 
                     
-
-                    for($x = 0; $x < count($cargos); $x++) {
-                        $cargo = $cargos[$x];
-                        
+                    foreach ($cargos as $cargo => $custo_hora) {
                         $consulta = mysqli_stmt_execute($stmt); //Essa consulta foi utilizada para evitar um erro de sincronização
                         $resultado = mysqli_stmt_get_result($stmt);
-                            $max_cargo[$x] = mysqli_num_rows($resultado);
+                            $max_cargo = mysqli_num_rows($resultado);
 
                         $sql2 = "SELECT * FROM pedido_funcionarios WHERE pedido_id=$id_pedido AND funcionario_cpf IN (SELECT cpf_funcionario FROM funcionarios WHERE cargo='$cargo')";
                             $consulta2 = mysqli_query($mysqli, $sql2);
-                                $qtd_antiga[$x] = mysqli_num_rows($consulta2);
+                                $qtd_antiga = mysqli_num_rows($consulta2);
+                        
+                        echo "$cargo: <input type='number' value ='$qtd_antiga' min='0' max='$max_cargo' name='qtd_cargos[$cargo]'> (Qtd Antiga: $qtd_antiga) <br>";
                     }
                 ?>
-
-                        <!--Início do HTML-->
-                        <hr>
-                            Chefes de cozinha: <input type="number" value ="<?php echo $qtd_antiga[0]?>" min="0" max="<?php echo $max_cargo[0] ?>" name="qtd_cargos[Chefe de cozinha]"> (Qtd Antiga: <?php echo $qtd_antiga[0]?>) <br>
-                            Ajudantes de cozinha: <input type="number" value ="<?php echo $qtd_antiga[1]?>" min="0" max="<?php echo $max_cargo[1] ?>" name="qtd_cargos[Ajudante de cozinha]"> (Qtd Antiga: <?php echo $qtd_antiga[1]?>) <br>
-                            Copeiros: <input type="number" value ="<?php echo $qtd_antiga[2]?>" min="0" max="<?php echo $max_cargo[2] ?>" name="qtd_cargos[Copeiro]"> (Qtd Antiga: <?php echo $qtd_antiga[2]?>) <br>
-                            Garçons: <input type="number" value ="<?php echo $qtd_antiga[3]?>" min="0" max="<?php echo $max_cargo[3] ?>" name="qtd_cargos[Garçom]"> (Qtd Antiga: <?php echo $qtd_antiga[3]?>) <br>
-                            Barmans: <input type="number" value ="<?php echo $qtd_antiga[4]?>" min="0" max="<?php echo $max_cargo[4] ?>" name="qtd_cargos[Barman]"> (Qtd Antiga: <?php echo $qtd_antiga[4]?>) <br>
-                            Recepcionistas: <input type="number" value ="<?php echo $qtd_antiga[5]?>" min="0" max="<?php echo $max_cargo[5] ?>" name="qtd_cargos[Recepcionista]"> (Qtd Antiga: <?php echo $qtd_antiga[5]?>) <br>
-                            Seguranças: <input type="number" value ="<?php echo $qtd_antiga[6]?>" min="0" max="<?php echo $max_cargo[6] ?>" name="qtd_cargos[Segurança]"> (Qtd Antiga: <?php echo $qtd_antiga[6]?>) <br>
-                            Faxineiros: <input type="number" value ="<?php echo $qtd_antiga[7]?>" min="0" max="<?php echo $max_cargo[7] ?>" name="qtd_cargos[Faxineiro]"> (Qtd Antiga: <?php echo $qtd_antiga[7]?>) <br>
-                        <hr>
-
+                <hr>
 
                 <input type="submit" value="Alterar pedido" />
             </form>
