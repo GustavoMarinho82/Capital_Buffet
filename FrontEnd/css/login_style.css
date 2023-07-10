@@ -23,7 +23,7 @@ body {
     color: white;
     background-color: rgba(0, 0, 0, 0.4);
     background-blend-mode: color;
-    background: url("../imagens/restaurante.jpg") center center/cover rgb(0, 0, 0, 0.4);
+    background: url("../imagens/fundologin.jpg") center/cover rgb(0, 0, 0, 0.7);
   }
 
 .login-box {
