@@ -99,6 +99,7 @@ a {
   border-bottom: #f2f2f2 2px dotted;
   font-size: 1.4em;
   cursor: pointer;
+  padding-top: 5px;
 }
 
 .content-menu {
@@ -166,12 +167,14 @@ footer img {
 
 .item-checkbox{
   display: inline-block;
-  width: 18px;
+  width: 25px;
   height: 17px;
-  border: 3px solid #000;
+  border: 3px solid #4d4c4c;
   border-radius: 3px;
   cursor: pointer;
   margin-top: 9px;
+  margin-bottom: 8px;
+  
 }
 
 /*pop-up*/
@@ -319,4 +322,10 @@ footer img {
       color: #be8040;
       font-family: 'DM Sans', sans-serif;
       font-weight: bold;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }

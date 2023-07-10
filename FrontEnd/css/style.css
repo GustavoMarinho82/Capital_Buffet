@@ -42,6 +42,20 @@ body {
   color: var(--c-text-primary);
 }
 
+ body::-webkit-scrollbar{
+    width: 12px;
+ }
+
+ body::-webkit-scrollbar-track {
+  background: rgb(0, 0, 0, 0.8);       /* color of the tracking area */
+}
+
+ body::-webkit-scrollbar-thumb{
+  background-color: #6b69699d;
+  border-radius: 20px;
+  border: #282a32;
+ }
+
 img {
   display: block;
   width: 100%;
