@@ -513,8 +513,76 @@ async function delRegistro(id){
 }
 
 async function listarCargos(){
-    await axios.get(PATH + "PHP/Pedidos/listarCargos.php", {params:{}})
+    await axios.get(PATH + "PHP/Funcionarios/listarCargos.php", {params:{}})
         .then(e => {
             console.log(e.data);
         })
 }
+
+//Provisório!
+
+async function criarPedido(tipo, orcamento, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, id_usuario) {
+    return axios.get(PATH + "PHP/Pedidos/criarPedido", {
+      params: {
+        tipo: tipo,
+        orcamento: orcamento,
+        inicio: inicio,
+        fim: fim,
+        qtd_convidados: qtd_convidados,
+        endereco: endereco,
+        observacoes: observacoes,
+        qtd_comidas: qtd_comidas,
+        qtd_utilitarios: qtd_utilitarios,
+        qtd_cargos: qtd_cargos,
+        id_usuario: id_usuario
+      }
+    });
+  }
+  
+
+  async function listarPedidos(querry) {
+    return axios.get(PATH + "PHP/Pedidos/listarPedidos.php", {
+      params: {
+        querry: querry
+      }
+    });
+  }
+  
+
+  async function deletarPedido(id_pedido) {
+    return axios.get(PATH + "PHP/PedidosdeletarPedido.php", {
+      params: {
+        id: id_pedido
+      }
+    }).then(response => {
+      if (response.data.status === "falha") {
+        console.log("Pedido não encontrado");
+      } else {
+        console.log("Pedido deletado com sucesso");
+      }
+    }).catch(error => {
+      console.log("Erro ao deletar o pedido:", error);
+    });
+  }
+  
+  
+
+  async function alterarPedido(id_pedido, tipo, orcamento, inicio, fim, qtd_convidados, endereco, observacoes, qtd_comidas, qtd_utilitarios, qtd_cargos, id_usuario) {
+    return axios.get(PATH + "PHP/Pedidos/alterarPedido.php", {
+      params: {
+        id_pedido: id_pedido,
+        tipo: tipo,
+        orcamento: orcamento,
+        inicio: inicio,
+        fim: fim,
+        qtd_convidados: qtd_convidados,
+        endereco: endereco,
+        observacoes: observacoes,
+        qtd_comidas: qtd_comidas,
+        qtd_utilitarios: qtd_utilitarios,
+        qtd_cargos: qtd_cargos,
+        id_usuario: id_usuario
+      }
+    });
+  }
+  
