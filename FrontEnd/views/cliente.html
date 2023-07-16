@@ -88,7 +88,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="text" />
+                <input required type="text" id="tipo"/>
                 <label>Tipo de Evento</label>
                 <hr />
               </div>
@@ -97,7 +97,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="number" />
+                <input required type="number" id="orca"/>
                 <label>Orçamento</label>
                 <hr />
               </div>
@@ -106,7 +106,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input id="data" type="date"/>
+                <input id="data" type="date" id="data"/>
                 <label>Data do evento</label>
                 <hr />
               </div>
@@ -115,7 +115,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="number" />
+                <input required type="number" id="numconvidado"/>
                 <label>Número estipulado dos convidados</label>
                 <hr />
               </div>
@@ -124,7 +124,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="text" />
+                <input required type="text" id="endereco"/>
                 <label>Endereço do Evento</label>
                 <hr />
               </div>
@@ -133,7 +133,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="text" />
+                <input required type="text" id="obs"/>
                 <label>Observações</label>
                 <hr />
               </div>
@@ -141,14 +141,14 @@
           </li>
           <li>
               <div>
-                <a class="linkcardapio" href="../views/comidas_cliente.html" style="color: #ffe8be;">clique aqui para ir á página do cardápio</a>
+                <a class="linkcardapio" onclick="redirecionar()" style="color: #ffe8be;">clique aqui para ir á página do cardápio</a>
                 <hr />
               </div>
           </li>
           <li class="large padding">
             <fieldset class="material-button center">
               <div>
-                <input class="save" type="submit" value="Buscar" />
+                <input onclick="criar()" class="save" type="submit" value="Criar" />
               </div>
             </fieldset>
           </li>
@@ -180,3 +180,5 @@
     </section>
   </main>
 	</div>
+<script src="../views/Empresa/javascript/functions.js"></script>
+<script src="../javascript/pedido.js"></script>
