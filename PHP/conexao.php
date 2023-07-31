@@ -1,4 +1,8 @@
 <?php
+
+include 'CORS.php';
+cors();
+
 	header("charset=utf-8");
 	$servidor = "localhost";
 	$usuario = "root";

@@ -11,6 +11,8 @@ document.querySelectorAll("a").forEach((one) => {
   }
 });
 
+const PATH = "http://127.0.0.1:5500/Capital_Buffet/"
+
 function rowCreate(content) {
   var response = `
     <div class="head">
