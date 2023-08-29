@@ -20,7 +20,7 @@
             $consulta = mysqli_query($mysqli, $sql);
 
         if (mysqli_num_rows($consulta) != 0) {
-            $_SESSION['error_mens'] = "CNPJ/CPF/Email já cadastrado!";
+            $_SESSION['error_mens'] = "CNPJ/CPF/E-mail já cadastrado!";
                 header('Location: ../../FrontEnd/views/Cadastro.php');
 
         } else {

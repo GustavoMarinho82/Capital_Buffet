@@ -18,7 +18,7 @@
         <form method="POST" action="../../PHP/Usuarios/acaoLogin.php">
             <div class="user-box">
                 <input type="text" name="email" required="" value="<?php if (isset($_SESSION['cad_sucesso'])) {echo $_SESSION['cad_sucesso'];}?>">
-                <label>Email</label>
+                <label>E-mail</label>
             </div>
             <div class="user-box">
                 <input type="password" name="senha" required="">
@@ -37,7 +37,7 @@
                 if (isset($_SESSION['cad_sucesso'])) {
                     echo "<b>Conta criada com sucesso!</b> <br>";
                 }
-                
+
                 unset($_SESSION['n_encontrada']);
                 unset($_SESSION['cad_sucesso']);
             ?>

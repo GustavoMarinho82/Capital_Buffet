@@ -48,7 +48,7 @@
             </div>
             <div class="user-box">
                 <input type="text" name="email" required>
-                <label>Email</label>
+                <label>E-mail</label>
             </div>
             <div class="user-box">
                 <input type="password" name="senha" required>

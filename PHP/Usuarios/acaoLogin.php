@@ -21,7 +21,8 @@
                 header('Location: /Capital_Buffet/FrontEnd/views/Empresa/Funcionarios.html');
         
         } else {
-            header('Location: /Capital_Buffet/FrontEnd/views/cliente.html');
+            $_SESSION['id_usuario'] = $linha['id_usuario'];
+                header('Location: /Capital_Buffet/FrontEnd/views/Cliente.php');
         }
     }
 ?>
