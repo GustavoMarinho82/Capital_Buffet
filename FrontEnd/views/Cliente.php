@@ -1,6 +1,9 @@
 <?php
   include("../../PHP/conexao.php");
   session_start();
+  
+  $min_p = date('Y-m-d h:i', strtotime('+14 day'));
+  $max_p = date('Y-m-d h:i', strtotime('+2 year'));
 
   $id_usuario = $_SESSION['id_usuario'];
 
@@ -17,18 +20,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo</title>
+    <title>Central do Cliente</title>
 </head>
 	<div id="settings" ontouchstart>
-  <input checked class="nav" name="nav" type="radio" />
+  <input class="nav" name="nav" type="radio" <?php if (!isset($_SESSION['pedido_feito'])) { echo "checked";}?>/>
   <span class="nav">Conta</span>
   <input class="nav" name="nav" type="radio" />
-  <span class="nav">Fazer Pedidos</span>
-  <input class="nav" name="nav" type="radio"/>
+  <span class="nav">Fazer Pedido</span>
+  <input class="nav" name="nav" type="radio" <?php if (isset($_SESSION['pedido_feito'])) { echo "checked";}?>/>
   <span class="nav">Meus Pedidos</span>
   <input class="nav" name="voltar" type="radio"/>
-  <span class="nav">Voltar para Home</span>
+  <span class="nav">Voltar pra Home</span>
   <main class="content">
+    
+  <?php unset($_SESSION['pedido_feito']); ?>
+
+    <!-- CONTA -->  
     <section id="profile">
       <h2 class="title_material">Bem-vindo</h2>
       <form>
@@ -97,14 +104,17 @@
         </ul>
       </form>
     </section>
+
+
+    <!-- FAZER PEDIDO -->
     <section id="account">
       <h2 class="title_material">Fazer Pedido</h2>
-      <form>
+      <form method="POST" action="./Pedido.php">
         <ul>
           <li>
             <fieldset class="material">
               <div>
-                <input required type="text" id="tipo"/>
+                <input type="text" name="tipo_evento" required/>
                 <label>Tipo de Evento</label>
                 <hr />
               </div>
@@ -113,8 +123,8 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="number" id="orca"/>
-                <label>Orçamento</label>
+                <input type="datetime-local" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
+                <label>Início do Evento</label>
                 <hr />
               </div>
             </fieldset>
@@ -122,8 +132,8 @@
           <li>
             <fieldset class="material">
               <div>
-                <input id="data" type="date" id="data"/>
-                <label>Data do evento</label>
+                <input type="number" name="duracao" min="0" max="12" required/>
+                <label>Duração em Horas (até 12)</label>
                 <hr />
               </div>
             </fieldset>
@@ -131,8 +141,8 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="number" id="numconvidado"/>
-                <label>Número estipulado dos convidados</label>
+                <input type="number" name="qtd_convidados" required/>
+                <label>Número de Convidados</label>
                 <hr />
               </div>
             </fieldset>
@@ -140,7 +150,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="text" id="endereco"/>
+                <input type="text" name="endereco" required/>
                 <label>Endereço do Evento</label>
                 <hr />
               </div>
@@ -149,28 +159,26 @@
           <li>
             <fieldset class="material">
               <div>
-                <input required type="text" id="obs"/>
+                <input type="text" name="observacoes" required/>
                 <label>Observações</label>
                 <hr />
               </div>
             </fieldset>
           </li>
-          <li>
-              <div>
-                <a class="linkcardapio" onclick="redirecionar()" style="color: #ffe8be;">clique aqui para ir á página do cardápio</a>
-                <hr />
-              </div>
-          </li>
+
           <li class="large padding">
             <fieldset class="material-button center">
               <div>
-                <input onclick="criar()" class="save" type="submit" value="Criar" />
+                <input class="save" type="submit" value="Continuar" />
               </div>
             </fieldset>
           </li>
         </ul>
       </form>
     </section>
+
+
+    <!-- MEUS PEDIDOS -->
     <section id="profile">
       <h2 class="title_material">Meus Pedidos</h2>
 
@@ -180,7 +188,6 @@
 
         } else {
           while ($linha = mysqli_fetch_array($consultaP)) {
-
       ?>
               <center>
               <h3>Pedido de ID <?php echo $linha["id_pedido"]?></h3>
