@@ -31,27 +31,27 @@
         <h2>Cadastro</h2>
         <form method="POST" action="../../PHP/Usuarios/acaoCadastro.php">
             <div class="user-box">
-                <input type="text" name="nome" required>
+                <input type="text" name="nome" required autocomplete="off"/>
                 <label>Nome</label>
             </div>
             <div class="user-box">
-                <input type="text" name="cpfcnpj" id="cpfcnpj" required/>
+                <input type="text" name="cpfcnpj" id="cpfcnpj" required autocomplete="off"/>
                 <label>CPF ou CPNJ</label>
             </div>
             <div class="user-box">
-                <input type="text" name="cep" id="cep" required>
+                <input type="text" name="cep" id="cep" required autocomplete="off"/>
                 <label>CEP</label>
             </div>
             <div class="user-box">
-                <input type="text" name="telefone" id="telefone" required>
+                <input type="text" name="telefone" id="telefone" required autocomplete="off"/>
                 <label>Telefone</label>
             </div>
             <div class="user-box">
-                <input type="text" name="email" required>
+                <input type="text" name="email" required autocomplete="off"/>
                 <label>E-mail</label>
             </div>
             <div class="user-box">
-                <input type="password" name="senha" required>
+                <input type="password" name="senha" required autocomplete="off"/>
                 <label>Senha</label>
             </div>
                 <div class="button-form">

@@ -17,11 +17,11 @@
         <h2>Login</h2>
         <form method="POST" action="../../PHP/Usuarios/acaoLogin.php">
             <div class="user-box">
-                <input type="text" name="email" required="" value="<?php if (isset($_SESSION['cad_sucesso'])) {echo $_SESSION['cad_sucesso'];}?>">
+                <input type="text" name="email" required="" autocomplete="off" value="<?php if (isset($_SESSION['cad_sucesso'])) {echo $_SESSION['cad_sucesso'];}?>">
                 <label>E-mail</label>
             </div>
             <div class="user-box">
-                <input type="password" name="senha" required="">
+                <input type="password" name="senha" required="" autocomplete="off">
                 <label>Senha</label>
             </div>
             <div class="button-form">

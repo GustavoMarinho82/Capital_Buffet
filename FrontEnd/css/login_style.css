@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
 
 :root {
-  --font-style: 'Nunito Sans', sans-serif;
+  --font-style: "Nunito Sans", sans-serif;
   --cor-fonte: #be8040;
   --cor-font-leve: #dac3a8;
 }
@@ -15,16 +15,16 @@ body {
   margin: 0;
 }
 
-.showcase{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.4);
-    background-blend-mode: color;
-    background: url("../imagens/fundologin.jpg") center/cover rgb(0, 0, 0, 0.7);
-  }
+.showcase {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: color;
+  background: url("../imagens/fundologin.jpg") center/cover rgb(0, 0, 0, 0.7);
+}
 
 .login-box {
   position: absolute;
@@ -68,10 +68,10 @@ body {
   font-size: 16px;
   color: var(--cor-fonte);
   pointer-events: none;
-  transition: .5s;
+  transition: 0.5s;
 }
-.login-box .user-box input:focus~label,
-.login-box .user-box input:valid~label {
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
   top: -85px;
   left: 0;
   color: var(--cor-fonte);
@@ -79,6 +79,7 @@ body {
 }
 
 #submit {
+  background-color: #242026;
   padding: 10px 20px;
   color: var(--cor-font-leve);
   font-size: 16px;
@@ -102,7 +103,6 @@ body {
 .button-form {
   display: flex;
   flex-direction: row;
-
 }
 #register {
   padding-top: 10px;

@@ -123,8 +123,8 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="datetime-local" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
-                <label>Início do Evento</label>
+                <input type="" id="dataevento" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
+                <label>Data do Evento</label>
                 <hr />
               </div>
             </fieldset>
@@ -231,4 +231,19 @@
 <script>
   $('input[name="voltar"]').on('click', function() {
       window.location = "/Capital_Buffet/FrontEnd/views/"});
+</script>
+<script>
+  
+const evento = document.getElementById('dataevento');
+
+evento.addEventListener('focus', function() {
+  evento.setAttribute('type', 'datetime-local');
+});
+
+evento.addEventListener('blur', function() {
+  if (evento.value === "") {
+    evento.setAttribute('type', '');
+  }
+});
+
 </script>
