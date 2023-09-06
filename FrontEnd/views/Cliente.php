@@ -43,7 +43,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" value="<?php echo $colunaU['nome_usuario'];?>"/>
+                <input type="text" <?php echo $colunaU['nome_usuario'];?>"/>
                 <label>Nome</label>
                 <hr />
               </div>
@@ -114,7 +114,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" name="tipo_evento" required/>
+                <input type="text" autocomplete="off" name="tipo_evento" required/>
                 <label>Tipo de Evento</label>
                 <hr />
               </div>
@@ -123,7 +123,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="" id="dataevento" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
+                <input type="" autocomplete="off" id="dataevento" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
                 <label>Data do Evento</label>
                 <hr />
               </div>
@@ -132,7 +132,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="number" name="duracao" min="0" max="12" required/>
+                <input type="number" autocomplete="off" name="duracao" min="0" max="12" required/>
                 <label>Duração em Horas (até 12)</label>
                 <hr />
               </div>
@@ -141,7 +141,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="number" name="qtd_convidados" required/>
+                <input type="number" autocomplete="off" name="qtd_convidados" required/>
                 <label>Número de Convidados</label>
                 <hr />
               </div>
@@ -150,7 +150,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" name="endereco" required/>
+                <input type="text" autocomplete="off" name="endereco" required/>
                 <label>Endereço do Evento</label>
                 <hr />
               </div>
@@ -159,7 +159,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" name="observacoes" required/>
+                <input type="text" autocomplete="off" name="observacoes" required/>
                 <label>Observações</label>
                 <hr />
               </div>

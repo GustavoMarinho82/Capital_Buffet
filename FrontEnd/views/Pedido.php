@@ -53,15 +53,14 @@
 
     <form method="POST" action="../../PHP/Pedidos/acaoPedido.php">
       <section class="content-menu">
-        <aside class="aside-float">
-          <nav class="nav-side">
-            <a href="#plates"><img src="https://i.postimg.cc/65MPq3bs/cutlery.png" alt="Pratos"> Pratos</a>
-            <a href="#drinks"><img src="https://i.postimg.cc/mg6KXD73/juice.png" alt="Sucos"> Bebidas</a>
-            <a href="#dessert"><img src="https://i.postimg.cc/0NMFLsCT/piece-of-cake.png" alt="Sobremesa" style="padding-left: 15px"> Sobremesa</a>
-            <a href="#food-menu"><img src="https://i.postimg.cc/nrDLzgZg/arrow-up.png" alt="Voltar ao Topo" style="padding: 0"> Topo</a>
-          </nav>
-        </aside>
-
+      <!--
+      <nav class="nav-side">
+        <a href="#plates"><img src="https://i.postimg.cc/65MPq3bs/cutlery.png" alt="Pratos">Pratos</a>
+        <a href="#drinks"><img src="https://i.postimg.cc/mg6KXD73/juice.png" alt="Sucos"> Bebidas</a>
+        <a href="#dessert"><img src="https://i.postimg.cc/0NMFLsCT/piece-of-cake.png" alt="Sobremesa" style="padding-left: 15px"> Sobremesa</a>
+        <a href="#food-menu"><img src="https://i.postimg.cc/nrDLzgZg/arrow-up.png" alt="Voltar ao Topo" style="padding: 0"> Topo</a>
+      </nav>
+      -->
 
       <!-- COMIDAS -->
 
@@ -205,7 +204,7 @@
             </article>
           </section>
 
-        <input type="submit" value="Finalizar Pedido"> <!--style="background: transparent;-->
+        <input type="submit" id="button" value="Finalizar Pedido"> <!--style="background: transparent;-->
 
         </section>
       </section>
@@ -215,6 +214,5 @@
   <script src="../dependencias/axios.min.js" type="text/javascript"></script>
   <script src="./Empresa/javascript/functions.js"></script>
   <script src="../javascript/pedido.js"></script>
-
 </body>
 </html>

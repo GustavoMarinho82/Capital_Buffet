@@ -6,14 +6,13 @@ html {
 }
 
 body {
-  background-image: url("https://i.postimg.cc/v8V8WRFS/fundo.png");
+  background: linear-gradient(to bottom, #2F2F2F, #8F8073);
   color: #f2f2f2;
   padding: 0;
   margin: 0;
   font-family: "Khand", sans-serif;
   font-weight: lighter;
 }
-
 a {
   text-decoration: none;
 }
@@ -56,11 +55,6 @@ a {
   margin-top: -15px;
 }
 
-.aside-float {
-  text-align: right;
-  width: 12%;
-  padding: 15px;
-}
 
 .nav-side {
   position: fixed;
@@ -110,11 +104,51 @@ a {
 }
 
 .content-side {
-  border-left: #f2f2f2 2px solid;
   display: block;
   width: 100%;
 }
 
+.header1 {
+  background-image: url("https://i.postimg.cc/pVwYPntc/prato.jpg");
+  background-size: cover;
+}
+
+.header2 {
+  background-image: url("https://i.postimg.cc/DfJPVPRb/bebidas.jpg");
+  background-size: cover;
+}
+
+.header3 {
+  background-image: url("https://i.postimg.cc/fTY7yTzz/sobremesa.jpg");
+  background-size: cover;
+}
+
+#button {
+  background-color:  #3e3732;
+  padding: 45px 278px;
+  color: var(--cor-font-leve);
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 4px;
+  border: 1px solid var(--cor-fonte);
+  margin: auto;
+}
+
+#button:hover {
+  background: var(--cor-fonte);
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--cor-fonte), 0 0 25px var(--cor-fonte), 0 0 50px var(--cor-fonte),
+    0 0 100px var(--cor-fonte);
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+}
 .header1 {
   background-image: url("https://i.postimg.cc/pVwYPntc/prato.jpg");
   background-size: cover;
