@@ -6,7 +6,8 @@ html {
 }
 
 body {
-  background: linear-gradient(to bottom, #2F2F2F, #8F8073);
+  background: rgb(140,93,44);
+  background: linear-gradient(180deg, rgba(140,93,44,1) 0%, rgba(135,80,36,1) 32%, rgba(129,64,27,1) 69%, rgba(122,45,16,1) 100%);
   color: #f2f2f2;
   padding: 0;
   margin: 0;
@@ -124,25 +125,24 @@ a {
 }
 
 #button {
-  background-color:  #3e3732;
+  color: #fff;
+  background-color:  rgb(66, 23, 7);
   padding: 45px 278px;
-  color: var(--cor-font-leve);
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
   letter-spacing: 4px;
-  border: 1px solid var(--cor-fonte);
+  border: 0px;
   margin: auto;
 }
 
 #button:hover {
-  background: var(--cor-fonte);
-  color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 5px var(--cor-fonte), 0 0 25px var(--cor-fonte), 0 0 50px var(--cor-fonte),
-    0 0 100px var(--cor-fonte);
+  background-color: transparent;
+  transition: 1s;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .button {

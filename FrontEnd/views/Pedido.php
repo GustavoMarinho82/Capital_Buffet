@@ -43,7 +43,7 @@
   <title>Pedido</title>
   <link rel="stylesheet" href="../css/style_comidas.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+  <link rel="icon" type="image/x-icon" href="../imagens/logo.png">
 </head>
 
 <body>

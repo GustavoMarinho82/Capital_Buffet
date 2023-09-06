@@ -21,7 +21,6 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: color;
   background: url("../imagens/fundologin.jpg") center/cover rgb(0, 0, 0, 0.7);
 }

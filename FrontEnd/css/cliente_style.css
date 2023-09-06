@@ -21,9 +21,8 @@ body {
   align-content: center;
   justify-content: center;
   padding: 12px;
-	background-color: rgba(0, 0, 0, 0.7);
 	background-blend-mode: color;
-  background: url("../imagens/fundologin.jpg") center center/cover rgb(0, 0, 0, 0.4);
+  background: url("../imagens/fundologin.jpg") center center/cover rgb(0, 0, 0, 0.7);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="$mauve", endColorstr="$blush",GradientType=1 );
   font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
