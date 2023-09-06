@@ -43,7 +43,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" <?php echo $colunaU['nome_usuario'];?>"/>
+                <input type="text" value="<?php echo $colunaU['nome_usuario'];?>" readonly/>
                 <label>Nome</label>
                 <hr />
               </div>
@@ -52,7 +52,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" value="<?php if (is_null($colunaU['cpf'])) {echo $colunaU['cnpj'];} else {echo $colunaU['cpf'];}?>"/>
+                <input type="text" value="<?php if (is_null($colunaU['cpf'])) {echo $colunaU['cnpj'];} else {echo $colunaU['cpf'];}?>" readonly/>
                 <label>CPF/CNPJ</label>
                 <hr />
               </div>
@@ -61,7 +61,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" value="<?php echo $colunaU['cep'];?>"/>
+                <input type="text" value="<?php echo $colunaU['cep'];?>" readonly/>
                 <label>CEP</label>
                 <hr />
               </div>
@@ -70,7 +70,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" value="<?php echo $colunaU['telefone_usuario'];?>"/>
+                <input type="text" value="<?php echo $colunaU['telefone_usuario'];?>" readonly/>
                 <label>Telefone</label>
                 <hr />
               </div>
@@ -79,7 +79,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" value="<?php echo $colunaU['email_usuario'];?>"/>
+                <input type="text" value="<?php echo $colunaU['email_usuario'];?>" readonly/>
                 <label>E-mail</label>
                 <hr />
               </div>
@@ -88,7 +88,7 @@
           <li>
             <fieldset class="material">
               <div>
-                <input type="text" value="<?php echo $colunaU['senha'];?>"/>
+                <input type="text" value="<?php echo $colunaU['senha'];?>" readonly/>
                 <label>Senha</label>
                 <hr />
               </div>
@@ -124,7 +124,7 @@
             <fieldset class="material">
               <div>
                 <input type="" autocomplete="off" id="dataevento" name="inicio_evento" min="<?php echo $min_p ?>" max="<?php echo $max_p ?>" required/>
-                <label>Data do Evento</label>
+                <label>Início do Evento</label>
                 <hr />
               </div>
             </fieldset>
