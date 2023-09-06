@@ -30,19 +30,18 @@
       </div>
 
       <div class="links">
-        <a href=""> Inicio </a>   
-        <a href=""> Depoimentos </a>
-        <a href=""> Cardápios </a>
-        <a href=""> Contate-nos </a>
+        <a href="#inicio"> Inicio </a>   
+        <a href="#Depoimentos"> Sobre nós </a>
+        <a href="#contate"> Contate-nos </a>
         <a href="../views/Login.php" id="login">Login</a>
       </div>
 
     </nav>
-    <div class="showcase">
+    <div class="showcase" id="inicio">
       <div class="showcase-container">
         <h2>Servindo todos os gostos desde 1995</h2>
         <p>✨Eventos e festas marcados pelo sabor✨</p>
-        <button class="btn-primary">Venha nos conhecer</button>
+        <a href="Login.php" class="btn-primary">Venha nos conhecer</a>
       </div>
     </div>
 
@@ -52,7 +51,6 @@
         <label>
           Bem-vindo à Capital Buffet, onde a gastronomia se torna uma experiência inesquecível. Nossa paixão pela culinária e nossa dedicação em superar as expectativas são os pilares que nos transformam em mais do que uma empresa de buffet: somos os curadores de momentos especiais.
         </label>
-        <a href="#valorizamos">Sobre nós</a>
       </div>
       <div
         class="stuffed-cherries"
@@ -61,7 +59,7 @@
       ></div>
     </section>
 
-    <section class="bread-background center-h1">
+    <section class="bread-background center-h1" >
       <h1 class="custom-h1">
         <span class="custom-font">Receitas</span><br />Saborosas
       </h1>
@@ -77,6 +75,7 @@
           height="305px"
         />
         <img
+          id="Depoimentos"
           src="../imagens/buffet2.jpg"
           data-aos="fade-left"
           data-aos-delay="300"
@@ -98,10 +97,10 @@
           height="305px"
         />
       </div>
-      <div class="center-text">
+      <div class="center-text" >
         <br>
         <h1><span class="custom-font">Menu</span><br />Variados</h1>
-        <label>
+        <label id="Depoimentos">
           Temos um cardápio variado e delicioso para agradar a todos os paladares. 
           Abrangemos opções para todos os gostos, desde pratos vegetarianos e veganos até carnes e frutos do mar. 
           Não importa qual seja a sua escolha, garantimos que cada prato será preparado com perfeição e servido com um sorriso. 
@@ -158,7 +157,7 @@
     <footer>
       <button class="to-top"><i class="fa fa-chevron-up"></i>TOP</button>
 
-      <div class="restaurant-info">
+      <div class="restaurant-info" id="contate">
         <div class="locations">
           <h4>Locais</h4>
           <div class="location-1">
