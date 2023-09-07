@@ -199,9 +199,9 @@
                 <tr style="color:#ffe8be; text-align:center">
                     <td><?php echo $linha["tipo_evento"]; ?></td>
                     <td>R$ <?php echo $linha["orcamento"]; ?></td>
-                    <td><?php echo $linha["data_pedido"];; ?></td>
-                    <td><?php echo $linha["inicio_evento"]; ?></td>
-                    <td><?php echo $linha["fim_evento"]; ?></td>
+                    <td><?php echo date("d/m/Y", strtotime($linha["data_pedido"])); ?></td>
+                    <td><?php echo date("d/m/Y H:i", strtotime($linha["inicio_evento"])); ?></td>
+                    <td><?php echo date("d/m/Y H:i", strtotime($linha["fim_evento"])); ?></td>
                 </tr>
               </table>
 
